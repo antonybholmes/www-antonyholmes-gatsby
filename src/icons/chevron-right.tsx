@@ -1,3 +1,4 @@
+import React from "react"
 import type IIconProps from "../interfaces/icon-props"
 
 export default function ChevronRightIcon({ className }: IIconProps) {

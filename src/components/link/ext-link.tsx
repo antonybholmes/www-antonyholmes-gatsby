@@ -1,6 +1,7 @@
 import cn from "../../lib/class-names"
 import ILinkProps from "../../interfaces/link-props"
 import IMouseProps from "../../interfaces/mouse-props"
+import React from "react"
 
 interface IProps extends ILinkProps, IMouseProps {
   target?: string

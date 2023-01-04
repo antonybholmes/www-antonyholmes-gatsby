@@ -1,4 +1,5 @@
 import { gsap } from "gsap"
+import React from "react"
 import {
   FocusEventHandler,
   MouseEventHandler,

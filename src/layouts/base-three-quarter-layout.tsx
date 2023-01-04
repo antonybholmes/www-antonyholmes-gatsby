@@ -1,3 +1,4 @@
+import React from "react"
 import type ICrumbProps from "../interfaces/crumb-props"
 import type ILayoutProps from "../interfaces/layout-props"
 import cn from "../lib/class-names"
@@ -20,11 +21,11 @@ export default function BaseThreeQuarterLayout({
   children,
 }: IProps) {
   return (
-    <div class={cn("grid grid-cols-1 xl:grid-cols-4 xl:gap-x-16", className)}>
+    <div className={cn("grid grid-cols-1 xl:grid-cols-4 xl:gap-x-16", className)}>
       {!isRight && (
         <div className="relative col-span-1 hidden xl:block">{children[1]}</div>
       )}
-      <article class="col-span-3">
+      <article className="col-span-3">
         <LayoutTitles
           title={title}
           superTitle={superTitle}
@@ -37,7 +38,7 @@ export default function BaseThreeQuarterLayout({
         {children[0]}
       </article>
       {isRight && (
-        <div class="relative col-span-1 hidden xl:block">{children[1]}</div>
+        <div className="relative col-span-1 hidden xl:block">{children[1]}</div>
       )}
     </div>
   )

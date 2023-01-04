@@ -1,3 +1,4 @@
+import React from "react"
 import HCenterRow from "../components/h-center-row"
 import VCenterRow from "../components/v-center-row"
 import IClassProps from "../interfaces/class-props"
@@ -21,7 +22,7 @@ const LogoIcon = ({ headerMode = "light", className }: IProps) => {
           "transition-ani transition-color h-9 w-9 items-center bg-gradient-to-br",
           [
             headerMode === "light",
-            "  bg-sky-400 text-white group-hover:bg-sky-500",
+            "  bg-sky-500 text-white group-hover:bg-sky-600",
             "bg-slate-300 group-hover:bg-slate-200",
           ]
         )}

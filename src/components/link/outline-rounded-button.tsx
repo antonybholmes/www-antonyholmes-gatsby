@@ -1,3 +1,4 @@
+import React from "react"
 import cn from "../../lib/class-names"
 import type { IButtonProps } from "./button"
 import { OUTLINE_CLS } from "./outline-rounded-button-link"

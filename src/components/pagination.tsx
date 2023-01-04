@@ -1,10 +1,11 @@
-import { range } from "lodash-es"
+import { range } from "lodash"
 import cn from "../lib/class-names"
 import type IChildrenProps from "../interfaces/children-props"
 import type IAriaProps from "../interfaces/aria-props"
 import RoundedButton from "./link/rounded-button"
 import ChevronLeftIcon from "../icons/chevron-left"
 import ChevronRightIcon from "../icons/chevron-right"
+import React from "react"
 
 const BTN_CLS =
   "flex flex-row justify-center items-center min-w-8 h-8 border border-transparent"

@@ -1,3 +1,4 @@
+import React from "react"
 import cn from "../../lib/class-names"
 import type { ICheckBoxProps } from "./check-box"
 

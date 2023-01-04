@@ -2,6 +2,8 @@ import cn from "../../lib/class-names"
 import ILinkProps from "../../interfaces/link-props"
 import IMouseProps from "../../interfaces/mouse-props"
 import ExtLink from "./ext-link"
+import React from "react"
+import { Link } from "gatsby"
 
 interface IProps extends ILinkProps, IMouseProps {
   underline?: boolean
@@ -48,8 +50,8 @@ const BaseLink = ({
     }
 
     return (
-      <a
-        href={href}
+      <Link
+        to={href}
         aria-label={ariaLabel}
         className={cn("m-0 p-0", [underline, `hover:underline`], className)}
         onClick={onClick}
@@ -57,7 +59,7 @@ const BaseLink = ({
         onMouseLeave={onMouseLeave}
       >
         {children}
-      </a>
+      </Link>
     )
   }
 }

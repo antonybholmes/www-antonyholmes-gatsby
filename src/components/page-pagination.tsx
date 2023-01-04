@@ -1,4 +1,4 @@
-import { range } from "lodash-es"
+import { range } from "lodash"
 import cn from "../lib/class-names"
 import type IChildrenProps from "../interfaces/children-props"
 import type IAriaProps from "../interfaces/aria-props"

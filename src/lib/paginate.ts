@@ -1,4 +1,4 @@
-import { range } from "lodash-es"
+import { range } from "lodash"
 import { RECORDS_PER_PAGE } from "../constants"
 import IFieldMap from "../interfaces/field-map"
 

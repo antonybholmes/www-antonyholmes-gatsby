@@ -3,6 +3,7 @@ import { gsap } from "gsap"
 import cn from "../../lib/class-names"
 import BaseLink from "../link/base-link"
 import ILink from "../../interfaces/link"
+import React from "react"
 
 const DURATION = 0.5
 const BAR_WIDTH = "3px"

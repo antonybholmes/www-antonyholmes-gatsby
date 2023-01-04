@@ -1,3 +1,4 @@
+import React from "react"
 import type IChildrenProps from "../../interfaces/children-props"
 import cn from "../../lib/class-names"
 

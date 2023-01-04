@@ -1,3 +1,4 @@
+import React from "react"
 import { useState } from "react"
 import ExpandIcon from "../../icons/expand"
 import { getShortName } from "../../lib/text"

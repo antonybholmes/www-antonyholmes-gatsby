@@ -1,4 +1,5 @@
-import { range } from "lodash-es"
+import { range } from "lodash"
+import React from "react"
 import type IClassProps from "../../interfaces/class-props"
 import cn from "../../lib/class-names"
 import BasePublication from "./base-publication"

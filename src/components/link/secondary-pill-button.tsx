@@ -1,6 +1,7 @@
 import cn from "../../lib/class-names"
 import ILinkProps from "../../interfaces/link-props"
 import PillButtonLink from "./pill-button-link"
+import React from "react"
 
 const SecondaryPillButtonLink = ({
   href,

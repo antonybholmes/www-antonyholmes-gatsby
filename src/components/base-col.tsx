@@ -1,3 +1,4 @@
+import React from "react"
 import IChildrenProps from "../interfaces/children-props"
 import IMouseProps from "../interfaces/mouse-props"
 import cn from "../lib/class-names"

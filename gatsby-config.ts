@@ -10,8 +10,16 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
-    "gatsby-plugin-google-gtag",
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: ["G-X21MCY4FP3"],
+      },
+    },
     "gatsby-plugin-image",
+    `gatsby-plugin-remove-generator`,
+    `gatsby-plugin-robots-txt`,
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
@@ -64,10 +72,10 @@ const config: GatsbyConfig = {
       },
       __key: "publications",
     },
-    'gatsby-plugin-catch-links',
-    'gatsby-transformer-json',
-    'gatsby-plugin-sass',
-    'gatsby-plugin-postcss'
+    "gatsby-plugin-catch-links",
+    "gatsby-transformer-json",
+    "gatsby-plugin-sass",
+    "gatsby-plugin-postcss",
   ],
 }
 

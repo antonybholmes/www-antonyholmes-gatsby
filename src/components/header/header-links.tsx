@@ -3,6 +3,7 @@ import ILink from "../../interfaces/link"
 import HeaderLink from "./header-link"
 import IHeaderProps from "./header-props"
 import IMenuProps from "./menu-props"
+import React from "react"
 
 interface IProps extends IHeaderProps, IMenuProps {
   scrollY: number

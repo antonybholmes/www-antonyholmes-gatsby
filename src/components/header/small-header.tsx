@@ -6,6 +6,7 @@ import ContentDiv from "../content-div"
 import HCenterRow from "../h-center-row"
 import type { IMenuOverlayProps } from "./menu-overlay"
 import LogoIcon from "../../icons/logo-icon"
+import React from "react"
 
 export interface ISmallHeaderProps extends IMenuOverlayProps, IChildrenProps {
   showMenu: boolean

@@ -1,3 +1,4 @@
+import React from "react"
 import getCopyright from "../lib/copyright"
 import { INFO_LINKS } from "../menus"
 import ContentDiv from "./content-div"

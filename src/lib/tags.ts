@@ -1,4 +1,4 @@
-import { capitalize } from "lodash-es"
+import { capitalize } from "lodash"
 
 export const getUrlFriendlyTag = (tag: string) => {
   return tag.trim().toLowerCase().replaceAll(" ", "-").replaceAll("&", "and")

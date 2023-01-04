@@ -2,6 +2,7 @@ import cn from "../lib/class-names"
 import IChildrenProps from "../interfaces/children-props"
 import IMouseProps from "../interfaces/mouse-props"
 import BaseRow from "./base-row"
+import React from "react"
 
 interface IProps extends IChildrenProps, IMouseProps {
   tag?: string

@@ -1,39 +1,40 @@
-import { useEffect, useState } from "preact/hooks"
+import { useEffect, useState } from "react"
 
-import getBooleanSearch from "../../lib/boolean-search"
-import getJournalPublications from "../../lib/pub/journal-publications"
-import sortPublications from "../../lib/pub/sort-publications"
-import getTopAuthors from "../../lib/top-authors"
-import getTopJournals from "../../lib/top-journals"
-import SearchBar from "../search/searchbar"
+import getBooleanSearch from "../lib/boolean-search"
+import getJournalPublications from "../lib/pub/journal-publications"
+import sortPublications from "../lib/pub/sort-publications"
+import getTopAuthors from "../lib/top-authors"
+import getTopJournals from "../lib/top-journals"
+import SearchBar from "../components/search/searchbar"
 
 //import BlueButton from "../link/blue-button"
-import JournalFilter from "./journal-filter"
-import Publications from "./publications"
-import SortOrder from "./sortby"
+import JournalFilter from "../components/publication/journal-filter"
+import Publications from "../components/publication/publications"
+import SortOrder from "../components/publication/sortby"
 
 //import axios from "axios"
-import BaseRow from "../base-row"
+import BaseRow from "../components/base-row"
 
-import VCenterRow from "../v-center-row"
+import VCenterRow from "../components/v-center-row"
 
-import getAuthorPublications from "../../lib/pub/author-publications"
-import HCenterRow from "../h-center-row"
-import Pagination from "../pagination"
-import AuthorFilter from "./author-filter"
+import getAuthorPublications from "../lib/pub/author-publications"
+import HCenterRow from "../components/h-center-row"
+import Pagination from "../components/pagination"
+import AuthorFilter from "../components/publication/author-filter"
 
-import { RECORDS_PER_PAGE, TEXT_SHOW_MORE } from "../../constants"
-import SortIcon from "../../icons/sort"
-import ThreeQuarterLayout from "../../layouts/three-quarter-layout"
-import pubYearCount from "../../lib/pub/pub-year-count"
-import { getShortName } from "../../lib/text"
-import BaseCol from "../base-col"
-import BlueRoundedButton from "../link/blue-rounded-button"
-import ToggleSwitch from "../link/toggle-switch"
-import PubRangeSlider from "./pub-range-slider"
+import { RECORDS_PER_PAGE, TEXT_SHOW_MORE } from "../constants"
+import SortIcon from "../icons/sort"
+import ThreeQuarterLayout from "../layouts/three-quarter-layout"
+import pubYearCount from "../lib/pub/pub-year-count"
+import { getShortName } from "../lib/text"
+import BaseCol from "../components/base-col"
+import BlueRoundedButton from "../components/link/blue-rounded-button"
+import ToggleSwitch from "../components/link/toggle-switch"
+import PubRangeSlider from "../components/publication/pub-range-slider"
 import React from "react"
 import Seo from "../layouts/seo"
 import { graphql } from "gatsby"
+import IDataPageProps from "../interfaces/data-page-props"
 
 const EMPTY_QUERY = ""
 
@@ -206,11 +207,11 @@ function results(search: string, page: number, filteredPublications: any[]) {
   }
 }
 
-interface IProps {
-  publications: any[]
-}
 
-export default function Page({ publications }: IProps) {
+
+export default function Page({ data }: IDataPageProps) {
+  const publications = data.all.nodes
+  
   //const [publications, setPublications] = useState<any[]>([])
 
   const [journals, setJournals] = useState<any[]>([])
@@ -590,9 +591,8 @@ export const Head = () => <Seo title="Publications" />
 
 export const pageQuery = graphql`
   query {
-    all: publicationsJson(personId: { eq: "antony-holmes" }) {
-      personId
-      publications {
+    all: allAntonyHolmesJson {
+      nodes {
         title
         journal
         year
