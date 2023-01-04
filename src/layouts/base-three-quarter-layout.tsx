@@ -21,7 +21,9 @@ export default function BaseThreeQuarterLayout({
   children,
 }: IProps) {
   return (
-    <div className={cn("grid grid-cols-1 xl:grid-cols-4 xl:gap-x-16", className)}>
+    <div
+      className={cn("grid grid-cols-1 xl:grid-cols-4 xl:gap-x-16", className)}
+    >
       {!isRight && (
         <div className="relative col-span-1 hidden xl:block">{children[1]}</div>
       )}

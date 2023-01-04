@@ -1,5 +1,5 @@
 //const dotenv = require('dotenv')
-const fs = require('fs')
+const fs = require('fs-extra')
 //const env = fs.readFileSync('env')
 //const buf = Buffer.from(env)
 //const currentConfig = dotenv.parse(buf)

@@ -207,11 +207,9 @@ function results(search: string, page: number, filteredPublications: any[]) {
   }
 }
 
-
-
 export default function Page({ data }: IDataPageProps) {
   const publications = data.all.nodes
-  
+
   //const [publications, setPublications] = useState<any[]>([])
 
   const [journals, setJournals] = useState<any[]>([])

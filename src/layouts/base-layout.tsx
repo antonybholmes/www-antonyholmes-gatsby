@@ -24,7 +24,7 @@ export default function BaseLayout({
       </Header>
 
       <main className={cn("min-h-screen w-full", className)}>{children}</main>
-      <Footer  />
+      <Footer />
     </>
   )
 }
