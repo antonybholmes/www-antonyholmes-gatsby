@@ -1,0 +1,47 @@
+import {
+  AUTHOR_SLUG,
+  BROKERAGE_SLUG,
+  CREDIT_CARD_SLUG,
+  PAGE_1_SLUG,
+  PORTFOLIO_SLUG,
+  REVIEW_SLUG,
+  SECTION_SLUG,
+  TAG_SLUG,
+} from "../constants"
+import { getUrlFriendlyTag } from "./tags"
+
+export const getAuthorUrl = (name: string) => {
+  return `${AUTHOR_SLUG}/${name.toLowerCase().replace(" ", "-")}`
+}
+
+export const getReviewBaseUrl = (tag: string) => {
+  return `${REVIEW_SLUG}/${getUrlFriendlyTag(tag)}`
+}
+
+export const getCreditCardTagUrl = (tag: string) => {
+  return `${CREDIT_CARD_SLUG}/tag/${getUrlFriendlyTag(tag)}`
+}
+
+export const getBrokerageTagUrl = (tag: string) => {
+  return `${BROKERAGE_SLUG}/tag/${getUrlFriendlyTag(tag)}`
+}
+
+export const getPortfolioTagUrl = (tag: string) => {
+  return `${PORTFOLIO_SLUG}/tag/${getUrlFriendlyTag(tag)}`
+}
+
+export const getSectionBaseUrl = (section: string) => {
+  return `${SECTION_SLUG}/${getUrlFriendlyTag(section)}`
+}
+
+export const getSectionUrl = (section: string) => {
+  return `${getSectionBaseUrl(section)}${PAGE_1_SLUG}`
+}
+
+export const getTagBaseUrl = (tag: string) => {
+  return `${TAG_SLUG}/${getUrlFriendlyTag(tag)}`
+}
+
+export const getTagUrl = (tag: string) => {
+  return getTagBaseUrl(tag)
+}
