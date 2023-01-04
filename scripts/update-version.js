@@ -1,4 +1,4 @@
-const fs = require('fs-extra')
+const fs = require('fs')
 const datefns = require('date-fns')
 const updateEnv = require('./update-env.js')
 

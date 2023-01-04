@@ -1,4 +1,4 @@
-import fs from "fs-extra"
+import fs from "fs"
 import { join } from "path"
 
 export const CONTENT_DIR = join(process.cwd(), "_content")
