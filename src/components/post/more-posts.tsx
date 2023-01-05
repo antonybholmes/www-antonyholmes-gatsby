@@ -14,7 +14,7 @@ export default function MorePosts({
 }: IProps) {
   return (
     <section>
-      <h2 className="border-b-2 border-slate-300 pb-1 text-xl">{title}</h2>
+      <h2 className=" border-b-2 border-slate-300 pb-1 text-xl">{title}</h2>
       <ul className="mt-4 flex w-full flex-col">
         {posts.map((post, index) => (
           <li key={index}>
