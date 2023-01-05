@@ -1,3 +1,4 @@
+import React from "react"
 import IChildrenProps from "../../interfaces/children-props"
 
 const PostsHeader = ({ children }: IChildrenProps) => {

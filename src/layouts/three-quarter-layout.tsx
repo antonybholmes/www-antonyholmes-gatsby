@@ -14,6 +14,7 @@ export default function ThreeQuarterLayout({
   showCrumbs = true,
   superTitle,
   subTitle,
+  location,
   tab,
   crumbs,
   isRight = true,
@@ -24,6 +25,7 @@ export default function ThreeQuarterLayout({
   return (
     <ContentLayout
       title={title}
+      location={location}
       tab={tab}
       showTitle={false}
       showCrumbs={false}
@@ -34,6 +36,8 @@ export default function ThreeQuarterLayout({
 
       <BaseThreeQuarterLayout
         title={title}
+        showTitle={showTitle}
+        location={location}
         tab={tab}
         isRight={isRight}
         crumbs={crumbs}

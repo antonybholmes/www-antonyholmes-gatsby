@@ -2,6 +2,7 @@ import cn from "../../lib/class-names"
 import IPostProps from "../../interfaces/post-props"
 import Avatars from "../avatars"
 import DateFormatter from "./date-formatter"
+import React from "react"
 
 const PostDetailsHoz = ({ post, className }: IPostProps) => (
   <section
@@ -10,10 +11,10 @@ const PostDetailsHoz = ({ post, className }: IPostProps) => (
       className
     )}
   >
-    <Avatars authors={post.authors} />
+    <Avatars authors={post.frontmatter.authors} />
 
     <DateFormatter
-      date={post.date}
+      date={post.fields.date}
       className="border-l border-slate-300 py-1 pl-6"
     />
 

@@ -1,3 +1,4 @@
+import React from "react"
 import IPostsProps from "../../interfaces/posts-props"
 import LatestPost from "./latest-post"
 import PostsHeader from "./posts-header"

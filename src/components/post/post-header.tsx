@@ -1,3 +1,4 @@
+import React from "react"
 import IPostProps from "../../interfaces/post-props"
 
 import ContentDiv from "../content-div"
@@ -5,11 +6,7 @@ import PageTitle from "../page-title"
 import HeroImage from "./hero-image"
 import PostSectionLink from "./post-section-link"
 
-interface IProps extends IPostProps {
-  url: string
-}
-
-const PostHeader = ({ post, url }: IProps) => (
+const PostHeader = ({ post }: IPostProps) => (
   <section className="bg-slate-800">
     <ContentDiv className="pt-24">
       <></>

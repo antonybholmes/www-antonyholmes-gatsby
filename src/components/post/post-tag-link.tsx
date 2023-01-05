@@ -1,3 +1,4 @@
+import React from "react"
 import { getTagUrl } from "../../lib/urls"
 import PillButtonLink from "../link/pill-button-link"
 

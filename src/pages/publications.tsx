@@ -207,7 +207,7 @@ function results(search: string, page: number, filteredPublications: any[]) {
   }
 }
 
-export default function Page({ data }: IDataPageProps) {
+export default function Page({ data, location }: IDataPageProps) {
   const publications = data.all.nodes
 
   //const [publications, setPublications] = useState<any[]>([])
@@ -473,6 +473,7 @@ export default function Page({ data }: IDataPageProps) {
   return (
     <ThreeQuarterLayout
       title="Publications"
+      location={location}
       headerChildren={
         <SearchBar
           onSearch={onSearch}
@@ -481,7 +482,6 @@ export default function Page({ data }: IDataPageProps) {
           className="hidden grow lg:flex"
         />
       }
-      crumbs={[["Publications", "/publications"]]}
       className="mb-32 gap-x-16"
     >
       <div>

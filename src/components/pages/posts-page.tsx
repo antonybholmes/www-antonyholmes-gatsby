@@ -1,3 +1,4 @@
+import React from "react"
 import IFieldMap from "../../interfaces/field-map"
 import IPreviewPost from "../../interfaces/preview-post"
 import BaseCol from "../base-col"

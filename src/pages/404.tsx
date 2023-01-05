@@ -1,49 +1,34 @@
-import * as React from "react"
-import { Link, HeadFC, PageProps } from "gatsby"
+import React from "react"
+import HCenterRow from "../components/h-center-row"
+import BlueIndexLink from "../components/link/blue-index-link"
+import PageTitle from "../components/page-title"
+import IDataPageProps from "../interfaces/data-page-props"
+import ContentLayout from "../layouts/content-layout"
+import Seo from "../layouts/seo"
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-
-const NotFoundPage: React.FC<PageProps> = () => {
+export default function Page({ location }: IDataPageProps) {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
+    <ContentLayout
+      title="Page Not Found"
+      showCrumbs={false}
+      location={location}
+    >
+      <></>
+      <div className="mt-16">
+        <HCenterRow>
+          <PageTitle title="The page you're looking for can't be found." />
+        </HCenterRow>
+        <HCenterRow>
+          <BlueIndexLink
+            href="/sitemap"
+            ariaLabel="Click to view site map"
+            className="mt-16"
+            text="See our site map"
+          />
+        </HCenterRow>
+      </div>
+    </ContentLayout>
   )
 }
 
-export default NotFoundPage
-
-export const Head: HeadFC = () => <title>Not found</title>
+export const Head = () => <Seo title="Page Not Found" />

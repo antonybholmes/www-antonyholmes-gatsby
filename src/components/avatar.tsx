@@ -1,14 +1,14 @@
+import React from "react"
+import IClassProps from "../interfaces/class-props"
 import cn from "../lib/class-names"
 import { getAuthorUrl } from "../lib/urls"
-import IClassProps from "../interfaces/class-props"
-import IPostAuthor from "../interfaces/post-author"
 import AvatarImage from "./avatar-image"
 import BaseCol from "./base-col"
 import BaseLink from "./link/base-link"
 import VCenterRow from "./v-center-row"
 
 interface IProps extends IClassProps {
-  author: IPostAuthor
+  author: string
   showTitle?: boolean
   isSmall?: boolean
 }
@@ -19,13 +19,13 @@ const Avatar = ({
   isSmall = false,
   className,
 }: IProps) => {
-  const href = getAuthorUrl(author.frontmatter.name)
+  const href = getAuthorUrl(author)
 
   return (
     <VCenterRow className={cn("gap-x-3", className)}>
       <BaseLink
         href={href}
-        ariaLabel={`Click to read more about ${author.frontmatter.name}`}
+        ariaLabel={`Click to read more about ${author}`}
         className={cn("block", [isSmall, "h-10 w-10", "h-12 w-12"])}
       >
         <AvatarImage author={author} />
@@ -33,18 +33,18 @@ const Avatar = ({
       <BaseCol>
         <BaseLink
           href={href}
-          ariaLabel={`Click to read more information about ${author.frontmatter.name}`}
+          ariaLabel={`Click to read more information about ${author}`}
           underline={true}
           className={cn("font-bold", [isSmall, "text-sm"])}
         >
-          {author.frontmatter.name}
+          {author}
         </BaseLink>
 
-        {showTitle && (
+        {/* {showTitle && (
           <div className="text-sm font-light text-slate-500">
             {author.frontmatter.title.split(",")[0].trim()}
           </div>
-        )}
+        )} */}
       </BaseCol>
     </VCenterRow>
   )

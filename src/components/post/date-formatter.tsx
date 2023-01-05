@@ -1,4 +1,5 @@
 import { parseISO, format } from "date-fns"
+import React from "react"
 import cn from "../../lib/class-names"
 
 interface IProps {

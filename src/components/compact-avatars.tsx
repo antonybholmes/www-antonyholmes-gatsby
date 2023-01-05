@@ -1,13 +1,13 @@
+import React from "react"
+import IClassProps from "../interfaces/class-props"
 import cn from "../lib/class-names"
 import { getAuthorUrl } from "../lib/urls"
-import IClassProps from "../interfaces/class-props"
-import IPostAuthor from "../interfaces/post-author"
 import AvatarImage from "./avatar-image"
 import BaseLink from "./link/base-link"
 import VCenterRow from "./v-center-row"
 
 interface IProps extends IClassProps {
-  authors: IPostAuthor[]
+  authors: string[]
 }
 
 const CompactAvatars = ({ authors, className }: IProps) => (
@@ -32,11 +32,11 @@ const CompactAvatars = ({ authors, className }: IProps) => (
       {authors.map((author, index) => (
         <li key={index}>
           <BaseLink
-            href={getAuthorUrl(author.frontmatter.name)}
-            ariaLabel={`Click to read more information about ${author.frontmatter.name}`}
+            href={getAuthorUrl(author)}
+            ariaLabel={`Click to read more information about ${author}`}
             underline={true}
           >
-            {author.frontmatter.name}
+            {author}
           </BaseLink>
           {index < authors.length - 2 && <span>,</span>}
           {index === authors.length - 2 && <span className="ml-1">&</span>}

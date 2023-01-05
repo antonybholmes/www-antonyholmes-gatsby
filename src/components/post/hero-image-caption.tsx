@@ -1,5 +1,6 @@
 import cn from "../../lib/class-names"
 import IPostProps from "../../interfaces/post-props"
+import React from "react"
 
 const HeroImageCaption = ({ post, className }: IPostProps) => (
   <div

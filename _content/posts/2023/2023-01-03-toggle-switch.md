@@ -7,7 +7,7 @@ section: "Tutorial"
 tags: ["Typescript", "Preact", "React", "SVG"]
 related: ""
 status: "published"
-hero: ""
+hero: "generic4"
 ---
 
 Let's make a simple UI toggle switch using Preact and SVG. No need for some huge library dependency.

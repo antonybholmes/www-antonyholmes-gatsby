@@ -1,3 +1,4 @@
+import React from "react"
 import IClassProps from "../interfaces/class-props"
 
 export interface IHtmlProps extends IClassProps {

@@ -5,6 +5,7 @@ import FacebookIcon from "../../icons/facebook"
 import LinkedInIcon from "../../icons/linkedin"
 import TwitterIcon from "../../icons/twitter"
 import BaseLink from "../link/base-link"
+import React from "react"
 
 export const CLS_TEXT_GRAY_HOVER = "w-6"
 
@@ -12,7 +13,7 @@ export const CLS_SOCIAL_ICON =
   "fill-slate-300 hover:fill-blue-400 transition-ani transition-color border border-slate-200 rounded-full p-2"
 
 const PostSocialMedia = ({ post, className }: IPostProps) => {
-  const url = getPostUrl(post.slug)
+  const url = getPostUrl(post.fields.slug)
   return (
     <section className={cn("flex flex-row items-center gap-x-2", className)}>
       <BaseLink

@@ -3,6 +3,7 @@ import IPostsProps from "../../interfaces/posts-props"
 import BaseCol from "../base-col"
 import HeroPostSmall from "./hero-post-small"
 import PreviewPost from "./preview-post"
+import React from "react"
 
 const HeroPosts = ({ posts }: IPostsProps) => {
   const topPost = posts[0]

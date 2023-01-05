@@ -1,3 +1,4 @@
+import React from "react"
 import AvatarImage, { IAvatarProps } from "./avatar-image"
 
 const AvatarImageLarge = ({ author, className }: IAvatarProps) => (

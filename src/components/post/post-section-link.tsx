@@ -11,6 +11,7 @@ import { getReviewBaseUrl, getSectionBaseUrl } from "../../lib/urls"
 import IPostProps from "../../interfaces/post-props"
 import BaseLink from "../link/base-link"
 import BaseRow from "../base-row"
+import React from "react"
 
 const PostSectionLink = ({ post, className }: IPostProps) => {
   let url: string

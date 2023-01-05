@@ -7,7 +7,7 @@ section: "Programming"
 tags: ["Typescript", "Preact", "React"]
 related: ""
 status: "published"
-hero: ""
+hero: "generic3"
 ---
 
 Simplify class name strings without external libraries.

@@ -7,7 +7,7 @@ section: "News"
 tags: ["Website"]
 related: ""
 status: "published"
-hero: ""
+hero: "generic1"
 ---
 
 I have redesigned my web site using React and Gatsby.

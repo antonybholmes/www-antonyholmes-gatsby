@@ -2,6 +2,7 @@ import cn from "../../lib/class-names"
 import IPostProps from "../../interfaces/post-props"
 import VCenterRow from "../v-center-row"
 import PostTagLinkBlue from "./post-tag-link-blue"
+import React from "react"
 
 const PostTags = ({ post, className }: IPostProps) => (
   <VCenterRow

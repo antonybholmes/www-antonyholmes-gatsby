@@ -6,6 +6,7 @@ import PostAuthor from "./post-author"
 import PostImage from "./post-image"
 import PostSectionLink from "./post-section-link"
 import PostTitleLink from "./post-title-link"
+import React from "react"
 
 interface IProps extends IPostProps {
   showDescription?: boolean

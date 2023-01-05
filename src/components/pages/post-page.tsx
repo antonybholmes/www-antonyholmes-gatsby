@@ -10,17 +10,17 @@ import PostSocialMediaVert from "../post/post-social-media-vert"
 import PostTags from "../post/post-tags"
 import RelatedPosts from "../post/related-posts"
 import ContentDiv from "../content-div"
+import React from "react"
 
 interface IProps {
   post: IPost
-  readMorePosts: IPreviewPost[]
-  url: string
+  readMorePosts?: IPreviewPost[]
 }
 
-const PostPage = ({ post, readMorePosts, url }: IProps) => (
+const PostPage = ({ post, readMorePosts = [] }: IProps) => (
   <>
     <article>
-      <PostHeader post={post} url={url} />
+      <PostHeader post={post} />
 
       <ContentDiv className="my-40">
         <></>

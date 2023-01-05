@@ -1,3 +1,4 @@
+import React from "react"
 import { getTagBaseUrl } from "../../lib/urls"
 import BlueLink from "../link/blue-link"
 

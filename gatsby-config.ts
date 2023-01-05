@@ -10,7 +10,6 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
-    `gatsby-plugin-pnpm`,
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
@@ -53,7 +52,7 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "pages",
-        path: "./src/pages/",
+        path: "./_content/pages/",
       },
       __key: "pages",
     },
@@ -61,7 +60,7 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "posts",
-        path: "_content/posts",
+        path: "./_content/posts",
       },
       __key: "posts",
     },
@@ -69,7 +68,7 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "publications",
-        path: "_content/publications",
+        path: "./_content/publications",
       },
       __key: "publications",
     },

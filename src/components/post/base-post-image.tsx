@@ -1,6 +1,8 @@
 import cn from "../../lib/class-names"
 import IPostProps from "../../interfaces/post-props"
 import BaseImage from "../base-image"
+import React from "react"
+import { GENERIC_IMAGES } from "../../constants"
 
 interface IProps extends IPostProps {
   root?: string
@@ -9,21 +11,27 @@ interface IProps extends IPostProps {
   loading?: "lazy" | "eager"
 }
 
-const BasePostImage = ({
+export default function BasePostImage({
   post,
   root = "/posts",
   size = [2048, 1024],
   loading = "lazy",
   className,
-}: IProps) => (
-  <BaseImage
-    src={`/assets/images/posts/${post.frontmatter.hero}.webp`}
-    alt={post.frontmatter.title}
-    root={root}
-    size={size}
-    loading={loading}
-    className={cn("h-full w-full object-cover", className)}
-  />
-)
+}: IProps) {
+  let hero = post.frontmatter.hero
 
-export default BasePostImage
+  if (hero === "undefined") {
+    hero = `generic1`
+  }
+
+  return (
+    <BaseImage
+      src={`/assets/images/posts/${hero}.webp`}
+      alt={post.frontmatter.title}
+      root={root}
+      size={size}
+      loading={loading}
+      className={cn("h-full w-full object-cover", className)}
+    />
+  )
+}

@@ -10,8 +10,10 @@ interface IProps extends ILayoutProps {
 
 export default function BaseLayout({
   title,
+  location,
   tab,
   className,
+  headerMode = "light",
   headerChildren,
   children,
 }: IProps) {
@@ -19,7 +21,7 @@ export default function BaseLayout({
     <>
       {/* <Meta />
       <Seo title={title} />*/}
-      <Header title={title} tab={tab}>
+      <Header title={title} tab={tab} headerMode={headerMode}>
         {headerChildren}
       </Header>
 

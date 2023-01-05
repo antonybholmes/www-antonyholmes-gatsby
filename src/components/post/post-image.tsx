@@ -2,6 +2,7 @@ import cn from "../../lib/class-names"
 import IPostProps from "../../interfaces/post-props"
 import BaseLink from "../link/base-link"
 import BasePostImage from "./base-post-image"
+import React from "react"
 
 interface IProps extends IPostProps {
   size?: number[]
@@ -20,9 +21,9 @@ const PostImage = ({ post, size = [512, 256], className }: IProps) => {
     </div>
   )
 
-  if (post.slug) {
+  if (post.fields.slug) {
     return (
-      <BaseLink href={post.slug} ariaLabel={post.frontmatter.title}>
+      <BaseLink href={post.fields.slug} ariaLabel={post.frontmatter.title}>
         {image}
       </BaseLink>
     )

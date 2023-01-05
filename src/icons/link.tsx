@@ -1,3 +1,4 @@
+import React from "react"
 import IconProps from "../interfaces/icon-props"
 
 const LinkIcon = ({ className }: IconProps) => (

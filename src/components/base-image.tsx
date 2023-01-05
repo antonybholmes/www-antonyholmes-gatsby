@@ -1,3 +1,4 @@
+import React from "react"
 import type IClassProps from "../interfaces/class-props"
 import { parse } from "../lib/path"
 

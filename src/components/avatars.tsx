@@ -1,11 +1,11 @@
-import cn from "../lib/class-names"
+import React from "react"
 import IClassProps from "../interfaces/class-props"
-import IPostAuthor from "../interfaces/post-author"
+import cn from "../lib/class-names"
 import Avatar from "./avatar"
 import WrapRow from "./wrap-row"
 
 interface IProps extends IClassProps {
-  authors: IPostAuthor[]
+  authors: string[]
   showTitle?: boolean
   isSmall?: boolean
 }

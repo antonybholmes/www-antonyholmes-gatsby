@@ -1,195 +1,139 @@
-import * as React from "react"
-import type { HeadFC, PageProps } from "gatsby"
+import { graphql } from "gatsby"
+import React from "react"
+import AvatarImageLarge from "../components/avatar-image-large"
+import BaseCol from "../components/base-col"
+import HCenterCol from "../components/h-center-col"
+import BaseLink from "../components/link/base-link"
+import BlueButtonArrowLink from "../components/link/blue-button-arrow-link"
+import BlueLink from "../components/link/blue-link"
+import ToBlueLink from "../components/link/to-blue-link"
+import PostsPage from "../components/pages/posts-page"
+import VCenterRow from "../components/v-center-row"
+import { EMAIL } from "../constants"
+import EnvelopeIcon from "../icons/envelope"
+import LinkIcon from "../icons/link"
+import IDataPageProps from "../interfaces/data-page-props"
+import ContentLayout from "../layouts/content-layout"
+import Seo from "../layouts/seo"
+import { getPageCount, getPagePosts } from "../lib/paginate"
 
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-}
-const doclistStyles = {
-  paddingLeft: 0,
-}
-const listItemStyles = {
-  fontWeight: 300,
-  fontSize: 24,
-  maxWidth: 560,
-  marginBottom: 30,
-}
+export default function Page({ data, location }: IDataPageProps) {
+  const allPosts = data.allPosts.nodes
 
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
-}
+  const posts = getPagePosts(allPosts)
+  //const pages = getPageCount(allPosts)
 
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  display: `inline-block`,
-  marginBottom: 24,
-  marginRight: 12,
-}
-
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: 14,
-  marginTop: 10,
-  marginBottom: 0,
-  lineHeight: 1.25,
-}
-
-const docLinks = [
-  {
-    text: "TypeScript Documentation",
-    url: "https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/",
-    color: "#8954A8",
-  },
-  {
-    text: "GraphQL Typegen Documentation",
-    url: "https://www.gatsbyjs.com/docs/how-to/local-development/graphql-typegen/",
-    color: "#8954A8",
-  },
-]
-
-const badgeStyle = {
-  color: "#fff",
-  backgroundColor: "#088413",
-  border: "1px solid #088413",
-  fontSize: 11,
-  fontWeight: "bold",
-  letterSpacing: 1,
-  borderRadius: 4,
-  padding: "4px 6px",
-  display: "inline-block",
-  position: "relative" as "relative",
-  top: -2,
-  marginLeft: 10,
-  lineHeight: 1,
-}
-
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#8EB814",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    badge: true,
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-    color: "#663399",
-  },
-]
-
-const IndexPage: React.FC<PageProps> = () => {
   return (
-    <main>
-      <h1>
-        Congratulations
-        <br />
-        <span style={headingAccentStyles}>
-          — you just made a Gatsby site! 🎉🎉🎉
-        </span>
-      </h1>
-      <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.tsx</code> to see this
-        page update in real-time. 😎
-      </p>
-      <ul style={doclistStyles}>
-        {docLinks.map(doc => (
-          <li key={doc.url} style={docLinkStyle}>
-            <a
-              style={linkStyle}
-              href={`${doc.url}?utm_source=starter&utm_medium=ts-docs&utm_campaign=minimal-starter-ts`}
-            >
-              {doc.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-      <ul style={listStyles}>
-        {links.map(link => (
-          <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
-            <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter-ts`}
-              >
-                {link.text}
-              </a>
-              {link.badge && (
-                <span style={badgeStyle} aria-label="New Badge">
-                  NEW!
-                </span>
-              )}
-              <p style={descriptionStyle}>{link.description}</p>
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        alt="Gatsby G Logo"
-        src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
-      />
-    </main>
+    <ContentLayout title="Home" showCrumbs={false} location={location}>
+      <></>
+      <div
+        className="mb-32 grid grid-cols-1 gap-y-8 xl:grid-cols-4 xl:gap-x-16"
+        slot="main"
+      >
+        <article className="rounded-xl bg-white p-8 xl:bg-transparent xl:p-0">
+          <BaseCol className="items-center gap-y-8">
+            <BaseLink href="/author/antony-holmes" ariaLabel="View profile">
+              <AvatarImageLarge
+                author={"Antony Holmes"}
+                lazy={false}
+                className="max-w-64"
+              />
+            </BaseLink>
+            <BaseCol className="gap-y-2 text-sm ">
+              <VCenterRow className="group gap-x-2 justify-center xl:justify-start">
+                <EnvelopeIcon className="w-4 fill-slate-400 hidden xl:block transition-ani transition-transform group-hover:-translate-x-0.5" />
+                <ToBlueLink href={`mailto:${EMAIL}`} underline={true}>
+                  {EMAIL}
+                </ToBlueLink>
+              </VCenterRow>
+              <VCenterRow className="group gap-x-2 justify-center xl:justify-start">
+                <LinkIcon className="w-4 fill-slate-400 hidden xl:block transition-ani transition-transform group-hover:-translate-x-0.5" />
+                <ToBlueLink
+                  href="https://github.com/antonybholmes"
+                  underline={true}
+                >
+                  github.com/antonybholmes
+                </ToBlueLink>
+              </VCenterRow>
+            </BaseCol>
+          </BaseCol>
+        </article>
+        <section className="col-span-3">
+          <section>
+            <HCenterCol>
+              <h1 className="inline-block text-5xl font-bold">Hi There.</h1>
+
+              <p className="mt-4 text-lg">
+                I'm Antony Holmes. Welcome to my personal web site.
+              </p>
+
+              <p className="mt-4 text-lg">
+                I'm a researcher and full stack developer with experience using
+                Java, Python, React, Next.js, Astro and other tech, some of
+                which was used to make this very site.
+              </p>
+
+              <p className="mt-4 text-lg">
+                I have an aptly named publications page where you can view all
+                of the scientific literature I have written, primarily focused
+                on cancer genetics.
+              </p>
+            </HCenterCol>
+
+            <VCenterRow className="justify-center mt-8">
+              <div className="flex flex-row gap-6">
+                <BlueButtonArrowLink
+                  href="/resume"
+                  className="px-4 py-2 font-bold text-sm"
+                  text="Resume"
+                />
+
+                <BlueLink
+                  href="/publications"
+                  className="text-sm flex flex-row items-center"
+                >
+                  Publications
+                </BlueLink>
+              </div>
+            </VCenterRow>
+          </section>
+          <section className="mt-16 border-t border-slate-200 pt-16">
+            <PostsPage
+              posts={posts}
+              page={1}
+              pages={1}
+              showLatestPosts={true}
+            />
+          </section>
+        </section>
+      </div>
+    </ContentLayout>
   )
 }
 
-export default IndexPage
+export const Head = () => <Seo title="Home" />
 
-export const Head: HeadFC = () => <title>Home Page</title>
+export const pageQuery = graphql`
+  query {
+    allPosts: allMarkdownRemark(
+      sort: { fields: { date: DESC } }
+      filter: { fileAbsolutePath: { regex: "/posts/" } }
+    ) {
+      nodes {
+        id
+        excerpt(format: HTML)
+        fields {
+          date
+          slug
+        }
+        frontmatter {
+          title
+          section
+          tags
+          authors
+          hero
+        }
+      }
+    }
+  }
+`

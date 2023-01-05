@@ -1,6 +1,7 @@
 import cn from "../lib/class-names"
 import IClassProps from "../interfaces/class-props"
 import IPageTitleProps from "../interfaces/page-title-props"
+import React from "react"
 
 interface IProps extends IPageTitleProps, IClassProps {}
 

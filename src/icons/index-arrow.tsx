@@ -1,3 +1,4 @@
+import React from "react"
 import type IIconProps from "../interfaces/icon-props"
 
 interface IProps extends IIconProps {

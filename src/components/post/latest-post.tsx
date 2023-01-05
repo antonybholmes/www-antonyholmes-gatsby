@@ -1,3 +1,4 @@
+import React from "react"
 import IPostProps from "../../interfaces/post-props"
 import PreviewPost from "./preview-post"
 

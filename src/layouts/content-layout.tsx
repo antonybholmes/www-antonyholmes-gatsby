@@ -5,7 +5,9 @@ import PageTitle from "../components/page-title"
 import type ICrumbProps from "../interfaces/crumb-props"
 import type ILayoutProps from "../interfaces/layout-props"
 import type IPageTitleProps from "../interfaces/page-title-props"
+import createCrumbs from "../lib/create-crumbs"
 import BaseLayout from "./base-layout"
+import LayoutTitles from "./layout-titles"
 
 export interface IProps extends ILayoutProps, ICrumbProps, IPageTitleProps {
   headerClassName?: string
@@ -13,9 +15,11 @@ export interface IProps extends ILayoutProps, ICrumbProps, IPageTitleProps {
 
 export default function ContentLayout({
   title = "",
+  location,
   subTitle,
   superTitle,
   showTitle = false,
+  showCrumbs = true,
   tab,
   isIndexed,
   headerClassName, //"text-white bg-card-blue lg:text-slate-900 lg:bg-white",
@@ -24,9 +28,14 @@ export default function ContentLayout({
   headerChildren,
   children,
 }: IProps) {
+  if (!crumbs) {
+    crumbs = createCrumbs(location.pathname)
+  }
+
   return (
     <BaseLayout
       title={title}
+      location={location}
       tab={tab}
       isIndexed={isIndexed}
       className={className}
@@ -35,16 +44,15 @@ export default function ContentLayout({
       <ContentDiv className={headerClassName}>
         <></>
         <div className="mt-28">
-          {crumbs && <Breadcrumb crumbs={crumbs} className="mb-8" />}
-
-          {showTitle && title !== "" && (
-            <PageTitle
-              title={title}
-              subTitle={subTitle}
-              superTitle={superTitle}
-              className="mb-8"
-            />
-          )}
+          <LayoutTitles
+            title={title}
+            location={location}
+            superTitle={superTitle}
+            subTitle={subTitle}
+            crumbs={crumbs}
+            showTitle={showTitle}
+            showCrumbs={showCrumbs}
+          />
 
           {
             // @ts-ignore

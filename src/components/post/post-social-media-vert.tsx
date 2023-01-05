@@ -5,9 +5,10 @@ import LinkedInIcon from "../../icons/linkedin"
 import TwitterIcon from "../../icons/twitter"
 import BaseLink from "../link/base-link"
 import { CLS_SOCIAL_ICON, CLS_TEXT_GRAY_HOVER } from "./post-social-media"
+import React from "react"
 
 const PostSocialMediaVert = ({ post }: IPostProps) => {
-  const url = getPostUrl(post.slug)
+  const url = getPostUrl(post.fields.slug)
   return (
     <section className={"flex flex-col items-center gap-y-2"}>
       <BaseLink

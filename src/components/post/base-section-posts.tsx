@@ -2,6 +2,7 @@ import cn from "../../lib/class-names"
 import IPostsProps from "../../interfaces/posts-props"
 import BaseCol from "../base-col"
 import PreviewPost from "./preview-post"
+import React from "react"
 
 interface IProps extends IPostsProps {
   rightMode?: boolean
@@ -17,16 +18,21 @@ const BaseSectionPosts = ({ posts, rightMode = false }: IProps) => {
 
   return (
     <>
-      <PreviewPost post={topPost} className="flex lg:hidden" />
+      <PreviewPost index={0} post={topPost} className="flex lg:hidden" />
 
       <div className="mt-4 grid grid-cols-1 gap-12 lg:grid-cols-5">
         {!rightMode && (
-          <PreviewPost post={topPost} className="col-span-3 hidden lg:flex" />
+          <PreviewPost
+            index={1}
+            post={topPost}
+            className="col-span-3 hidden lg:flex"
+          />
         )}
         <BaseCol className="col-span-2">
           {topPosts.map((post, index) => {
             return (
               <PreviewPost
+                index={index + 2}
                 post={post}
                 className={cn([
                   index < topPosts.length - 1,
@@ -40,7 +46,11 @@ const BaseSectionPosts = ({ posts, rightMode = false }: IProps) => {
           })}
         </BaseCol>
         {rightMode && (
-          <PreviewPost post={topPost} className="col-span-3 hidden lg:flex" />
+          <PreviewPost
+            index={1}
+            post={topPost}
+            className="col-span-3 hidden lg:flex"
+          />
         )}
       </div>
     </>

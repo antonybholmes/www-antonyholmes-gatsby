@@ -1,3 +1,4 @@
+import React from "react"
 import IPostProps from "../../interfaces/post-props"
 import Avatar from "../avatar"
 import DateFormatter from "./date-formatter"
@@ -6,9 +7,9 @@ import PostTags from "./post-tags"
 
 const PostDetails = ({ post, className }: IPostProps) => (
   <section className={className}>
-    <Avatar author={post.authors[0]} showTitle={true} />
+    <Avatar author={post.frontmatter.authors[0]} showTitle={true} />
     <div className="mt-6 text-sm tracking-wide">
-      <DateFormatter date={post.date} />
+      <DateFormatter date={post.fields.date} />
       <PostTags post={post} />
     </div>
 
