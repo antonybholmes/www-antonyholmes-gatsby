@@ -1,3 +1,4 @@
+import React from "react"
 import IPostsProps from "../../interfaces/posts-props"
 import PreviewPost from "./preview-post"
 
@@ -9,7 +10,7 @@ const RestPosts = ({ posts, showAvatar = true }: IProps) => (
   <section className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
     {posts.map(post => (
       <PreviewPost
-        key={post.slug}
+        key={post.fields.slug}
         post={post}
         showAvatar={showAvatar}
         className="border-t border-slate-200 pt-6"

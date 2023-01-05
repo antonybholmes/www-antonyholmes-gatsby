@@ -2,7 +2,6 @@ import { graphql } from "gatsby"
 import React from "react"
 import MarkdownBody from "../components/markdown-body"
 import IDataPageProps from "../interfaces/data-page-props"
-import ContentLayout from "../layouts/content-layout"
 import ThreeQuarterLayout from "../layouts/three-quarter-layout"
 
 export default function Page({ data, location }: IDataPageProps) {

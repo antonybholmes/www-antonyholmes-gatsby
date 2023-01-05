@@ -3,6 +3,7 @@ import IPostsProps from "../../interfaces/posts-props"
 import BaseLink from "../link/base-link"
 import BaseSectionPostsVert from "./base-section-posts-vert"
 import PostsHeader from "./posts-header"
+import React from "react"
 
 interface IProps extends IPostsProps {
   section: string

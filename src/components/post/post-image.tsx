@@ -3,6 +3,7 @@ import IPostProps from "../../interfaces/post-props"
 import BaseLink from "../link/base-link"
 import BasePostImage from "./base-post-image"
 import React from "react"
+import { getPostRelativeUrl } from "../../lib/posts"
 
 interface IProps extends IPostProps {
   size?: number[]
@@ -23,7 +24,10 @@ const PostImage = ({ post, size = [512, 256], className }: IProps) => {
 
   if (post.fields.slug) {
     return (
-      <BaseLink href={post.fields.slug} ariaLabel={post.frontmatter.title}>
+      <BaseLink
+        href={getPostRelativeUrl(post.fields.slug)}
+        ariaLabel={post.frontmatter.title}
+      >
         {image}
       </BaseLink>
     )

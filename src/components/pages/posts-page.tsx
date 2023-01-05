@@ -14,19 +14,10 @@ interface IProps {
   posts: IPreviewPost[]
   page: number
   pages: number
-  showLatestPosts?: boolean
   sectionMap?: IFieldMap
-  root?: string
 }
 
-const PostsPage = ({
-  posts,
-  page = 0,
-  pages = 1,
-  showLatestPosts = false,
-  sectionMap,
-  root = "/blog",
-}: IProps) => {
+const PostsPage = ({ posts, page = 0, pages = 1, sectionMap }: IProps) => {
   const heroPosts = posts.slice(0, 4)
   const headPosts = posts.slice(4, 6)
   const restPosts = posts.slice(6)
@@ -40,12 +31,12 @@ const PostsPage = ({
       {/* <HeroPost post={heroPost} /> */}
       {/* <MorePosts posts={morePosts} /> */}
 
-      {restPosts.length > 0 && <RestPosts posts={restPosts} />}
+      {pages > 1 && restPosts.length > 0 && <RestPosts posts={restPosts} />}
 
       {/* <Pagination page={page} pages={pages} /> */}
-      {pages > 1 && <PagePagination page={page} pages={pages} root={root} />}
+      {pages > 1 && <PagePagination page={page} pages={pages} />}
 
-      {showLatestPosts && <LatestPosts posts={posts} />}
+      {pages === 0 && restPosts.length && <LatestPosts posts={restPosts} />}
 
       {sectionMap && (
         <>

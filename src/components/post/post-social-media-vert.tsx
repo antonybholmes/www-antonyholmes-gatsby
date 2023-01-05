@@ -1,4 +1,4 @@
-import { getPostUrl } from "../../lib/articles"
+import { getPostUrl } from "../../lib/posts"
 import IPostProps from "../../interfaces/post-props"
 import FacebookIcon from "../../icons/facebook"
 import LinkedInIcon from "../../icons/linkedin"

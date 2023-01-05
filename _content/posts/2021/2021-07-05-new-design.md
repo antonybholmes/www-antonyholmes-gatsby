@@ -1,6 +1,6 @@
 ---
-title: "New web site design!"
-description: "I've redesigned my web site using React."
+title: "New website design!"
+description: "I've redesigned my website using React."
 authors: ["Antony Holmes"]
 readtime: "1 min"
 section: "News"
@@ -10,7 +10,7 @@ status: "published"
 hero: "generic1"
 ---
 
-I have redesigned my web site using React and Gatsby.
+I have redesigned my website using React and Gatsby.
 
 <!-- end -->
 

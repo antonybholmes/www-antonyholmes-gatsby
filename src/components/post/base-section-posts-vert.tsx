@@ -2,6 +2,7 @@ import cn from "../../lib/class-names"
 import IPostsProps from "../../interfaces/posts-props"
 import BaseCol from "../base-col"
 import PreviewPost from "./preview-post"
+import React from "react"
 
 interface IProps extends IPostsProps {
   rightMode?: boolean

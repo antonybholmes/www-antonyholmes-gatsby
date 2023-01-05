@@ -21,7 +21,8 @@ export default function Page({ data, location }: IDataPageProps) {
   })
 
   return (
-    <ThreeQuarterLayout title="Resume" showTitle={false} location={location}>
+    <ContentLayout title="Resume" showTitle={false} location={location}>
+      <></>
       <div className="mb-32 flex flex-col gap-y-32">
         <div>
           <h2 className="text-center text-5xl font-bold">Skills</h2>
@@ -49,10 +50,10 @@ export default function Page({ data, location }: IDataPageProps) {
 
         <div>
           <h2 className="text-center text-5xl font-bold">Experience</h2>
-          <ul className="mt-16 flex flex-col gap-y-16">
+          <ul className="mt-16 flex flex-col gap-y-8">
             {jobs.map((job, jobIndex) => (
               <li>
-                <article className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+                <article className="grid grid-cols-1 gap-x-8 gap-y-4 lg:grid-cols-4">
                   <header className="mt-4">
                     <h3 className="font-bold">{job.title}</h3>
                     <h4 className="mt-1 text-sm font-normal text-slate-500">
@@ -81,7 +82,7 @@ export default function Page({ data, location }: IDataPageProps) {
           <ul className="mt-16 flex flex-col gap-y-8">
             {volunteer.map((job, jobIndex) => (
               <li>
-                <article className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+                <article className="grid grid-cols-1 gap-x-8 gap-y-4 lg:grid-cols-4">
                   <header className="mt-4">
                     <h3 className="font-bold">{job.title}</h3>
                     <h4 className="mt-1 text-sm font-normal text-slate-500">
@@ -91,7 +92,7 @@ export default function Page({ data, location }: IDataPageProps) {
                       {job.date}
                     </h4>
                   </header>
-                  <div className="col-span-3 rounded-2xl  p-6 lg:p-10 transition-ani transition-color bg-slate-100  hover:bg-slate-200">
+                  <div className="col-span-3 rounded-2xl p-8 transition-ani transition-color bg-slate-100  hover:bg-slate-200">
                     <ul className="ml-6 flex list-disc flex-col gap-y-2">
                       {job.details.map((detail, detailIndex) => (
                         <li>{detail}</li>
@@ -106,36 +107,34 @@ export default function Page({ data, location }: IDataPageProps) {
 
         <div>
           <h2 className="text-center text-5xl font-bold">Education</h2>
-          <ContentDiv>
-            <></>
-            <ul
-              className="mt-16 grid grid-cols-1 items-center gap-x-12 gap-y-6"
-              slot="main"
-            >
-              {education.map((degree, degreeIndex) => (
-                <li className="transition-ani h-full w-full rounded-2xl border border-slate-200 px-8 py-12 text-center transition-color hover:border-slate-300">
-                  <header>
-                    <h3 className="text-xl font-bold">{degree.title}</h3>
-                    {/* {degree.date !== '' && (
+
+          <ul className="mt-16 flex flex-col gap-y-4">
+            {education.map((degree, degreeIndex) => (
+              <li>
+                <article className="grid grid-cols-1 gap-x-8 gap-y-4 lg:grid-cols-4">
+                  <div></div>
+                  <div className="col-span-3 transition-ani h-full w-full rounded-2xl border border-slate-200 px-8 py-12 transition-color hover:border-slate-300">
+                    <header>
+                      <h3 className="text-xl font-bold">{degree.title}</h3>
+                      {/* {degree.date !== '' && (
           <h3 class="degree-date">{degree.date}</h3>
           )} */}
-                    <h4 className="font-light">{degree.school}</h4>
-                  </header>
+                      <h4 className="font-light">{degree.school}</h4>
+                    </header>
 
-                  <ul className="mt-2 text-sm text-slate-500">
-                    {degree.details.map((detail, detailIndex) => (
-                      <li>{detail}</li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-            <></>
-          </ContentDiv>
+                    <ul className="mt-2 text-sm text-slate-500">
+                      {degree.details.map((detail, detailIndex) => (
+                        <li>{detail}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-      <></>
-    </ThreeQuarterLayout>
+    </ContentLayout>
   )
 }
 
