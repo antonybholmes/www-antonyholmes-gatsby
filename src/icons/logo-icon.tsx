@@ -22,7 +22,7 @@ const LogoIcon = ({ headerMode = "light", className }: IProps) => {
           "transition-ani transition-color h-9 w-9 items-center bg-gradient-to-br",
           [
             headerMode === "light",
-            "  bg-sky-500 text-white group-hover:bg-sky-400",
+            "  bg-sky-600 text-white group-hover:bg-sky-500",
             "bg-slate-300 group-hover:bg-slate-200",
           ]
         )}
@@ -32,7 +32,7 @@ const LogoIcon = ({ headerMode = "light", className }: IProps) => {
       <span
         className={cn("transition-ani transition-color", [
           headerMode === "light",
-          "text-sky-500 group-hover:text-sky-400",
+          "text-sky-600 group-hover:text-sky-500",
           "text-slate-200",
         ])}
       >
@@ -41,7 +41,7 @@ const LogoIcon = ({ headerMode = "light", className }: IProps) => {
       <span
         className={cn("transition-ani transition-color", [
           headerMode === "light",
-          "text-sky-500 group-hover:text-sky-400",
+          "text-sky-600 group-hover:text-sky-500",
           "text-slate-200",
         ])}
       >
