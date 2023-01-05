@@ -1,7 +1,11 @@
-import PostLayout from "../../layouts/post-layout"
+import React from "react"
+import IFieldMap from "../../interfaces/field-map"
 import IPost from "../../interfaces/post"
 import IPreviewPost from "../../interfaces/preview-post"
+import PostLayout from "../../layouts/post-layout"
 import BaseCol from "../base-col"
+import ContentDiv from "../content-div"
+import MorePosts from "../post/more-posts"
 import PostBody from "../post/post-body"
 import PostDetailsHoz from "../post/post-details-hoz"
 import PostHeader from "../post/post-header"
@@ -9,15 +13,13 @@ import PostSocialMedia from "../post/post-social-media"
 import PostSocialMediaVert from "../post/post-social-media-vert"
 import PostTags from "../post/post-tags"
 import RelatedPosts from "../post/related-posts"
-import ContentDiv from "../content-div"
-import React from "react"
-import IFieldMap from "../../interfaces/field-map"
 
 interface IProps {
   post: IPost
   image: any
   imageMap: IFieldMap
   avatarMap: IFieldMap
+  morePosts?: IPreviewPost[]
   readMorePosts?: IPreviewPost[]
 }
 
@@ -26,6 +28,7 @@ const PostPage = ({
   image,
   imageMap,
   avatarMap,
+  morePosts = [],
   readMorePosts = [],
 }: IProps) => (
   <>
@@ -47,7 +50,16 @@ const PostPage = ({
               <PostTags post={post} />
             </BaseCol>
 
-            <></>
+            <div className="ml-8 hidden xl:block">
+              {morePosts.length > 0 && (
+                <MorePosts
+                  posts={morePosts}
+                  imageMap={imageMap}
+                  avatarMap={avatarMap}
+                  title={`More on ${post.frontmatter.tags[0]}`}
+                />
+              )}
+            </div>
           </PostLayout>
         </BaseCol>
         <></>

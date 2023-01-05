@@ -1,5 +1,6 @@
 import PreviewPost from "./preview-post"
 import IPostsProps from "../../interfaces/posts-props"
+import React from "react"
 
 interface IProps extends IPostsProps {
   title?: string

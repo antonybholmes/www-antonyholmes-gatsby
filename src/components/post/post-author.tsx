@@ -7,6 +7,7 @@ import IFieldMap from "../../interfaces/field-map"
 
 interface IProps extends IPostProps {
   showAvatar?: boolean
+  showAvatarImage?: boolean
   avatarMap: IFieldMap
 }
 
@@ -14,6 +15,7 @@ export default function PostAuthor({
   post,
   avatarMap,
   showAvatar = true,
+  showAvatarImage = true,
   className,
 }: IProps) {
   return (
@@ -27,6 +29,7 @@ export default function PostAuthor({
         <CompactAvatars
           authors={post.frontmatter.authors}
           avatarMap={avatarMap}
+          showImages={showAvatarImage}
         />
       )}
 

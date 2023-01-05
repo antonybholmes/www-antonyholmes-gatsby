@@ -15,10 +15,14 @@ import LinkIcon from "../icons/link"
 import IDataPageProps from "../interfaces/data-page-props"
 import ContentLayout from "../layouts/content-layout"
 import Seo from "../layouts/seo"
+import { getImageMap } from "../lib/images"
 import { getPageCount, getPagePosts } from "../lib/paginate"
 
 export default function Page({ data, location }: IDataPageProps) {
   const allPosts = data.allPosts.nodes
+
+  const imageMap = getImageMap(data.postImages)
+  const avatarMap = getImageMap(data.peopleImages)
 
   const posts = getPagePosts(allPosts)
   //const pages = getPageCount(allPosts)
@@ -37,6 +41,7 @@ export default function Page({ data, location }: IDataPageProps) {
                 author={"Antony Holmes"}
                 lazy={false}
                 className="max-w-64"
+                avatarMap={avatarMap}
               />
             </BaseLink>
             <BaseCol className="gap-y-2 text-sm ">
@@ -102,7 +107,8 @@ export default function Page({ data, location }: IDataPageProps) {
               posts={posts}
               page={1}
               pages={1}
-              showLatestPosts={true}
+              imageMap={imageMap}
+              avatarMap={avatarMap}
             />
           </section>
         </section>
@@ -132,6 +138,36 @@ export const pageQuery = graphql`
           tags
           authors
           hero
+        }
+      }
+    }
+
+    postImages: allFile(filter: { absolutePath: { regex: "/images/posts/" } }) {
+      nodes {
+        absolutePath
+        name
+        childImageSharp {
+          gatsbyImageData(
+            width: 2048
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+          )
+        }
+      }
+    }
+
+    peopleImages: allFile(
+      filter: { absolutePath: { regex: "/images/people/" } }
+    ) {
+      nodes {
+        absolutePath
+        name
+        childImageSharp {
+          gatsbyImageData(
+            width: 480
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+          )
         }
       }
     }

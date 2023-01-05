@@ -14,9 +14,10 @@ interface IProps extends IPostWithAvatarProps {
   headerClassName?: string
   innerClassName?: string
   contentClassName?: string
+  showSection?: boolean
   showDescription?: boolean
-  showImage?: boolean
   showAvatar?: boolean
+  showAvatarImage?: boolean
   lazy?: boolean
 }
 
@@ -29,13 +30,14 @@ const PreviewPost = ({
   headerClassName = "text-4xl",
   innerClassName,
   contentClassName = "text-base",
+  showSection = true,
   showDescription = true,
-  showImage = true,
   showAvatar = true,
+  showAvatarImage = true,
   lazy = false,
 }: IProps) => (
   <article className={cn("flex flex-col gap-y-4", className)}>
-    {showImage && post.frontmatter.hero !== "" && (
+    {image && (
       <PostImage
         post={post}
         image={image}
@@ -46,7 +48,7 @@ const PreviewPost = ({
 
     <BaseCol className={cn("gap-y-2", innerClassName)}>
       <BaseCol className="gap-y-1">
-        <PostSectionLink post={post} />
+        {showSection && <PostSectionLink post={post} />}
         <PostTitleLink post={post} className={headerClassName} />
       </BaseCol>
       {showDescription && (
@@ -56,7 +58,12 @@ const PreviewPost = ({
         />
       )}
 
-      <PostAuthor post={post} showAvatar={showAvatar} avatarMap={avatarMap} />
+      <PostAuthor
+        post={post}
+        showAvatar={showAvatar}
+        showAvatarImage={showAvatarImage}
+        avatarMap={avatarMap}
+      />
     </BaseCol>
   </article>
 )

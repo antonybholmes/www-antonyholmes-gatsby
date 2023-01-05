@@ -36,7 +36,9 @@ exports.createPages = async function ({ actions, graphql }) {
         }
       }
 
-      postImages: allFile(filter: { absolutePath: { regex: "/images/posts/" } }) {
+      postImages: allFile(
+        filter: { absolutePath: { regex: "/images/posts/" } }
+      ) {
         nodes {
           absolutePath
           name
@@ -67,23 +69,66 @@ exports.createPages = async function ({ actions, graphql }) {
           }
         }
       }
+
+      peopleImages: allFile(
+        filter: { absolutePath: { regex: "/images/people/" } }
+      ) {
+        nodes {
+          absolutePath
+          name
+          childImageSharp {
+            gatsbyImageData(
+              width: 480
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
+        }
+      }
     }
   `)
 
   const people = data.people.nodes
 
-  // make a map of names
-
+  // make a map of images
   const postImageMap = {}
 
   data.postImages.nodes.forEach(file => {
     postImageMap[file.name] = file
   })
 
+  const peopleImageMap = {}
+
+  data.peopleImages.nodes.forEach(file => {
+    peopleImageMap[file.name] = file
+  })
+
   // sort by date
   const posts = data.posts.nodes.sort(
     (a, b) => new Date(b.fields.date) - new Date(a.fields.date)
   )
+
+  const sectionMap = {}
+
+  posts.forEach(post => {
+    if (!(post.frontmatter.section in sectionMap)) {
+      sectionMap[post.frontmatter.section] = []
+    }
+
+    sectionMap[post.frontmatter.section].push(post)
+  })
+
+  const tagMap = {}
+
+  posts.forEach(post => {
+    post.frontmatter.tags.forEach(tag => {
+      if (!(tag in tagMap)) {
+        tagMap[tag] = []
+      }
+
+      tagMap[tag].push(post)
+    })
+  })
 
   const pages = Math.floor(
     (posts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
@@ -93,20 +138,31 @@ exports.createPages = async function ({ actions, graphql }) {
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
-  if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      createPage({
-        path: `/blog/${post.fields.slug}`,
-        component: postTemplate,
-        context: {
-          id: post.id,
-          title: post.frontmatter.title,
-          tab: "Blog",
-          hero: post.frontmatter.hero,
-        },
-      })
+  posts.forEach((post, index) => {
+    // related
+
+    let morePosts = []
+    
+    if (post.frontmatter.tags && post.frontmatter.tags.length > 0) {
+      
+      morePosts = tagMap[post.frontmatter.tags[0]].filter(p => p.id !== post.id).slice(0, 3)
+
+      console.log(post.frontmatter.tags[0], tagMap[post.frontmatter.tags[0]].length, morePosts.length)
+    }
+    
+
+    createPage({
+      path: `/blog/${post.fields.slug}`,
+      component: postTemplate,
+      context: {
+        id: post.id,
+        title: post.frontmatter.title,
+        tab: "Blog",
+        hero: post.frontmatter.hero,
+        morePosts
+      },
     })
-  }
+  })
 
   //
   // Create blocks of pages
@@ -147,15 +203,7 @@ exports.createPages = async function ({ actions, graphql }) {
   // Split posts into sections
   //
 
-  const sectionMap = {}
-
-  posts.forEach(post => {
-    if (!(post.frontmatter.section in sectionMap)) {
-      sectionMap[post.frontmatter.section] = []
-    }
-
-    sectionMap[post.frontmatter.section].push(post)
-  })
+  
 
   for (const [section, sectionPosts] of Object.entries(sectionMap)) {
     if (sectionPosts.length == 0) {
@@ -203,17 +251,7 @@ exports.createPages = async function ({ actions, graphql }) {
   // Split posts into tags
   //
 
-  const tagMap = {}
-
-  posts.forEach(post => {
-    post.frontmatter.tags.forEach(tag => {
-      if (!(tag in tagMap)) {
-        tagMap[tag] = []
-      }
-
-      tagMap[tag].push(post)
-    })
-  })
+  
 
   for (const [tag, tagPosts] of Object.entries(tagMap)) {
     if (tagPosts.length == 0) {

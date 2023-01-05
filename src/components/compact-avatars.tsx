@@ -10,26 +10,34 @@ import VCenterRow from "./v-center-row"
 interface IProps extends IClassProps {
   authors: string[]
   avatarMap: IFieldMap
+  showImages?: boolean
 }
 
-const CompactAvatars = ({ authors, avatarMap, className }: IProps) => (
+const CompactAvatars = ({
+  authors,
+  avatarMap,
+  showImages = true,
+  className,
+}: IProps) => (
   <VCenterRow className="gap-x-3">
-    <div
-      className={cn("relative h-12", className)}
-      style={{ width: `${3 + (authors.length - 1) * 0.5}rem` }}
-    >
-      {authors.map((author, index) => (
-        <AvatarImage
-          author={author}
-          avatarMap={avatarMap}
-          className={cn(
-            "absolute h-12 w-12 border border-white",
-            `ml-${index * 2}`
-          )}
-          key={index}
-        />
-      ))}
-    </div>
+    {showImages && (
+      <div
+        className={cn("relative h-12", className)}
+        style={{ width: `${3 + (authors.length - 1) * 0.5}rem` }}
+      >
+        {authors.map((author, index) => (
+          <AvatarImage
+            author={author}
+            avatarMap={avatarMap}
+            className={cn(
+              "absolute h-12 w-12 border border-white",
+              `ml-${index * 2}`
+            )}
+            key={index}
+          />
+        ))}
+      </div>
+    )}
 
     <ul className="flex flex-row flex-wrap items-center gap-x-1 text-sm font-bold">
       {authors.map((author, index) => (

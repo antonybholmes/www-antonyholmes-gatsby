@@ -24,6 +24,7 @@ export default function Page({ pageContext, data, location }: IDataPageProps) {
         image={data.image}
         imageMap={imageMap}
         avatarMap={avatarMap}
+        morePosts={pageContext.morePosts}
       />
     </BaseLayout>
   )
