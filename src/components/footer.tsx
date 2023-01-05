@@ -5,7 +5,7 @@ import ContentDiv from "./content-div"
 import WhiteLink from "./link/white-link"
 
 const Footer = () => (
-  <footer className="text-sm pt-16">
+  <footer className="pt-16 text-sm">
     <ContentDiv>
       <></>
 

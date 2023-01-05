@@ -15,7 +15,7 @@ export default function MorePosts({
   return (
     <section>
       <h2 className="border-b-2 border-slate-300 pb-1 text-xl">{title}</h2>
-      <ul className="mt-4 w-full flex flex-col">
+      <ul className="mt-4 flex w-full flex-col">
         {posts.map((post, index) => (
           <li key={index}>
             <PreviewPost

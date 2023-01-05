@@ -45,14 +45,14 @@ export default function Page({ data, location }: IDataPageProps) {
               />
             </BaseLink>
             <BaseCol className="gap-y-2 text-sm ">
-              <VCenterRow className="group gap-x-2 justify-center xl:justify-start">
-                <EnvelopeIcon className="w-4 fill-slate-400 hidden xl:block transition-ani transition-transform group-hover:-translate-x-0.5" />
+              <VCenterRow className="group justify-center gap-x-2 xl:justify-start">
+                <EnvelopeIcon className="transition-ani hidden w-4 fill-slate-400 transition-transform group-hover:-translate-x-0.5 xl:block" />
                 <ToBlueLink href={`mailto:${EMAIL}`} underline={true}>
                   {EMAIL}
                 </ToBlueLink>
               </VCenterRow>
-              <VCenterRow className="group gap-x-2 justify-center xl:justify-start">
-                <LinkIcon className="w-4 fill-slate-400 hidden xl:block transition-ani transition-transform group-hover:-translate-x-0.5" />
+              <VCenterRow className="group justify-center gap-x-2 xl:justify-start">
+                <LinkIcon className="transition-ani hidden w-4 fill-slate-400 transition-transform group-hover:-translate-x-0.5 xl:block" />
                 <ToBlueLink
                   href="https://github.com/antonybholmes"
                   underline={true}
@@ -85,17 +85,17 @@ export default function Page({ data, location }: IDataPageProps) {
               </p>
             </HCenterCol>
 
-            <VCenterRow className="justify-center mt-8">
+            <VCenterRow className="mt-8 justify-center">
               <div className="flex flex-row gap-6">
                 <BlueButtonArrowLink
                   href="/resume"
-                  className="px-4 py-2 font-bold text-sm"
+                  className="px-4 py-2 text-sm font-bold"
                   text="Resume"
                 />
 
                 <BlueLink
                   href="/publications"
-                  className="text-sm flex flex-row items-center"
+                  className="flex flex-row items-center text-sm"
                 >
                   Publications
                 </BlueLink>
