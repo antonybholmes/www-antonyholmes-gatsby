@@ -2,7 +2,7 @@
 yarn update-version
 yarn format
 
-yarn image-optimize
+#yarn image-optimize
 
 # commit
 git add -A .
