@@ -1,20 +1,23 @@
+import React from "react"
+import IPostWithAvatarProps from "../../interfaces/post-with-avatar-props"
+import IPostWithImageProps from "../../interfaces/post-with-image-props"
 import cn from "../../lib/class-names"
-import IPostProps from "../../interfaces/post-props"
 import BaseCol from "../base-col"
 import HTML from "../html"
 import PostAuthor from "./post-author"
 import PostImage from "./post-image"
 import PostSectionLink from "./post-section-link"
 import PostTitleLink from "./post-title-link"
-import React from "react"
 
-interface IProps extends IPostProps {
+interface IProps extends IPostWithAvatarProps {
   showDescription?: boolean
   showAvatar?: boolean
 }
 
 const HeroPostSmall = ({
   post,
+  image,
+  avatarMap,
   showDescription = true,
   showAvatar = true,
   className,
@@ -26,11 +29,9 @@ const HeroPostSmall = ({
       className
     )}
   >
-    {post.frontmatter.hero !== "" && (
-      <div className="col-span-2">
-        <PostImage post={post} className="mb-4 h-64 md:h-40" />
-      </div>
-    )}
+    <div className="col-span-2">
+      <PostImage post={post} image={image} className="mb-4 h-64 md:h-40" />
+    </div>
 
     <BaseCol className="col-span-3 gap-y-2">
       <BaseCol>
@@ -41,7 +42,7 @@ const HeroPostSmall = ({
         <HTML html={post.excerpt} className="text-slate-600" />
       )}
 
-      <PostAuthor post={post} showAvatar={showAvatar} />
+      <PostAuthor post={post} avatarMap={avatarMap} showAvatar={showAvatar} />
     </BaseCol>
   </article>
 )

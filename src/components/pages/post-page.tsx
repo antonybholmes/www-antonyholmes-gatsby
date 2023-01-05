@@ -11,21 +11,31 @@ import PostTags from "../post/post-tags"
 import RelatedPosts from "../post/related-posts"
 import ContentDiv from "../content-div"
 import React from "react"
+import IFieldMap from "../../interfaces/field-map"
 
 interface IProps {
   post: IPost
+  image: any
+  imageMap: IFieldMap
+  avatarMap: IFieldMap
   readMorePosts?: IPreviewPost[]
 }
 
-const PostPage = ({ post, readMorePosts = [] }: IProps) => (
+const PostPage = ({
+  post,
+  image,
+  imageMap,
+  avatarMap,
+  readMorePosts = [],
+}: IProps) => (
   <>
     <article>
-      <PostHeader post={post} />
+      <PostHeader post={post} image={image} />
 
       <ContentDiv className="my-40">
         <></>
         <BaseCol className="gap-y-4 lg:gap-y-8">
-          <PostDetailsHoz post={post} />
+          <PostDetailsHoz post={post} avatarMap={avatarMap} />
 
           <PostSocialMedia post={post} className="lg:hidden" />
 
@@ -47,7 +57,12 @@ const PostPage = ({ post, readMorePosts = [] }: IProps) => (
     {readMorePosts.length > 0 && (
       <ContentDiv className="py-16">
         <></>
-        <RelatedPosts posts={readMorePosts} title="Keep Reading" />
+        <RelatedPosts
+          posts={readMorePosts}
+          imageMap={imageMap}
+          title="Keep Reading"
+          avatarMap={avatarMap}
+        />
         <></>
       </ContentDiv>
     )}

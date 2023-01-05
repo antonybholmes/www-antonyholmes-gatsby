@@ -3,13 +3,16 @@ import IPostProps from "../../interfaces/post-props"
 import CompactAvatars from "../compact-avatars"
 import DateFormatter from "./date-formatter"
 import React from "react"
+import IFieldMap from "../../interfaces/field-map"
 
 interface IProps extends IPostProps {
   showAvatar?: boolean
+  avatarMap: IFieldMap
 }
 
 export default function PostAuthor({
   post,
+  avatarMap,
   showAvatar = true,
   className,
 }: IProps) {
@@ -20,7 +23,12 @@ export default function PostAuthor({
         className
       )}
     >
-      {showAvatar && <CompactAvatars authors={post.frontmatter.authors} />}
+      {showAvatar && (
+        <CompactAvatars
+          authors={post.frontmatter.authors}
+          avatarMap={avatarMap}
+        />
+      )}
 
       <DateFormatter date={post.fields.date} />
     </div>

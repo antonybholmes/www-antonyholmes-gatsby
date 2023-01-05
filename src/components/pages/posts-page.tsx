@@ -15,40 +15,76 @@ interface IProps {
   page: number
   pages: number
   sectionMap?: IFieldMap
+  imageMap: IFieldMap
+  avatarMap: IFieldMap
 }
 
-const PostsPage = ({ posts, page = 0, pages = 1, sectionMap }: IProps) => {
+const PostsPage = ({
+  posts,
+  page = 0,
+  pages = 1,
+  imageMap,
+  avatarMap,
+  sectionMap,
+}: IProps) => {
   const heroPosts = posts.slice(0, 4)
   const headPosts = posts.slice(4, 6)
   const restPosts = posts.slice(6)
 
   return (
     <BaseCol className="mb-32 gap-y-16">
-      <HeroPosts posts={heroPosts} />
+      <HeroPosts posts={heroPosts} imageMap={imageMap} avatarMap={avatarMap} />
 
       {/* <HeadPost post={heroPost} /> */}
-      {headPosts.length > 0 && <HeadPosts posts={headPosts} />}
+      {headPosts.length > 0 && (
+        <HeadPosts
+          posts={headPosts}
+          imageMap={imageMap}
+          avatarMap={avatarMap}
+        />
+      )}
       {/* <HeroPost post={heroPost} /> */}
       {/* <MorePosts posts={morePosts} /> */}
 
-      {pages > 1 && restPosts.length > 0 && <RestPosts posts={restPosts} />}
+      {pages > 1 && restPosts.length > 0 && (
+        <RestPosts
+          posts={restPosts}
+          imageMap={imageMap}
+          avatarMap={avatarMap}
+        />
+      )}
 
       {/* <Pagination page={page} pages={pages} /> */}
       {pages > 1 && <PagePagination page={page} pages={pages} />}
 
-      {pages === 0 && restPosts.length && <LatestPosts posts={restPosts} />}
+      {pages === 0 && restPosts.length && (
+        <LatestPosts
+          posts={restPosts}
+          imageMap={imageMap}
+          avatarMap={avatarMap}
+        />
+      )}
 
       {sectionMap && (
         <>
           <SectionPostsVert
             section="Guides & Tutorials"
             posts={sectionMap["Guides & Tutorials"]}
+            imageMap={imageMap}
+            avatarMap={avatarMap}
           />
-          <SectionPosts section="Opinions" posts={sectionMap["Opinions"]} />
+          <SectionPosts
+            section="Opinions"
+            posts={sectionMap["Opinions"]}
+            imageMap={imageMap}
+            avatarMap={avatarMap}
+          />
 
           <SectionPostsVert
             section="Retirement"
             posts={sectionMap["Retirement"]}
+            imageMap={imageMap}
+            avatarMap={avatarMap}
           />
 
           {/* <SectionPosts section="Reviews" posts={sectionMap['Reviews']} /> */}
@@ -56,6 +92,8 @@ const PostsPage = ({ posts, page = 0, pages = 1, sectionMap }: IProps) => {
           <SectionPostsVert
             section="News & Announcements"
             posts={sectionMap["News & Announcements"]}
+            imageMap={imageMap}
+            avatarMap={avatarMap}
           />
         </>
       )}

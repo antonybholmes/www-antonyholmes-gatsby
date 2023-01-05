@@ -1,5 +1,6 @@
 import React from "react"
 import IClassProps from "../interfaces/class-props"
+import IFieldMap from "../interfaces/field-map"
 import cn from "../lib/class-names"
 import { getAuthorUrl } from "../lib/urls"
 import AvatarImage from "./avatar-image"
@@ -8,9 +9,10 @@ import VCenterRow from "./v-center-row"
 
 interface IProps extends IClassProps {
   authors: string[]
+  avatarMap: IFieldMap
 }
 
-const CompactAvatars = ({ authors, className }: IProps) => (
+const CompactAvatars = ({ authors, avatarMap, className }: IProps) => (
   <VCenterRow className="gap-x-3">
     <div
       className={cn("relative h-12", className)}
@@ -19,6 +21,7 @@ const CompactAvatars = ({ authors, className }: IProps) => (
       {authors.map((author, index) => (
         <AvatarImage
           author={author}
+          avatarMap={avatarMap}
           className={cn(
             "absolute h-12 w-12 border border-white",
             `ml-${index * 2}`

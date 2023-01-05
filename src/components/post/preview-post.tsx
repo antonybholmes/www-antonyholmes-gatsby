@@ -1,14 +1,15 @@
+import React from "react"
+import IPostWithAvatarProps from "../../interfaces/post-with-avatar-props"
+import IPostWithImageProps from "../../interfaces/post-with-image-props"
 import cn from "../../lib/class-names"
-import IPostProps from "../../interfaces/post-props"
 import BaseCol from "../base-col"
 import HTML from "../html"
 import PostAuthor from "./post-author"
 import PostImage from "./post-image"
 import PostSectionLink from "./post-section-link"
 import PostTitleLink from "./post-title-link"
-import React from "react"
 
-interface IProps extends IPostProps {
+interface IProps extends IPostWithAvatarProps {
   imageClassName?: string
   headerClassName?: string
   innerClassName?: string
@@ -21,6 +22,8 @@ interface IProps extends IPostProps {
 
 const PreviewPost = ({
   post,
+  image,
+  avatarMap,
   className,
   imageClassName = "h-64 md:h-72 ",
   headerClassName = "text-4xl",
@@ -33,7 +36,12 @@ const PreviewPost = ({
 }: IProps) => (
   <article className={cn("flex flex-col gap-y-4", className)}>
     {showImage && post.frontmatter.hero !== "" && (
-      <PostImage post={post} lazy={lazy} className={imageClassName} />
+      <PostImage
+        post={post}
+        image={image}
+        lazy={lazy}
+        className={imageClassName}
+      />
     )}
 
     <BaseCol className={cn("gap-y-2", innerClassName)}>
@@ -48,7 +56,7 @@ const PreviewPost = ({
         />
       )}
 
-      <PostAuthor post={post} showAvatar={showAvatar} />
+      <PostAuthor post={post} showAvatar={showAvatar} avatarMap={avatarMap} />
     </BaseCol>
   </article>
 )

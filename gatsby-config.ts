@@ -67,6 +67,14 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
+        name: "people",
+        path: "./_content/people",
+      },
+      __key: "people",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
         name: "publications",
         path: "./_content/publications",
       },

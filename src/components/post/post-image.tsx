@@ -1,21 +1,22 @@
+import React from "react"
+import IPostWithImageProps from "../../interfaces/post-with-image-props"
 import cn from "../../lib/class-names"
-import IPostProps from "../../interfaces/post-props"
+import { getPostRelativeUrl } from "../../lib/posts"
 import BaseLink from "../link/base-link"
 import BasePostImage from "./base-post-image"
-import React from "react"
-import { getPostRelativeUrl } from "../../lib/posts"
 
-interface IProps extends IPostProps {
+interface IProps extends IPostWithImageProps {
   size?: number[]
   sizes?: number[]
   lazy?: boolean
 }
 
-const PostImage = ({ post, size = [512, 256], className }: IProps) => {
-  const image = (
+const PostImage = ({ post, image, size = [512, 256], className }: IProps) => {
+  const img = (
     <div className={cn("relative overflow-hidden rounded-lg", className)}>
       <BasePostImage
         post={post}
+        image={image}
         size={size}
         className="absolute transition-transform duration-300 hover:scale-104"
       />
@@ -28,11 +29,11 @@ const PostImage = ({ post, size = [512, 256], className }: IProps) => {
         href={getPostRelativeUrl(post.fields.slug)}
         ariaLabel={post.frontmatter.title}
       >
-        {image}
+        {img}
       </BaseLink>
     )
   } else {
-    return image
+    return img
   }
 }
 

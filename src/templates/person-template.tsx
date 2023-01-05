@@ -1,37 +1,28 @@
 import { graphql } from "gatsby"
 import React from "react"
-import PostsPage from "../components/pages/posts-page"
+import PersonPage from "../components/pages/person-page"
 import IDataPageProps from "../interfaces/data-page-props"
 import ContentLayout from "../layouts/content-layout"
 import Seo from "../layouts/seo"
 import { getImageMap } from "../lib/images"
 
-export default function PostsTemplate({
-  pageContext,
-  data,
-  location,
-}: IDataPageProps) {
-  const { title, superTitle, page, pages, posts, sectionMap } = pageContext
+export default function Page({ pageContext, data, location }: IDataPageProps) {
+  const { page, pages, posts, sectionMap } = pageContext
 
+  const person = data.person
   const imageMap = getImageMap(data.postImages)
   const avatarMap = getImageMap(data.peopleImages)
 
   return (
-    <ContentLayout
-      title={title}
-      superTitle={superTitle}
-      tab="Blog"
-      location={location}
-    >
+    <ContentLayout title={person.frontmatter.name} location={location}>
       <></>
-
-      <PostsPage
-        posts={posts}
-        page={page}
-        pages={pages}
-        sectionMap={sectionMap}
+      <PersonPage
+        author={person}
         imageMap={imageMap}
         avatarMap={avatarMap}
+        posts={posts}
+        currentPage={page}
+        pages={pages}
       />
     </ContentLayout>
   )
@@ -42,7 +33,40 @@ export function Head({ pageContext }: IDataPageProps) {
 }
 
 export const pageQuery = graphql`
-  query Posts {
+  query PersonBySlug($personId: String) {
+    person: markdownRemark(
+      id: { eq: $personId }
+      fileAbsolutePath: { regex: "/people/" }
+    ) {
+      id
+      excerpt(format: HTML)
+      html
+      fields {
+        slug
+        date
+      }
+      frontmatter {
+        name
+        title
+        email
+      }
+    }
+
+    image: file(
+      name: { eq: $personId }
+      absolutePath: { regex: "/images/people/" }
+    ) {
+      name
+      absolutePath
+      childImageSharp {
+        gatsbyImageData(
+          width: 2048
+          placeholder: BLURRED
+          formats: [AUTO, WEBP, AVIF]
+        )
+      }
+    }
+
     postImages: allFile(filter: { absolutePath: { regex: "/images/posts/" } }) {
       nodes {
         absolutePath

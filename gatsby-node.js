@@ -2,6 +2,7 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const postTemplate = path.resolve(`./src/templates/post-template.tsx`)
 const postsTemplate = path.resolve(`./src/templates/posts-template.tsx`)
+const personTemplate = path.resolve(`./src/templates/person-template.tsx`)
 
 const ROOT_RECORDS_PER_PAGE = 10
 const RECORDS_PER_PAGE = 9
@@ -34,8 +35,50 @@ exports.createPages = async function ({ actions, graphql }) {
           }
         }
       }
+
+      postImages: allFile(filter: { absolutePath: { regex: "/images/posts/" } }) {
+        nodes {
+          absolutePath
+          name
+          childImageSharp {
+            gatsbyImageData(
+              width: 2048
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
+        }
+      }
+
+      people: allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/people/" } }
+      ) {
+        nodes {
+          id
+          excerpt(format: HTML)
+          fields {
+            date
+            slug
+          }
+          frontmatter {
+            name
+            title
+            email
+          }
+        }
+      }
     }
   `)
+
+  const people = data.people.nodes
+
+  // make a map of names
+
+  const postImageMap = {}
+
+  data.postImages.nodes.forEach(file => {
+    postImageMap[file.name] = file
+  })
 
   // sort by date
   const posts = data.posts.nodes.sort(
@@ -59,6 +102,7 @@ exports.createPages = async function ({ actions, graphql }) {
           id: post.id,
           title: post.frontmatter.title,
           tab: "Blog",
+          hero: post.frontmatter.hero,
         },
       })
     })
@@ -155,7 +199,6 @@ exports.createPages = async function ({ actions, graphql }) {
     }
   }
 
-
   //
   // Split posts into tags
   //
@@ -164,12 +207,13 @@ exports.createPages = async function ({ actions, graphql }) {
 
   posts.forEach(post => {
     post.frontmatter.tags.forEach(tag => {
-    if (!(tag in tagMap)) {
-      tagMap[tag] = []
-    }
+      if (!(tag in tagMap)) {
+        tagMap[tag] = []
+      }
 
-    tagMap[tag].push(post)
-  })})
+      tagMap[tag].push(post)
+    })
+  })
 
   for (const [tag, tagPosts] of Object.entries(tagMap)) {
     if (tagPosts.length == 0) {
@@ -212,6 +256,46 @@ exports.createPages = async function ({ actions, graphql }) {
       })
     }
   }
+
+  people.forEach(person => {
+    const slug = getTagSlug(person.frontmatter.name)
+
+    const personPosts = posts.filter(post =>
+      post.frontmatter.authors.includes(person.frontmatter.name)
+    )
+
+    let pages = Math.floor(
+      (personPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
+    )
+
+    createPage({
+      path: `/people/${slug}`,
+      component: personTemplate,
+      context: {
+        title: person.frontmatter.name,
+        page: 0,
+        pages,
+        posts: personPosts.slice(0, ROOT_RECORDS_PER_PAGE),
+      },
+    })
+
+    for (let page = 0; page < pages; ++page) {
+      const pagePosts = personPosts.slice(page, page + RECORDS_PER_PAGE)
+
+      const path = `/people/${slug}/page/${page + 1}`
+
+      createPage({
+        path: path,
+        component: personTemplate,
+        context: {
+          title: person.frontmatter.name,
+          page,
+          pages,
+          posts: pagePosts,
+        },
+      })
+    }
+  })
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

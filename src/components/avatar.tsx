@@ -1,5 +1,6 @@
 import React from "react"
 import IClassProps from "../interfaces/class-props"
+import IFieldMap from "../interfaces/field-map"
 import cn from "../lib/class-names"
 import { getAuthorUrl } from "../lib/urls"
 import AvatarImage from "./avatar-image"
@@ -9,12 +10,14 @@ import VCenterRow from "./v-center-row"
 
 interface IProps extends IClassProps {
   author: string
+  avatarMap: IFieldMap
   showTitle?: boolean
   isSmall?: boolean
 }
 
 const Avatar = ({
   author,
+  avatarMap,
   showTitle = false,
   isSmall = false,
   className,
@@ -28,7 +31,7 @@ const Avatar = ({
         ariaLabel={`Click to read more about ${author}`}
         className={cn("block", [isSmall, "h-10 w-10", "h-12 w-12"])}
       >
-        <AvatarImage author={author} />
+        <AvatarImage author={author} avatarMap={avatarMap} />
       </BaseLink>
       <BaseCol>
         <BaseLink

@@ -1,5 +1,7 @@
+import React from "react"
 import { AUTHOR_SLUG } from "../../constants"
 import IAuthor from "../../interfaces/author"
+import IFieldMap from "../../interfaces/field-map"
 import IPreviewPost from "../../interfaces/preview-post"
 import AvatarImageLarge from "../avatar-image-large"
 import BaseRow from "../base-row"
@@ -10,18 +12,31 @@ import PostsPage from "./posts-page"
 
 interface IProps {
   author: IAuthor
+  imageMap: IFieldMap
+  avatarMap: IFieldMap
   posts: IPreviewPost[]
   currentPage: number
   pages: number
 }
 
-const AuthorPage = ({ author, posts, currentPage, pages }: IProps) => (
+const PersonPage = ({
+  author,
+  posts,
+  imageMap,
+  avatarMap,
+  currentPage,
+  pages,
+}: IProps) => (
   <>
     <BaseRow className="gap-x-8">
       <div className="w-full">
         <HCenterRow className="mb-8 lg:hidden">
           <div>
-            <AvatarImageLarge author={author} className="w-56" />
+            <AvatarImageLarge
+              author={author.frontmatter.name}
+              avatarMap={avatarMap}
+              className="w-56"
+            />
           </div>
         </HCenterRow>
         <PageTitle
@@ -33,19 +48,24 @@ const AuthorPage = ({ author, posts, currentPage, pages }: IProps) => (
         <PostBody html={author.html} className="mt-8" />
       </div>
       <div className="hidden lg:block ">
-        <AvatarImageLarge author={author} className="w-64" />
+        <AvatarImageLarge
+          author={author.frontmatter.name}
+          avatarMap={avatarMap}
+          className="w-64"
+        />
       </div>
     </BaseRow>
 
     <section className="mt-16 border-t border-slate-200 pt-16">
       <PostsPage
         posts={posts}
+        imageMap={imageMap}
+        avatarMap={avatarMap}
         page={currentPage}
         pages={pages}
-        root={`${AUTHOR_SLUG}/${author.slug}`}
       />
     </section>
   </>
 )
 
-export default AuthorPage
+export default PersonPage
