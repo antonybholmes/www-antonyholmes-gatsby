@@ -1,11 +1,13 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React from "react"
 import type IClassProps from "../interfaces/class-props"
-import cn from "../lib/class-names"
+import IFieldMap from "../interfaces/field-map"
 
 export interface IImageProps extends IClassProps {
   src: any
   alt: string
+  imgClassName?: string
+  imgStyle?: IFieldMap
 }
 
 export default function GatsbyBaseImage({
@@ -13,15 +15,19 @@ export default function GatsbyBaseImage({
   alt,
   className,
   style,
+  imgClassName,
+  imgStyle,
 }: IImageProps) {
   const image = getImage(src)
 
   return (
-    //@ts-ignore
     <GatsbyImage
+      //@ts-ignore
       image={image}
-      className={cn("relative z-0", className)}
+      className={className}
       style={style}
+      imgClassName={imgClassName}
+      imgStyle={imgStyle}
       alt={alt}
     />
   )

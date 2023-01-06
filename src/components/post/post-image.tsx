@@ -13,12 +13,12 @@ interface IProps extends IPostWithImageProps {
 
 const PostImage = ({ post, image, size = [512, 256], className }: IProps) => {
   const img = (
-    <div className={cn("relative overflow-hidden rounded-lg", className)}>
+    <div className={cn("overflow-hidden rounded-lg", className)}>
       <BasePostImage
         post={post}
         image={image}
         size={size}
-        className="absolute transition-transform duration-300 hover:scale-104"
+        className="transition-transform duration-300 hover:scale-104"
       />
     </div>
   )

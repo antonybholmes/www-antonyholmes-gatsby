@@ -27,7 +27,7 @@ const AvatarImage = ({
     <GatsbyBaseImage
       src={avatarMap[getUrlFriendlyTag(author)]}
       alt={`Picture of ${author}`}
-      className={cn("rounded-full", className)}
+      imgClassName={cn("rounded-full", className)}
     />
   )
 }
