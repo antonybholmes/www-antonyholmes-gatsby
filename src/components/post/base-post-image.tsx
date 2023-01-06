@@ -4,17 +4,23 @@ import cn from "../../lib/class-names"
 import GatsbyBaseImage from "../gatsby-base-image"
 
 interface IProps extends IPostWithImageProps {
-  root?: string
+  imgClassName?: string
   size?: number[]
   sizes?: number[]
 }
 
-export default function BasePostImage({ post, image, className }: IProps) {
+export default function BasePostImage({
+  post,
+  image,
+  className,
+  imgClassName,
+}: IProps) {
   return (
     <GatsbyBaseImage
       src={image}
       alt={post.frontmatter.title}
-      className={cn("h-full w-full object-cover", className)}
+      className={cn("h-full w-full", className)}
+      imgClassName={imgClassName}
     />
   )
 }

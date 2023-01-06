@@ -16,7 +16,8 @@ const HeroImage = ({ post, image, size = [2048, 1024], className }: IProps) => (
     <GatsbyBaseImage
       src={image}
       alt={post.frontmatter.title}
-      className={cn("h-full w-full object-cover", className)}
+      className={cn("h-full w-full", className)}
+      imgClassName="rounded-xl"
     />
 
     {post.frontmatter.heroCaption && <HeroImageCaption post={post} />}
