@@ -258,6 +258,7 @@ exports.createPages = async function ({ actions, graphql }) {
       context: {
         title: section,
         superTitle: "Section",
+        showTitle: true,
         page: 0,
         pages,
         posts: pagePosts,
@@ -281,6 +282,7 @@ exports.createPages = async function ({ actions, graphql }) {
         context: {
           title: section,
           superTitle: "Section",
+          showTitle: true,
           page,
           pages,
           posts: pagePosts,
@@ -318,6 +320,7 @@ exports.createPages = async function ({ actions, graphql }) {
       context: {
         title: tag,
         superTitle: "Tag",
+        showTitle: true,
         page: 0,
         pages,
         posts: pagePosts,
@@ -341,6 +344,7 @@ exports.createPages = async function ({ actions, graphql }) {
         context: {
           title: tag,
           superTitle: "Tag",
+          showTitle: true,
           page,
           pages,
           posts: pagePosts,

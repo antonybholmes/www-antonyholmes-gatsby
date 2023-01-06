@@ -1,4 +1,5 @@
 import { gsap } from "gsap"
+import React from "react"
 import { useEffect } from "react"
 import cn from "../../lib/class-names"
 import IHeaderProps from "./header-props"

@@ -24,10 +24,11 @@ export default function Page({ location }: IDataPageProps) {
             <p>{`Updated ${UPDATED}`}</p>
           </div>
 
-          <p>
-            Copyright &copy; {YEAR}
-            {SITE_NAME}. All rights reserved.
-          </p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: `Copyright &copy; ${YEAR} ${SITE_NAME}. All rights reserved.`,
+            }}
+          />
         </BaseCol>
 
         <div className="mt-16">

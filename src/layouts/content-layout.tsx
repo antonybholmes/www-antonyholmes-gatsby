@@ -1,7 +1,5 @@
 import React from "react"
-import Breadcrumb from "../components/breadcrumb"
 import ContentDiv from "../components/content-div"
-import PageTitle from "../components/page-title"
 import type ICrumbProps from "../interfaces/crumb-props"
 import type ILayoutProps from "../interfaces/layout-props"
 import type IPageTitleProps from "../interfaces/page-title-props"
@@ -46,8 +44,8 @@ export default function ContentLayout({
         <div className="mt-28">
           <LayoutTitles
             title={title}
-            location={location}
             superTitle={superTitle}
+            location={location}
             subTitle={subTitle}
             crumbs={crumbs}
             showTitle={showTitle}

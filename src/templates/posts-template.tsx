@@ -1,19 +1,17 @@
-import { graphql } from "gatsby"
 import React from "react"
 import PostsPage from "../components/pages/posts-page"
 import IDataPageProps from "../interfaces/data-page-props"
 import ContentLayout from "../layouts/content-layout"
 import Seo from "../layouts/seo"
-import { getImageMap } from "../lib/images"
 
 export default function PostsTemplate({
   pageContext,
-  data,
   location,
 }: IDataPageProps) {
   const {
     title,
     superTitle,
+    showTitle,
     page,
     pages,
     posts,
@@ -29,6 +27,7 @@ export default function PostsTemplate({
     <ContentLayout
       title={title}
       superTitle={superTitle}
+      showTitle={showTitle}
       tab="Blog"
       location={location}
     >

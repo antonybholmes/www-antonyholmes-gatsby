@@ -4,7 +4,6 @@ import PostPage from "../components/pages/post-page"
 import IDataPageProps from "../interfaces/data-page-props"
 import BaseLayout from "../layouts/base-layout"
 import Seo from "../layouts/seo"
-import { getImageMap } from "../lib/images"
 
 export default function Page({ pageContext, data, location }: IDataPageProps) {
   const { imageMap, avatarMap } = pageContext
