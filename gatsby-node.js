@@ -11,6 +11,16 @@ function getTagSlug(tag) {
   return tag.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and")
 }
 
+function subsetImageMaps(posts, imageMap, avatarMap, pim, aim) {
+  posts.forEach(p => {
+    pim[p.frontmatter.hero] = imageMap[p.frontmatter.hero]
+
+    p.frontmatter.authors.forEach(author => {
+      aim[getTagSlug(author)] = avatarMap[getTagSlug(author)]
+    })
+  })
+}
+
 exports.createPages = async function ({ actions, graphql }) {
   const { createPage } = actions
 
@@ -97,10 +107,10 @@ exports.createPages = async function ({ actions, graphql }) {
     postImageMap[file.name] = file
   })
 
-  const peopleImageMap = {}
+  const avatarMap = {}
 
   data.peopleImages.nodes.forEach(file => {
-    peopleImageMap[file.name] = file
+    avatarMap[file.name] = file
   })
 
   // sort by date
@@ -138,18 +148,24 @@ exports.createPages = async function ({ actions, graphql }) {
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
+  let pim = {}
+  let pagePosts = []
+
   posts.forEach((post, index) => {
     // related
 
     let morePosts = []
-    
-    if (post.frontmatter.tags && post.frontmatter.tags.length > 0) {
-      
-      morePosts = tagMap[post.frontmatter.tags[0]].filter(p => p.id !== post.id).slice(0, 3)
 
-      console.log(post.frontmatter.tags[0], tagMap[post.frontmatter.tags[0]].length, morePosts.length)
+    if (post.frontmatter.tags && post.frontmatter.tags.length > 0) {
+      morePosts = tagMap[post.frontmatter.tags[0]]
+        .filter(p => p.id !== post.id)
+        .slice(0, 3)
     }
-    
+
+    pim = {}
+    aim = {}
+    pim[post.frontmatter.hero] = postImageMap[post.frontmatter.hero]
+    subsetImageMaps(morePosts, postImageMap, avatarMap, pim, aim)
 
     createPage({
       path: `/blog/${post.fields.slug}`,
@@ -159,7 +175,9 @@ exports.createPages = async function ({ actions, graphql }) {
         title: post.frontmatter.title,
         tab: "Blog",
         hero: post.frontmatter.hero,
-        morePosts
+        morePosts,
+        imageMap: pim,
+        avatarMap: aim,
       },
     })
   })
@@ -170,6 +188,13 @@ exports.createPages = async function ({ actions, graphql }) {
 
   // special case for root blog page where we send
   // 10 posts so that latest posts works correctly
+
+  pagePosts = posts.slice(0, ROOT_RECORDS_PER_PAGE)
+
+  pim = {}
+  aim = {}
+  subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
+
   createPage({
     path: "/blog",
     component: postsTemplate,
@@ -177,13 +202,19 @@ exports.createPages = async function ({ actions, graphql }) {
       title: "Blog",
       page: 0,
       pages,
-      posts: posts.slice(0, ROOT_RECORDS_PER_PAGE),
+      posts: pagePosts,
+      imageMap: pim,
+      avatarMap: aim,
     },
   })
 
   for (let page = 0; page < pages; ++page) {
     const s = page * RECORDS_PER_PAGE
-    const pagePosts = posts.slice(s, s + RECORDS_PER_PAGE)
+    pagePosts = posts.slice(s, s + RECORDS_PER_PAGE)
+
+    pim = {}
+    aim = {}
+    subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
 
     const path = `/blog/page/${page + 1}`
 
@@ -195,6 +226,8 @@ exports.createPages = async function ({ actions, graphql }) {
         page,
         pages,
         posts: pagePosts,
+        imageMap: pim,
+        avatarMap: aim,
       },
     })
   }
@@ -202,8 +235,6 @@ exports.createPages = async function ({ actions, graphql }) {
   //
   // Split posts into sections
   //
-
-  
 
   for (const [section, sectionPosts] of Object.entries(sectionMap)) {
     if (sectionPosts.length == 0) {
@@ -216,6 +247,11 @@ exports.createPages = async function ({ actions, graphql }) {
       (sectionPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
     )
 
+    pagePosts = sectionPosts.slice(0, ROOT_RECORDS_PER_PAGE)
+    pim = {}
+    aim = {}
+    subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
+
     createPage({
       path: `/blog/section/${slug}`,
       component: postsTemplate,
@@ -224,12 +260,18 @@ exports.createPages = async function ({ actions, graphql }) {
         superTitle: "Section",
         page: 0,
         pages,
-        posts: sectionPosts.slice(0, ROOT_RECORDS_PER_PAGE),
+        posts: pagePosts,
+        imageMap: pim,
+        avatarMap: aim,
       },
     })
 
     for (let page = 0; page < pages; ++page) {
-      const pagePosts = sectionPosts.slice(page, page + RECORDS_PER_PAGE)
+      pagePosts = sectionPosts.slice(page, page + RECORDS_PER_PAGE)
+
+      pim = {}
+      aim = {}
+      subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
 
       const path = `/blog/section/${slug}/page/${page + 1}`
 
@@ -242,6 +284,8 @@ exports.createPages = async function ({ actions, graphql }) {
           page,
           pages,
           posts: pagePosts,
+          imageMap: pim,
+          avatarMap: aim,
         },
       })
     }
@@ -250,8 +294,6 @@ exports.createPages = async function ({ actions, graphql }) {
   //
   // Split posts into tags
   //
-
-  
 
   for (const [tag, tagPosts] of Object.entries(tagMap)) {
     if (tagPosts.length == 0) {
@@ -264,6 +306,12 @@ exports.createPages = async function ({ actions, graphql }) {
       (tagPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
     )
 
+    pagePosts = tagPosts.slice(0, ROOT_RECORDS_PER_PAGE)
+
+    pim = {}
+    aim = {}
+    subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
+
     createPage({
       path: `/blog/tag/${slug}`,
       component: postsTemplate,
@@ -272,12 +320,18 @@ exports.createPages = async function ({ actions, graphql }) {
         superTitle: "Tag",
         page: 0,
         pages,
-        posts: tagPosts.slice(0, ROOT_RECORDS_PER_PAGE),
+        posts: pagePosts,
+        imageMap: pim,
+        avatarMap: aim,
       },
     })
 
     for (let page = 0; page < pages; ++page) {
-      const pagePosts = tagPosts.slice(page, page + RECORDS_PER_PAGE)
+      pagePosts = tagPosts.slice(page, page + RECORDS_PER_PAGE)
+
+      pim = {}
+      aim = {}
+      subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
 
       const path = `/blog/tag/${slug}/page/${page + 1}`
 
@@ -290,6 +344,8 @@ exports.createPages = async function ({ actions, graphql }) {
           page,
           pages,
           posts: pagePosts,
+          imageMap: pim,
+          avatarMap: aim,
         },
       })
     }
@@ -306,6 +362,11 @@ exports.createPages = async function ({ actions, graphql }) {
       (personPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
     )
 
+    pagePosts = personPosts.slice(0, ROOT_RECORDS_PER_PAGE)
+    pim = {}
+    aim = {}
+    subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
+
     createPage({
       path: `/people/${slug}`,
       component: personTemplate,
@@ -313,12 +374,17 @@ exports.createPages = async function ({ actions, graphql }) {
         title: person.frontmatter.name,
         page: 0,
         pages,
-        posts: personPosts.slice(0, ROOT_RECORDS_PER_PAGE),
+        posts: pagePosts,
+        imageMap: pim,
+        avatarMap: aim,
       },
     })
 
     for (let page = 0; page < pages; ++page) {
-      const pagePosts = personPosts.slice(page, page + RECORDS_PER_PAGE)
+      pagePosts = personPosts.slice(page, page + RECORDS_PER_PAGE)
+      pim = {}
+      aim = {}
+      subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
 
       const path = `/people/${slug}/page/${page + 1}`
 
@@ -330,6 +396,8 @@ exports.createPages = async function ({ actions, graphql }) {
           page,
           pages,
           posts: pagePosts,
+          imageMap: pim,
+          avatarMap: aim,
         },
       })
     }

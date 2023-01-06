@@ -11,10 +11,19 @@ export default function PostsTemplate({
   data,
   location,
 }: IDataPageProps) {
-  const { title, superTitle, page, pages, posts, sectionMap } = pageContext
+  const {
+    title,
+    superTitle,
+    page,
+    pages,
+    posts,
+    imageMap,
+    avatarMap,
+    sectionMap,
+  } = pageContext
 
-  const imageMap = getImageMap(data.postImages)
-  const avatarMap = getImageMap(data.peopleImages)
+  //const imageMap = getImageMap(data.postImages)
+  //const avatarMap = getImageMap(data.peopleImages)
 
   return (
     <ContentLayout
@@ -40,37 +49,3 @@ export default function PostsTemplate({
 export function Head({ pageContext }: IDataPageProps) {
   return <Seo title={pageContext.title} />
 }
-
-export const pageQuery = graphql`
-  query Posts {
-    postImages: allFile(filter: { absolutePath: { regex: "/images/posts/" } }) {
-      nodes {
-        absolutePath
-        name
-        childImageSharp {
-          gatsbyImageData(
-            width: 2048
-            placeholder: BLURRED
-            formats: [AUTO, WEBP, AVIF]
-          )
-        }
-      }
-    }
-
-    peopleImages: allFile(
-      filter: { absolutePath: { regex: "/images/people/" } }
-    ) {
-      nodes {
-        absolutePath
-        name
-        childImageSharp {
-          gatsbyImageData(
-            width: 480
-            placeholder: BLURRED
-            formats: [AUTO, WEBP, AVIF]
-          )
-        }
-      }
-    }
-  }
-`

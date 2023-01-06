@@ -10,7 +10,13 @@ interface IProps extends IPostsProps {
   rightMode?: boolean
 }
 
-const SectionPosts = ({ section, posts, rightMode = false }: IProps) => (
+const SectionPosts = ({
+  section,
+  posts,
+  imageMap,
+  avatarMap,
+  rightMode = false,
+}: IProps) => (
   <section className="mt-8">
     <PostsHeader>
       <BaseLink
@@ -21,7 +27,12 @@ const SectionPosts = ({ section, posts, rightMode = false }: IProps) => (
       </BaseLink>
     </PostsHeader>
 
-    <BaseSectionPosts posts={posts} rightMode={rightMode} />
+    <BaseSectionPosts
+      posts={posts}
+      rightMode={rightMode}
+      imageMap={imageMap}
+      avatarMap={avatarMap}
+    />
   </section>
 )
 

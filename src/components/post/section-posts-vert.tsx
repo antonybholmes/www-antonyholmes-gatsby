@@ -10,7 +10,13 @@ interface IProps extends IPostsProps {
   rightMode?: boolean
 }
 
-const SectionPostsVert = ({ section, posts, rightMode = true }: IProps) => {
+const SectionPostsVert = ({
+  section,
+  posts,
+  imageMap,
+  avatarMap,
+  rightMode = true,
+}: IProps) => {
   if (!posts || posts.length == 0) {
     return <></>
   }
@@ -26,7 +32,12 @@ const SectionPostsVert = ({ section, posts, rightMode = true }: IProps) => {
         </BaseLink>
       </PostsHeader>
 
-      <BaseSectionPostsVert posts={posts} rightMode={rightMode} />
+      <BaseSectionPostsVert
+        posts={posts}
+        rightMode={rightMode}
+        imageMap={imageMap}
+        avatarMap={avatarMap}
+      />
     </section>
   )
 }

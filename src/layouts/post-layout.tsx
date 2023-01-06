@@ -4,10 +4,15 @@ import cn from "../lib/class-names"
 
 export default function PostLayout({ className, children }: IChildProps) {
   return (
-    <div className={cn("flex flex-row gap-x-4", className)}>
-      <section className="hidden lg:block">{children[0]}</section>
-      <article className="w-full lg:w-70/100">{children[1]}</article>
-      <section className="hidden w-25/100 lg:block">{children[2]}</section>
+    <div
+      className={cn(
+        "grid grid-cols-1 gap-x-0 lg:grid-cols-12 lg:gap-x-8 xl:grid-cols-16 2xl:gap-x-16",
+        className
+      )}
+    >
+      <section className="col-span-1 hidden lg:block">{children[0]}</section>
+      <article className="col-span-11">{children[1]}</article>
+      <section className="col-span-4 hidden xl:block">{children[2]}</section>
     </div>
   )
 }

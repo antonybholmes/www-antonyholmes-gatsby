@@ -1,5 +1,4 @@
 import React from "react"
-import { AUTHOR_SLUG } from "../../constants"
 import IAuthor from "../../interfaces/author"
 import IFieldMap from "../../interfaces/field-map"
 import IPreviewPost from "../../interfaces/preview-post"

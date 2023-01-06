@@ -10,7 +10,7 @@ import React from "react"
 const PostSocialMediaVert = ({ post }: IPostProps) => {
   const url = getPostUrl(post.fields.slug)
   return (
-    <section className={"flex flex-col items-center gap-y-2"}>
+    <section className={"flex flex-col  gap-y-2"}>
       <BaseLink
         ariaLabel="Post article to Twitter"
         href={`https://twitter.com/intent/tweet?text=${post.frontmatter.title}&url=${url}`}
