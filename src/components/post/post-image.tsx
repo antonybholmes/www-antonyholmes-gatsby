@@ -13,7 +13,7 @@ interface IProps extends IPostWithImageProps {
 
 const PostImage = ({ post, image, size = [512, 256], className }: IProps) => {
   const img = (
-    <div className={cn("overflow-hidden rounded-lg", className)}>
+    <div className={cn("relative z-10 overflow-hidden rounded-lg", className)}>
       <BasePostImage
         post={post}
         image={image}

@@ -10,7 +10,7 @@ interface IProps extends IPostWithImageProps {
 }
 
 const HeroImage = ({ post, image, size = [2048, 1024], className }: IProps) => (
-  <div className="relative overflow-hidden rounded-xl">
+  <div className="relative z-10 overflow-hidden rounded-xl">
     {/* <BasePostImage post={post}  size={size} className={cn(className)} /> */}
 
     <GatsbyBaseImage
