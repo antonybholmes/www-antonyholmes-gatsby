@@ -48,6 +48,7 @@ export const pageQuery = graphql`
         name
         title
         email
+        pubmed
       }
     }
   }

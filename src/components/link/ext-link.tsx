@@ -16,6 +16,8 @@ const ExtLink = ({
   onClick,
   onMouseEnter,
   onMouseLeave,
+  onMouseUp,
+  onMouseDown,
   className,
   children,
 }: IProps) => {
@@ -31,6 +33,8 @@ const ExtLink = ({
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onMouseUp={onMouseUp}
+      onMouseDown={onMouseDown}
       className={cn([underline, `hover:underline`], className)}
     >
       {children}

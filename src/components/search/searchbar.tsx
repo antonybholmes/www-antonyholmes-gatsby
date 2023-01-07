@@ -1,3 +1,4 @@
+import React from "react"
 import { useEffect, useState } from "react"
 import CloseIcon from "../../icons/close"
 import SearchIcon from "../../icons/search"
@@ -78,7 +79,6 @@ export default function SearchBar({
   function onKeyDown(e: any) {
     if (e.key === "Enter") {
       if (onSearch) {
-        console.group("ssss0", e.target.value)
         onSearch(e.target.value, true)
       }
     }

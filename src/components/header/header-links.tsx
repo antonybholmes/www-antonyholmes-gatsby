@@ -23,7 +23,7 @@ const HeaderLinks = ({
 
   return (
     <ul
-      className="col-span-6 flex flex-row flex-nowrap items-center justify-center gap-8"
+      className="flex flex-row flex-nowrap items-center justify-center gap-4"
       style={{ marginBottom: "-1px" }}
     >
       {HEADER_LINKS.map((link: ILink, index: number) => {

@@ -40,20 +40,20 @@ export default function Page({ location }: IDataPageProps) {
           <ul className="mt-4 flex flex-row flex-wrap gap-2 text-sm">
             <li className={CLS}>
               <BlueLink
-                href="https://astro.build/"
+                href="https://www.gatsbyjs.com/"
                 ariaLabel="View tool"
                 underline={true}
               >
-                Astro
+                Gatsby
               </BlueLink>
             </li>
             <li className={CLS}>
               <BlueLink
-                href="https://preactjs.com/"
+                href="https://reactjs.org/"
                 ariaLabel="View tool"
                 underline={true}
               >
-                Preact
+                React
               </BlueLink>
             </li>
             <li className={CLS}>

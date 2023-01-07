@@ -18,6 +18,8 @@ const BaseLink = ({
   onClick,
   onMouseEnter,
   onMouseLeave,
+  onMouseUp,
+  onMouseDown,
   children,
 }: IProps) => {
   if (!ariaLabel) {
@@ -40,6 +42,8 @@ const BaseLink = ({
         onClick={onClick}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        onMouseUp={onMouseUp}
+        onMouseDown={onMouseDown}
       >
         {children}
       </ExtLink>
@@ -57,6 +61,8 @@ const BaseLink = ({
         onClick={onClick}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        onMouseUp={onMouseUp}
+        onMouseDown={onMouseDown}
       >
         {children}
       </Link>

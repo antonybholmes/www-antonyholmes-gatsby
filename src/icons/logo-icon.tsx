@@ -15,7 +15,7 @@ export default function LogoIcon({ headerMode = "light", className }: IProps) {
 
   return (
     <svg
-      viewBox="0 0 72 24"
+      viewBox="0 0 64 24"
       xmlns="http://www.w3.org/2000/svg"
       className={cn("group h-9 font-bold", className)}
     >

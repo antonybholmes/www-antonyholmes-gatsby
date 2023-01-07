@@ -35,6 +35,8 @@ import React from "react"
 import Seo from "../layouts/seo"
 import { graphql } from "gatsby"
 import IDataPageProps from "../interfaces/data-page-props"
+import PubMedLink from "../components/publication/pubmed-link"
+import HCenterCol from "../components/h-center-col"
 
 const EMPTY_QUERY = ""
 
@@ -79,7 +81,7 @@ export function search(query: any, publications: any[]): any[] {
       default:
         found = publication.pmid.toLowerCase().includes(ql)
 
-        if (!found) {
+        if (!found && publication.pmcid) {
           // try pmcid
           found = publication.pmcid.toLowerCase().includes(ql)
         }
@@ -208,7 +210,8 @@ function results(search: string, page: number, filteredPublications: any[]) {
 }
 
 export default function Page({ data, location }: IDataPageProps) {
-  const publications = data.all.nodes
+  const publications = data.publications.nodes
+  const person = data.person
 
   //const [publications, setPublications] = useState<any[]>([])
 
@@ -485,6 +488,13 @@ export default function Page({ data, location }: IDataPageProps) {
       className="mb-32 gap-x-16"
     >
       <div>
+        <SearchBar
+          onSearch={onSearch}
+          placeholder="Search publications..."
+          text={query}
+          className="mb-8 lg:hidden"
+        />
+
         <VCenterRow className="justify-between">
           <span className="text-sm text-slate-500">
             {results(query, pageStart, yearFilteredPublications)}
@@ -580,6 +590,11 @@ export default function Page({ data, location }: IDataPageProps) {
           onClick={onAuthorClick}
           max={8}
         />
+
+        <HCenterCol className="gap-y-2">
+          <p>See more on</p>
+          <PubMedLink person={person} />
+        </HCenterCol>
       </BaseCol>
     </ThreeQuarterLayout>
   )
@@ -589,7 +604,7 @@ export const Head = () => <Seo title="Publications" />
 
 export const pageQuery = graphql`
   query {
-    all: allAntonyHolmesJson {
+    publications: allAntonyHolmesJson {
       nodes {
         title
         journal
@@ -599,6 +614,22 @@ export const pageQuery = graphql`
         pmcid
         abstract
         authorList
+      }
+    }
+
+    person: markdownRemark(frontmatter: { name: { eq: "Antony Holmes" } }) {
+      id
+      excerpt(format: HTML)
+      html
+      fields {
+        slug
+        date
+      }
+      frontmatter {
+        name
+        title
+        email
+        pubmed
       }
     }
   }
