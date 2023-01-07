@@ -162,9 +162,9 @@ export default function HeaderLink({
             [headerMode === "dark", "text-slate-50", "text-blue-600"],
             [
               headerMode === "dark",
-              "text-slate-400",
+              [[down, "bg-white/10"], "text-white/60 group-hover:text-white"],
               [
-                [down, "border-blue-400 bg-gray-100"],
+                [down, "border-blue-500 bg-gray-100"],
                 "text-slate-500 group-hover:text-slate-900",
               ],
             ],
@@ -174,15 +174,19 @@ export default function HeaderLink({
         </div>
         <div
           ref={ref}
-          className={cn("transition-ani absolute bottom-0 transition-opacity", [
-            selected,
+          className={cn(
+            "transition-ani absolute bottom-0 transition-opacity",
+            [headerMode === "light", "bg-blue-600", "bg-white"],
             [
-              "w-full",
-              [scrollY > 10, "opacity-100", "opacity-0"],
-              [headerMode === "light", "bg-blue-600", "bg-white"],
-            ],
-            "w-0 bg-slate-900",
-          ])}
+              selected,
+              [
+                "w-full",
+                [headerMode === "light", "bg-blue-600", "bg-white"],
+                [scrollY > 10, "opacity-100", "opacity-0"],
+              ],
+              ["w-0", [headerMode === "light", "bg-slate-900", "bg-white"]],
+            ]
+          )}
           style={{ height: BAR_WIDTH }}
         />
       </VCenterCol>

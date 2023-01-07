@@ -26,15 +26,20 @@ const CompactAvatars = ({
         style={{ width: `${3 + (authors.length - 1) * 0.5}rem` }}
       >
         {authors.map((author, index) => (
-          <AvatarImage
-            author={author}
-            avatarMap={avatarMap}
-            className={cn(
-              "absolute h-12 w-12 border border-white",
-              `ml-${index * 2}`
-            )}
-            key={index}
-          />
+          <BaseLink
+            href={getAuthorUrl(author)}
+            ariaLabel={`View posts by ${author}`}
+          >
+            <AvatarImage
+              author={author}
+              avatarMap={avatarMap}
+              className={cn(
+                "absolute h-12 w-12 border border-white",
+                `ml-${index * 2}`
+              )}
+              key={index}
+            />
+          </BaseLink>
         ))}
       </div>
     )}

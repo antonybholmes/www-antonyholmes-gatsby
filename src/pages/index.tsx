@@ -17,6 +17,7 @@ import ContentLayout from "../layouts/content-layout"
 import Seo from "../layouts/seo"
 import { getImageMap } from "../lib/images"
 import { getPageCount, getPagePosts } from "../lib/paginate"
+import { getAuthorUrl } from "../lib/urls"
 
 export default function Page({ data, location }: IDataPageProps) {
   const allPosts = data.allPosts.nodes
@@ -34,11 +35,14 @@ export default function Page({ data, location }: IDataPageProps) {
         <div className="grid grid-cols-1 gap-y-8 xl:grid-cols-4 xl:gap-x-16">
           <article className="rounded-xl bg-white p-8 xl:bg-transparent xl:p-0">
             <BaseCol className="items-center gap-y-8">
-              <BaseLink href="/author/antony-holmes" ariaLabel="View profile">
+              <BaseLink
+                href={getAuthorUrl("Antony Holmes")}
+                ariaLabel="View profile"
+              >
                 <AvatarImageLarge
                   author={"Antony Holmes"}
                   lazy={false}
-                  className="max-w-64"
+                  className="transition-ani h-56 w-56 transition-shadow hover:shadow-lg"
                   avatarMap={avatarMap}
                 />
               </BaseLink>
