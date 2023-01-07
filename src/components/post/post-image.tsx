@@ -18,7 +18,7 @@ const PostImage = ({ post, image, size = [512, 256], className }: IProps) => {
         post={post}
         image={image}
         size={size}
-        className="transition-ani h-full transition-transform duration-300 hover:scale-104"
+        className="transition-ani h-full w-full transition-transform duration-300 hover:scale-104"
       />
     </div>
   )

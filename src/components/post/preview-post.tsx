@@ -1,9 +1,9 @@
 import React from "react"
 import IPostWithAvatarProps from "../../interfaces/post-with-avatar-props"
-import IPostWithImageProps from "../../interfaces/post-with-image-props"
 import cn from "../../lib/class-names"
 import BaseCol from "../base-col"
 import HTML from "../html"
+import DateFormatter from "./date-formatter"
 import PostAuthor from "./post-author"
 import PostImage from "./post-image"
 import PostSectionLink from "./post-section-link"
@@ -64,6 +64,8 @@ const PreviewPost = ({
         showAvatarImage={showAvatarImage}
         avatarMap={avatarMap}
       />
+
+      <DateFormatter date={post.fields.date} />
     </BaseCol>
   </article>
 )

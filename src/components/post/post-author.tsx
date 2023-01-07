@@ -1,9 +1,8 @@
-import cn from "../../lib/class-names"
-import IPostProps from "../../interfaces/post-props"
-import CompactAvatars from "../compact-avatars"
-import DateFormatter from "./date-formatter"
 import React from "react"
 import IFieldMap from "../../interfaces/field-map"
+import IPostProps from "../../interfaces/post-props"
+import cn from "../../lib/class-names"
+import CompactAvatars from "../compact-avatars"
 
 interface IProps extends IPostProps {
   showAvatar?: boolean
@@ -33,7 +32,7 @@ export default function PostAuthor({
         />
       )}
 
-      <DateFormatter date={post.fields.date} />
+      {/* <DateFormatter date={post.fields.date} /> */}
     </div>
   )
 }

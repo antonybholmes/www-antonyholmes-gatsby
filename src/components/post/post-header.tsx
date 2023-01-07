@@ -1,6 +1,5 @@
 import React from "react"
 import IPostWithImageProps from "../../interfaces/post-with-image-props"
-
 import ContentDiv from "../content-div"
 import PageTitle from "../page-title"
 import HeroImage from "./hero-image"

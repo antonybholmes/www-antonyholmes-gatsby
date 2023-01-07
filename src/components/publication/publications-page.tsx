@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import getBooleanSearch from "../../lib/boolean-search"
 import getJournalPublications from "../../lib/pub/journal-publications"
 import sortPublications from "../../lib/pub/sort-publications"
-import getTopAuthors from "../../lib/top-authors"
+import getTopAuthors from "../../lib/pub/top-authors"
 import getTopJournals from "../../lib/top-journals"
 import SearchBar from "../search/searchbar"
 
