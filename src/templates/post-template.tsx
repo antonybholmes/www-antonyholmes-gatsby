@@ -22,6 +22,7 @@ export default function Page({ pageContext, data, location }: IDataPageProps) {
     >
       <PostPage
         post={post}
+        image={data.postImage}
         imageMap={imageMap}
         avatarMap={avatarMap}
         morePosts={pageContext.morePosts}
@@ -35,7 +36,7 @@ export function Head({ pageContext }: IDataPageProps) {
 }
 
 export const pageQuery = graphql`
-  query PostBySlug($id: String!) {
+  query PostBySlug($id: String!, $hero: String!) {
     post: markdownRemark(id: { eq: $id }) {
       id
       excerpt(format: HTML)
@@ -51,6 +52,22 @@ export const pageQuery = graphql`
         section
         tags
         hero
+      }
+    }
+
+    postImage: file(
+      name: { eq: $hero }
+      absolutePath: { regex: "/images/posts/" }
+    ) {
+      absolutePath
+      name
+      childImageSharp {
+        gatsbyImageData(
+          width: 2048
+          placeholder: BLURRED
+          formats: [AUTO, WEBP, AVIF]
+          transformOptions: { fit: COVER }
+        )
       }
     }
   }

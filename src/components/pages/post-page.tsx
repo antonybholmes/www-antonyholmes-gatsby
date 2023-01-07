@@ -16,6 +16,7 @@ import RelatedPosts from "../post/related-posts"
 
 interface IProps {
   post: IPost
+  image: any
   imageMap: IFieldMap
   avatarMap: IFieldMap
   morePosts?: IPreviewPost[]
@@ -24,6 +25,7 @@ interface IProps {
 
 const PostPage = ({
   post,
+  image,
   imageMap,
   avatarMap,
   morePosts = [],
@@ -31,7 +33,7 @@ const PostPage = ({
 }: IProps) => (
   <>
     <article>
-      <PostHeader post={post} image={imageMap[post.frontmatter.hero]} />
+      <PostHeader post={post} image={image} />
 
       <ContentDiv className="my-40">
         <></>

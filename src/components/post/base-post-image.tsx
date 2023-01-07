@@ -19,7 +19,7 @@ export default function BasePostImage({
     <GatsbyBaseImage
       src={image}
       alt={post.frontmatter.title}
-      className={cn("h-full w-full", className)}
+      className={className}
       imgClassName={imgClassName}
     />
   )
