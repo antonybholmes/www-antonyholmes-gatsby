@@ -9,7 +9,7 @@ const Footer = () => (
     <ContentDiv>
       <></>
 
-      <ul className="flex flex-col justify-between gap-y-4 border-t border-slate-300 pt-4 md:flex-row">
+      <ul className="flex flex-col items-center  justify-between gap-y-4 border-t border-slate-300 pt-8 md:flex-row">
         <li>{getCopyright()}</li>
         <li>
           <ul className="flex flex-row gap-y-4 gap-x-8">

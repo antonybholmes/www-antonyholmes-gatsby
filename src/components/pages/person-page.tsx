@@ -30,11 +30,11 @@ const PersonPage = ({
     <BaseRow className="gap-x-8">
       <div className="w-full">
         <HCenterRow className="mb-8 lg:hidden">
-          <div>
+          <div className="overflow-hidden">
             <AvatarImageLarge
               author={author.frontmatter.name}
               avatarMap={avatarMap}
-              className="w-56"
+              imgClassName="w-56"
             />
           </div>
         </HCenterRow>
@@ -46,11 +46,11 @@ const PersonPage = ({
         />
         <PostBody html={author.html} className="mt-8" />
       </div>
-      <div className="hidden lg:block ">
+      <div className="hidden lg:block">
         <AvatarImageLarge
           author={author.frontmatter.name}
           avatarMap={avatarMap}
-          className="w-64"
+          className="h-56 w-56"
         />
       </div>
     </BaseRow>

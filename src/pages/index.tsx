@@ -30,89 +30,89 @@ export default function Page({ data, location }: IDataPageProps) {
   return (
     <ContentLayout title="Home" showCrumbs={false} location={location}>
       <></>
-      <div
-        className="mb-32 grid grid-cols-1 gap-y-8 xl:grid-cols-4 xl:gap-x-16"
-        slot="main"
-      >
-        <article className="rounded-xl bg-white p-8 xl:bg-transparent xl:p-0">
-          <BaseCol className="items-center gap-y-8">
-            <BaseLink href="/author/antony-holmes" ariaLabel="View profile">
-              <AvatarImageLarge
-                author={"Antony Holmes"}
-                lazy={false}
-                className="max-w-64"
-                avatarMap={avatarMap}
-              />
-            </BaseLink>
-            <BaseCol className="gap-y-2 text-sm ">
-              <VCenterRow className="group justify-center gap-x-2 xl:justify-start">
-                <EnvelopeIcon className="transition-ani hidden w-4 fill-slate-400 transition-transform group-hover:-translate-x-0.5 xl:block" />
-                <ToBlueLink href={`mailto:${EMAIL}`} underline={true}>
-                  {EMAIL}
-                </ToBlueLink>
-              </VCenterRow>
-              <VCenterRow className="group justify-center gap-x-2 xl:justify-start">
-                <LinkIcon className="transition-ani hidden w-4 fill-slate-400 transition-transform group-hover:-translate-x-0.5 xl:block" />
-                <ToBlueLink
-                  href="https://github.com/antonybholmes"
-                  underline={true}
-                >
-                  github.com/antonybholmes
-                </ToBlueLink>
-              </VCenterRow>
-            </BaseCol>
-          </BaseCol>
-        </article>
-        <section className="col-span-3">
-          <section>
-            <HCenterCol>
-              <h1 className="inline-block text-5xl font-bold">Hi There.</h1>
-
-              <p className="mt-4 text-lg">
-                I'm Antony Holmes. Welcome to my personal web site.
-              </p>
-
-              <p className="mt-4 text-lg">
-                I'm a researcher and full stack developer with experience using
-                Java, Python, React, Next.js, Astro and other tech, some of
-                which was used to make this very site.
-              </p>
-
-              <p className="mt-4 text-lg">
-                I have an aptly named publications page where you can view all
-                of the scientific literature I have written, primarily focused
-                on cancer genetics.
-              </p>
-            </HCenterCol>
-
-            <VCenterRow className="mt-8 justify-center">
-              <div className="flex flex-row gap-6">
-                <BlueButtonArrowLink
-                  href="/resume"
-                  className="px-4 py-2 text-sm font-bold"
-                  text="Resume"
+      <>
+        <div className="grid grid-cols-1 gap-y-8 xl:grid-cols-4 xl:gap-x-16">
+          <article className="rounded-xl bg-white p-8 xl:bg-transparent xl:p-0">
+            <BaseCol className="items-center gap-y-8">
+              <BaseLink href="/author/antony-holmes" ariaLabel="View profile">
+                <AvatarImageLarge
+                  author={"Antony Holmes"}
+                  lazy={false}
+                  className="max-w-64"
+                  avatarMap={avatarMap}
                 />
+              </BaseLink>
+              <BaseCol className="gap-y-2 text-sm ">
+                <VCenterRow className="group justify-center gap-x-2 xl:justify-start">
+                  <EnvelopeIcon className="transition-ani hidden w-4 fill-slate-400 transition-transform group-hover:-translate-x-0.5 xl:block" />
+                  <ToBlueLink href={`mailto:${EMAIL}`} underline={true}>
+                    {EMAIL}
+                  </ToBlueLink>
+                </VCenterRow>
+                <VCenterRow className="group justify-center gap-x-2 xl:justify-start">
+                  <LinkIcon className="transition-ani hidden w-4 fill-slate-400 transition-transform group-hover:-translate-x-0.5 xl:block" />
+                  <ToBlueLink
+                    href="https://github.com/antonybholmes"
+                    underline={true}
+                  >
+                    github.com/antonybholmes
+                  </ToBlueLink>
+                </VCenterRow>
+              </BaseCol>
+            </BaseCol>
+          </article>
+          <section className="col-span-3">
+            <div>
+              <HCenterCol>
+                <h1 className="inline-block text-5xl font-bold">Hi There.</h1>
 
-                <BlueLink
-                  href="/publications"
-                  className="flex flex-row items-center text-sm"
-                >
-                  Publications
-                </BlueLink>
-              </div>
-            </VCenterRow>
+                <p className="mt-4 text-lg">
+                  I'm Antony Holmes. Welcome to my personal web site.
+                </p>
+
+                <p className="mt-4 text-lg">
+                  I'm a researcher and full stack developer with experience
+                  using Java, Python, React, Next.js, Astro and other tech, some
+                  of which was used to make this very site.
+                </p>
+
+                <p className="mt-4 text-lg">
+                  I have an aptly named publications page where you can view all
+                  of the scientific literature I have written, primarily focused
+                  on cancer genetics.
+                </p>
+              </HCenterCol>
+
+              <VCenterRow className="mt-8 justify-center">
+                <div className="flex flex-row gap-6">
+                  <BlueButtonArrowLink
+                    href="/resume"
+                    className="px-4 py-2 text-sm font-bold"
+                    text="Resume"
+                  />
+
+                  <BlueLink
+                    href="/publications"
+                    className="flex flex-row items-center text-sm"
+                  >
+                    Publications
+                  </BlueLink>
+                </div>
+              </VCenterRow>
+            </div>
           </section>
-          <section className="mt-16 border-t border-slate-200 pt-16">
-            <PostsPage
-              posts={posts}
-              page={1}
-              pages={1}
-              imageMap={imageMap}
-              avatarMap={avatarMap}
-            />
-          </section>
+        </div>
+        <section className="mt-16 border-t border-slate-200 pt-16">
+          <PostsPage
+            posts={posts}
+            page={1}
+            pages={1}
+            imageMap={imageMap}
+            avatarMap={avatarMap}
+          />
         </section>
-      </div>
+      </>
+      <></>
     </ContentLayout>
   )
 }

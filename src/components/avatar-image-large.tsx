@@ -5,6 +5,7 @@ export default function AvatarImageLarge({
   author,
   avatarMap,
   className,
+  imgClassName,
 }: IAvatarProps) {
   return (
     <AvatarImage
@@ -12,6 +13,7 @@ export default function AvatarImageLarge({
       avatarMap={avatarMap}
       size={[640, 640]}
       className={className}
+      imgClassName={imgClassName}
       lazy={false}
     />
   )
