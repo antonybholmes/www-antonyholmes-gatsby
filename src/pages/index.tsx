@@ -85,7 +85,7 @@ export default function Page({ data, location }: IDataPageProps) {
                 on cancer genetics.
               </p>
 
-              <p>My life story is unlikely to be optioned.</p>
+              <p>My life story probably won't be optioned.</p>
             </HCenterCol>
 
             <VCenterRow className="justify-center">
