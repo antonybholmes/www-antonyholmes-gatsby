@@ -61,7 +61,7 @@ const PreviewPost = ({
       <PostAuthor
         post={post}
         showAvatar={showAvatar}
-        showAvatarImage={showAvatarImage}
+        showImages={showAvatarImage}
         avatarMap={avatarMap}
       />
 

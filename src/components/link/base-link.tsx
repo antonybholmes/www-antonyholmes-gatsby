@@ -4,8 +4,9 @@ import IMouseProps from "../../interfaces/mouse-props"
 import ExtLink from "./ext-link"
 import React from "react"
 import { Link } from "gatsby"
+import IFocusProps from "../../interfaces/focus-props"
 
-interface IProps extends ILinkProps, IMouseProps {
+interface IProps extends ILinkProps, IMouseProps, IFocusProps {
   underline?: boolean
 }
 
@@ -20,6 +21,8 @@ const BaseLink = ({
   onMouseLeave,
   onMouseUp,
   onMouseDown,
+  onFocus,
+  onBlur,
   children,
 }: IProps) => {
   if (!ariaLabel) {
@@ -44,6 +47,8 @@ const BaseLink = ({
         onMouseLeave={onMouseLeave}
         onMouseUp={onMouseUp}
         onMouseDown={onMouseDown}
+        onFocus={onFocus}
+        onBlur={onBlur}
       >
         {children}
       </ExtLink>
@@ -63,6 +68,8 @@ const BaseLink = ({
         onMouseLeave={onMouseLeave}
         onMouseUp={onMouseUp}
         onMouseDown={onMouseDown}
+        onFocus={onFocus}
+        onBlur={onBlur}
       >
         {children}
       </Link>

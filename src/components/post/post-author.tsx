@@ -6,7 +6,7 @@ import CompactAvatars from "../author/compact-avatars"
 
 interface IProps extends IPostProps {
   showAvatar?: boolean
-  showAvatarImage?: boolean
+  showImages?: boolean
   avatarMap: IFieldMap
 }
 
@@ -14,7 +14,7 @@ export default function PostAuthor({
   post,
   avatarMap,
   showAvatar = true,
-  showAvatarImage = true,
+  showImages = true,
   className,
 }: IProps) {
   return (
@@ -28,7 +28,7 @@ export default function PostAuthor({
         <CompactAvatars
           authors={post.frontmatter.authors}
           avatarMap={avatarMap}
-          showImages={showAvatarImage}
+          showImages={showImages}
         />
       )}
 

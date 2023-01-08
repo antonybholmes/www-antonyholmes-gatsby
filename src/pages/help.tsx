@@ -14,7 +14,7 @@ export default function Page({ location }: IDataPageProps) {
   return (
     <ThreeQuarterLayout title="Help" location={location}>
       <div slot="main">
-        <BaseCol className="gap-y-4 rounded-xl bg-apple-gray p-6 text-sm">
+        <BaseCol className="gap-y-4 rounded-xl bg-apple-gray p-8 text-sm">
           <BaseRow>
             <LogoIcon />
           </BaseRow>

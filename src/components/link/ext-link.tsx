@@ -2,8 +2,9 @@ import cn from "../../lib/class-names"
 import ILinkProps from "../../interfaces/link-props"
 import IMouseProps from "../../interfaces/mouse-props"
 import React from "react"
+import IFocusProps from "../../interfaces/focus-props"
 
-interface IProps extends ILinkProps, IMouseProps {
+interface IProps extends ILinkProps, IMouseProps, IFocusProps {
   target?: string
   underline?: boolean
 }
@@ -18,6 +19,8 @@ const ExtLink = ({
   onMouseLeave,
   onMouseUp,
   onMouseDown,
+  onFocus,
+  onBlur,
   className,
   children,
 }: IProps) => {
@@ -35,6 +38,8 @@ const ExtLink = ({
       onMouseLeave={onMouseLeave}
       onMouseUp={onMouseUp}
       onMouseDown={onMouseDown}
+      onFocus={onFocus}
+      onBlur={onBlur}
       className={cn([underline, `hover:underline`], className)}
     >
       {children}

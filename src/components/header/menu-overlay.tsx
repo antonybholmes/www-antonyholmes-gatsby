@@ -2,8 +2,10 @@ import { gsap } from "gsap"
 import React, { useRef } from "react"
 import { useEffect } from "react"
 import { ANIMATION_DURATION_MS } from "../../constants"
+import LogoIcon from "../../icons/logo-icon"
 import cn from "../../lib/class-names"
 import HCenterRow from "../h-center-row"
+import BaseLink from "../link/base-link"
 import IHeaderProps from "./header-props"
 import MenuOpenButton from "./menu-button-open"
 import MenuLinks from "./menu-links"
@@ -38,7 +40,7 @@ export default function MenuOverlay({
         .from(
           ref1.current,
           {
-            x: "-1rem",
+            x: "-2rem",
             duration: ANIMATION_DURATION_MS,
           },
           0
@@ -67,7 +69,7 @@ export default function MenuOverlay({
   return (
     <div
       className={cn(
-        "fixed left-0 top-0 z-100 flex h-screen w-full flex-row  bg-black/50 font-bold backdrop-blur"
+        "fixed left-0 top-0 z-100 flex h-screen w-full flex-row bg-black/50 backdrop-blur-sm"
       )}
     >
       <div ref={ref1} className=" h-full w-3/4 bg-white py-2">
@@ -76,7 +78,9 @@ export default function MenuOverlay({
         <div className="mt-2 mr-2 w-full">
           <MenuLinks title={title} tab={tab} onClick={onClick} />
         </div> */}
-
+        <BaseLink href="/">
+          <LogoIcon className="mx-8 mt-1 mb-6" />
+        </BaseLink>
         <MenuLinks title={title} tab={tab} onClick={onClick} />
       </div>
       <div ref={ref2} onClick={onClick} className="h-full">

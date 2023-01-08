@@ -12,10 +12,11 @@ import IMenuProps from "./menu-props"
 
 const DURATION = 0.2
 
-const X1 = 20
-const X2 = 44
-const Y1 = 28
-const Y2 = 36
+const X1 = 21
+const X2 = 43
+const Y1 = 26
+const Y2 = 32
+const Y3 = 38
 
 const LINE_STYLE = {
   strokeWidth: 2,
@@ -37,8 +38,9 @@ const MenuOpenButton = ({
   //const t1 = useRef(null)
   //const t2 = useRef(null)
 
-  const refl1 = useRef(null)
-  const refl3 = useRef(null)
+  const ref1 = useRef(null)
+  const ref2 = useRef(null)
+  const ref3 = useRef(null)
 
   // useEffect(() => {
   //   // @ts-ignore
@@ -131,7 +133,7 @@ const MenuOpenButton = ({
       gsap
         .timeline()
         .to(
-          refl1.current,
+          ref1.current,
           {
             duration: DURATION,
             attr: { y1: 32, y2: 32 },
@@ -139,7 +141,7 @@ const MenuOpenButton = ({
           0
         )
         .to(
-          refl3.current,
+          ref3.current,
           {
             duration: DURATION,
             attr: { y1: 32, y2: 32 },
@@ -147,7 +149,15 @@ const MenuOpenButton = ({
           0
         )
         .to(
-          refl1.current,
+          ref2.current,
+          {
+            duration: DURATION,
+            opacity: 0,
+          },
+          0
+        )
+        .to(
+          ref1.current,
           {
             duration: DURATION,
             rotate: 45,
@@ -156,7 +166,7 @@ const MenuOpenButton = ({
           DURATION
         )
         .to(
-          refl3.current,
+          ref3.current,
           {
             duration: DURATION,
             rotate: -45,
@@ -169,7 +179,7 @@ const MenuOpenButton = ({
       gsap
         .timeline()
         .to(
-          refl1.current,
+          ref1.current,
           {
             duration: DURATION,
             rotate: 0,
@@ -178,7 +188,7 @@ const MenuOpenButton = ({
           0
         )
         .to(
-          refl3.current,
+          ref3.current,
           {
             duration: DURATION,
             rotate: 0,
@@ -187,7 +197,15 @@ const MenuOpenButton = ({
           0
         )
         .to(
-          refl1.current,
+          ref2.current,
+          {
+            duration: DURATION,
+            opacity: 1,
+          },
+          0
+        )
+        .to(
+          ref1.current,
           {
             duration: DURATION,
             attr: { y1: Y1, y2: Y1 },
@@ -195,10 +213,10 @@ const MenuOpenButton = ({
           DURATION
         )
         .to(
-          refl3.current,
+          ref3.current,
           {
             duration: DURATION,
-            attr: { y1: Y2, y2: Y2 },
+            attr: { y1: Y3, y2: Y3 },
           },
           DURATION
         )
@@ -241,8 +259,9 @@ const MenuOpenButton = ({
       <span ref={refl3} className={cn(cls, "top-9")} style={style} /> */}
 
       <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-        <line ref={refl1} x1={X1} y1={Y1} x2={X2} y2={Y1} className={cls} />
-        <line ref={refl3} x1={X1} y1={Y2} x2={X2} y2={Y2} className={cls} />
+        <line ref={ref1} x1={X1} y1={Y1} x2={X2} y2={Y1} className={cls} />
+        <line ref={ref2} x1={X1} y1={Y2} x2={X2} y2={Y2} className={cls} />
+        <line ref={ref3} x1={X1} y1={Y3} x2={X2} y2={Y3} className={cls} />
       </svg>
     </button>
   )

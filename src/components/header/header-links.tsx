@@ -1,11 +1,10 @@
-import { HEADER_LINKS } from "../../menus"
+import React from "react"
 import ILink from "../../interfaces/link"
+import { HEADER_LINKS } from "../../menus"
 import HeaderLink from "./header-link"
 import IHeaderProps from "./header-props"
-import IMenuProps from "./menu-props"
-import React from "react"
 
-interface IProps extends IHeaderProps, IMenuProps {
+interface IProps extends IHeaderProps {
   scrollY: number
 }
 

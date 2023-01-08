@@ -7,7 +7,7 @@ import IHeaderProps from "./header-props"
 import IMenuProps from "./menu-props"
 import React from "react"
 
-interface IProps extends IHeaderProps, IMenuProps {
+interface IProps extends IHeaderProps {
   scrollY: number
 }
 
@@ -15,7 +15,6 @@ function LargeHeader({
   title,
   tab,
   headerMode = "light",
-  showMenu = false,
   scrollY,
   children,
 }: IProps) {
@@ -31,7 +30,6 @@ function LargeHeader({
           title={title}
           tab={tab}
           headerMode={headerMode}
-          showMenu={showMenu}
           scrollY={scrollY}
         />
         <div className="grow">{children && children}</div>

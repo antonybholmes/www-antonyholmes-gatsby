@@ -70,7 +70,6 @@ function Header({
         <LargeHeader
           title={title}
           tab={tab}
-          showMenu={showMenu}
           headerMode={headerMode}
           scrollY={scrollY}
         >

@@ -44,7 +44,12 @@ const HeroPostSmall = ({
         <HTML html={post.excerpt} className="text-sm text-slate-600" />
       )}
 
-      <PostAuthor post={post} avatarMap={avatarMap} showAvatar={showAvatar} />
+      <PostAuthor
+        post={post}
+        avatarMap={avatarMap}
+        showAvatar={showAvatar}
+        showImages={false}
+      />
 
       <DateFormatter date={post.fields.date} />
     </BaseCol>
