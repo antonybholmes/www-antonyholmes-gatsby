@@ -79,7 +79,7 @@ export default function MenuOverlay({
           <MenuLinks title={title} tab={tab} onClick={onClick} />
         </div> */}
         <BaseLink href="/">
-          <LogoIcon className="mx-8 mt-1 mb-6" />
+          <LogoIcon className="mx-8 mt-1 mb-4" />
         </BaseLink>
         <MenuLinks title={title} tab={tab} onClick={onClick} />
       </div>

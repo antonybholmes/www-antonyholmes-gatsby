@@ -7,7 +7,7 @@ import { HEADER_LINKS } from "../menus"
 
 export default function Page({ location }: IDataPageProps) {
   return (
-    <ContentLayout title="Site Map" location={location}>
+    <ContentLayout title="Site Map" location={location} showTitle={true}>
       <></>
       <div className="mt-8 grid grid-cols-2 lg:grid-cols-3" slot="main">
         <section>

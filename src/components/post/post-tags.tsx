@@ -5,9 +5,7 @@ import PostTagLinkBlue from "./post-tag-link-blue"
 import React from "react"
 
 const PostTags = ({ post, className }: IPostProps) => (
-  <VCenterRow
-    className={cn("gap-4  border-t border-slate-200 pt-4 text-sm", className)}
-  >
+  <VCenterRow className={cn("gap-x-6 pt-4", className)}>
     <span className=" font-bold">Tags:</span>
     <ul className="flex flex-row flex-wrap gap-2">
       {post.frontmatter.tags

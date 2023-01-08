@@ -20,7 +20,7 @@ export default function Page({ data, location }: IDataPageProps) {
   return (
     <ContentLayout title="Resume" showTitle={false} location={location}>
       <></>
-      <div className="mb-32 flex flex-col gap-y-32">
+      <div className="flex flex-col gap-y-32">
         <div>
           <h2 className="text-center text-5xl font-bold">Skills</h2>
 

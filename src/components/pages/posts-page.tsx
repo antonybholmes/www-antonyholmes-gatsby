@@ -32,7 +32,7 @@ const PostsPage = ({
   const restPosts = posts.slice(6)
 
   return (
-    <BaseCol className="mb-32 gap-y-16">
+    <BaseCol className="gap-y-16">
       <HeroPosts posts={heroPosts} imageMap={imageMap} avatarMap={avatarMap} />
 
       {/* <HeadPost post={heroPost} /> */}

@@ -485,7 +485,7 @@ export default function Page({ data, location }: IDataPageProps) {
           className="hidden grow lg:flex"
         />
       }
-      className="mb-32 gap-x-16"
+      className="gap-x-16"
     >
       <div>
         <SearchBar

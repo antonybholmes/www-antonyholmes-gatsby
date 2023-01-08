@@ -5,11 +5,20 @@ import ContentDiv from "./content-div"
 import WhiteLink from "./link/white-link"
 
 const Footer = () => (
-  <footer className="pt-16">
+  <footer className="pt-32 pb-16">
     <ContentDiv>
       <></>
+      <>
+        <ul className="flex flex-row justify-center gap-x-8 border-t border-slate-200 pt-16 text-sm  font-bold">
+          <li>{getCopyright()}</li>
+        </ul>
+      </>
+      <></>
+    </ContentDiv>
 
-      <ul className="flex flex-col items-center rounded-lg bg-slate-100 py-5 text-sm">
+    <ContentDiv className="pt-8">
+      <></>
+      <ul className="flex flex-col items-center text-xs">
         <li>
           <ul className="flex flex-row gap-y-4 gap-x-8">
             {INFO_LINKS.map(
@@ -31,16 +40,6 @@ const Footer = () => (
           <li>{getCopyright()}</li>
         </ul> */}
       </ul>
-      <></>
-    </ContentDiv>
-
-    <ContentDiv className="py-8">
-      <></>
-      <>
-        <ul className="flex flex-row justify-center gap-x-8 text-xs">
-          <li>{getCopyright()}</li>
-        </ul>
-      </>
       <></>
     </ContentDiv>
   </footer>

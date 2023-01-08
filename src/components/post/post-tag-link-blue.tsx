@@ -11,7 +11,6 @@ const PostTagLinkBlue = ({ tag }: IProps) => (
     href={getTagBaseUrl(tag)}
     ariaLabel={`View all articles related to ${tag}`}
     underline={true}
-    className="font-bold"
   >
     {tag}
   </BlueLink>
