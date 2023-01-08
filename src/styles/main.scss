@@ -11,7 +11,7 @@ h2,
 h3,
 h4,
 h5 {
-  @apply leading-none font-bold;
+  @apply leading-none font-bold m-0;
 }
 
 .transition-ani {
@@ -91,7 +91,7 @@ h5 {
 }
 
 .post > p:first-of-type::first-letter {
-  @apply text-3xl font-bold;
+  @apply text-3xl font-semibold;
 }
 
 .post .sumup {

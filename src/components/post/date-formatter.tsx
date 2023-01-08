@@ -13,7 +13,7 @@ const DateFormatter = ({ date, className }: IProps) => {
     <time
       dateTime={date}
       className={cn(
-        "block whitespace-nowrap text-sm text-slate-500",
+        "block whitespace-nowrap text-sm text-slate-600",
         className
       )}
     >

@@ -19,17 +19,17 @@ const CompactAvatars = ({
   showImages = true,
   className,
 }: IProps) => (
-  <VCenterRow className="gap-x-3">
+  <VCenterRow className={cn("gap-x-3", className)}>
     {showImages && (
       <ul
-        className={cn("relative h-12", className)}
+        className="relative h-12"
         style={{ width: `${3 + (authors.length - 1) * 0.5}rem` }}
       >
         {authors.map((author, index) => (
           <li key={index}>
             <BaseLink
               href={getAuthorUrl(author)}
-              ariaLabel={`View posts by ${author}`}
+              ariaLabel={`View more posts by ${author}`}
             >
               <AvatarImage
                 author={author}
@@ -45,7 +45,7 @@ const CompactAvatars = ({
       </ul>
     )}
 
-    <ul className="flex flex-row flex-wrap items-center gap-x-1 text-sm font-bold">
+    <ul className="flex flex-row flex-wrap items-center gap-x-1 text-sm font-semibold">
       {authors.map((author, index) => (
         <li key={index}>
           <BaseLink

@@ -5,7 +5,7 @@ import React from "react"
 import { getPostRelativeUrl } from "../../lib/posts"
 
 const PostTitleLink = ({ post, className }: IPostProps) => (
-  <h2 className={cn("font-extrabold capitalize", className)}>
+  <h2 className={cn("font-bold capitalize", className)}>
     <ToBlueLink
       href={getPostRelativeUrl(post.fields.slug)}
       ariaLabel={post.frontmatter.title}

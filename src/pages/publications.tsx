@@ -482,7 +482,7 @@ export default function Page({ data, location }: IDataPageProps) {
           onSearch={onSearch}
           placeholder="Search publications..."
           text={query}
-          className="hidden grow lg:flex"
+          className="w-full lg:w-3/4"
         />
       }
       className="gap-x-16"

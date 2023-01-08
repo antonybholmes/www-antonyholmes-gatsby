@@ -56,7 +56,7 @@ const PostPage = ({
                   posts={morePosts}
                   imageMap={imageMap}
                   avatarMap={avatarMap}
-                  title={`More on ${post.frontmatter.tags[0]}`}
+                  title={post.frontmatter.tags[0]}
                 />
               )}
             </div>

@@ -21,7 +21,7 @@ function LargeHeader({
   return (
     <ContentDiv className="hidden md:flex">
       <></>
-      <nav className="flex flex-row items-center gap-16">
+      <nav className="flex flex-row items-center gap-x-8 lg:gap-x-16">
         <BaseLink href="/" ariaLabel="Goto Homepage" className="block">
           <LogoIcon headerMode={headerMode} />
         </BaseLink>

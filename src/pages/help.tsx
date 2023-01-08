@@ -13,7 +13,7 @@ const CLS = "block rounded-lg px-4 py-2 bg-blue-100 font-bold"
 export default function Page({ location }: IDataPageProps) {
   return (
     <ThreeQuarterLayout title="Help" location={location}>
-      <div slot="main">
+      <div>
         <BaseCol className="gap-y-4 rounded-xl bg-apple-gray p-8 text-sm">
           <BaseRow>
             <LogoIcon />
@@ -32,12 +32,12 @@ export default function Page({ location }: IDataPageProps) {
         </BaseCol>
 
         <div className="mt-16">
-          <p>
+          <p className="text-sm">
             This website is made possible by open source software and other
             services:
           </p>
 
-          <ul className="mt-4 flex flex-row flex-wrap gap-2 text-sm">
+          <ul className="mt-4 flex flex-row flex-wrap gap-3 text-sm">
             <li className={CLS}>
               <BlueLink
                 href="https://www.gatsbyjs.com/"

@@ -13,8 +13,6 @@ import HCenterRow from "../h-center-row"
 import BluePillButton from "../link/blue-pill-button"
 import BasePublicationList from "./base-publication-list"
 
-const RECORDS_PER_PAGE = 25
-
 interface IProps extends IChildrenProps {
   publications: any[]
   showAbstract?: boolean
