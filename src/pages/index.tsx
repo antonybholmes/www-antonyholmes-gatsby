@@ -34,7 +34,7 @@ export default function Page({ data, location }: IDataPageProps) {
       <></>
       <>
         <div className="grid grid-cols-1 gap-y-4 xl:grid-cols-2 xl:gap-x-4">
-          <VCenterCol className="h-full items-center gap-y-8 bg-stone-50 p-16">
+          <VCenterCol className="h-full items-center gap-y-8 bg-stone-50 py-16 px-8 xl:px-16">
             <BaseLink
               href={getAuthorUrl("Antony Holmes")}
               ariaLabel="View profile"
@@ -49,11 +49,11 @@ export default function Page({ data, location }: IDataPageProps) {
             </BaseLink>
             <BaseCol className="gap-y-2">
               <VCenterRow className="group gap-x-2">
-                <EnvelopeIcon className="hidden w-4 fill-slate-500 xl:block" />
+                <EnvelopeIcon className="w-4 fill-slate-500" />
                 <ToBlueLink href={`mailto:${EMAIL}`}>{EMAIL}</ToBlueLink>
               </VCenterRow>
               <VCenterRow className="group  gap-x-2">
-                <LinkIcon className="hidden w-4 fill-slate-500 xl:block" />
+                <LinkIcon className="w-4 fill-slate-500" />
                 <ToBlueLink href="https://github.com/antonybholmes">
                   github.com/antonybholmes
                 </ToBlueLink>
@@ -61,27 +61,32 @@ export default function Page({ data, location }: IDataPageProps) {
             </BaseCol>
           </VCenterCol>
 
-          <VCenterCol className="gap-y-16 bg-slate-50 p-16">
-            <HCenterCol className="gap-y-4">
+          <VCenterCol className="gap-y-16 bg-slate-50 py-16 px-8 xl:px-16">
+            <HCenterCol className="gap-y-5 text-lg">
               <h1 className="text-5xl font-bold">Hi There.</h1>
 
-              <p className="text-center text-lg">I'm Antony Holmes.</p>
-
-              <p className="text-center text-lg">
-                Welcome to my personal web site.
+              <p className="text-center">
+                I'm Antony Holmes, and welcome to my personal website.
               </p>
 
-              <p className="text-center text-lg ">
-                I'm a full stack developer and researcher with experience using
-                Java, Python, React, Gatsby, Next.js, Astro and other tech, some
-                of which was used to make this very site.
+              <p className="text-center">
+                That's me in the photo, posing by the Hudson River for no
+                particular reason.
               </p>
 
-              <p className="text-center text-lg">
+              <p className="text-center">
+                I'm a full stack developer and researcher in New York with
+                experience using Java, Python, React, Gatsby, Next.js, Astro and
+                other tech, some of which was used to make this very site.
+              </p>
+
+              <p className="text-center ">
                 I have an aptly named publications page where you can view all
                 of the scientific literature I have written, primarily focused
                 on cancer genetics.
               </p>
+
+              <p>My life story is unlikely to be optioned.</p>
             </HCenterCol>
 
             <VCenterRow className="justify-center">
