@@ -6,16 +6,18 @@ interface IProps extends IPostsProps {
   showAvatar?: boolean
 }
 
-const RestPosts = ({ posts, showAvatar = true }: IProps) => (
+const RestPosts = ({ posts, imageMap, avatarMap }: IProps) => (
   <section className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-    {posts.map(post => (
+    {posts.map((post, index) => (
       <PreviewPost
-        key={post.fields.slug}
+        key={index}
         post={post}
-        showAvatar={showAvatar}
+        image={imageMap[post.frontmatter.hero]}
+        showAvatarImage={false}
         className="border-t border-slate-200 pt-6"
         imageClassName="h-48"
         headerClassName="text-2xl"
+        avatarMap={avatarMap}
       />
     ))}
   </section>

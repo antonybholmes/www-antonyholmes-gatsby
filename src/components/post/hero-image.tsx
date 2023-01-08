@@ -9,7 +9,7 @@ interface IProps extends IPostWithImageProps {
   sizes?: number[]
 }
 
-const HeroImage = ({ post, image, size = [2048, 1024], className }: IProps) => (
+const HeroImage = ({ post, image, size = [1800, 900], className }: IProps) => (
   <div className="relative z-10 overflow-hidden rounded-xl">
     {/* <BasePostImage post={post}  size={size} className={cn(className)} /> */}
 

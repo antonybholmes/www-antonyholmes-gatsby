@@ -201,7 +201,7 @@ exports.createPages = async function ({ actions, graphql }) {
     component: postsTemplate,
     context: {
       title: "Blog",
-      page: 0,
+      page: -1,
       pages,
       posts: pagePosts,
       imageMap: pim,

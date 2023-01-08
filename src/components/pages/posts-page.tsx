@@ -2,6 +2,7 @@ import React from "react"
 import IFieldMap from "../../interfaces/field-map"
 import IPreviewPost from "../../interfaces/preview-post"
 import BaseCol from "../base-col"
+import HCenterRow from "../h-center-row"
 import PagePagination from "../page-pagination"
 import HeadPosts from "../post/head-posts"
 import HeroPosts from "../post/hero-posts"
@@ -33,8 +34,8 @@ const PostsPage = ({
 
   return (
     <BaseCol className="gap-y-16">
+      {page} {posts.length}
       <HeroPosts posts={heroPosts} imageMap={imageMap} avatarMap={avatarMap} />
-
       {/* <HeadPost post={heroPost} /> */}
       {headPosts.length > 0 && (
         <HeadPosts
@@ -45,26 +46,26 @@ const PostsPage = ({
       )}
       {/* <HeroPost post={heroPost} /> */}
       {/* <MorePosts posts={morePosts} /> */}
-
-      {pages > 1 && restPosts.length > 0 && (
+      {page > -1 && restPosts.length > 0 && (
         <RestPosts
           posts={restPosts}
           imageMap={imageMap}
           avatarMap={avatarMap}
         />
       )}
-
       {/* <Pagination page={page} pages={pages} /> */}
-      {pages > 1 && <PagePagination page={page} pages={pages} />}
-
-      {pages === 0 && restPosts.length && (
+      {page > -1 && pages > 1 && (
+        <HCenterRow className="mt-16">
+          <PagePagination page={page} pages={pages} />
+        </HCenterRow>
+      )}
+      {page === -1 && restPosts.length && (
         <LatestPosts
           posts={restPosts}
           imageMap={imageMap}
           avatarMap={avatarMap}
         />
       )}
-
       {sectionMap && (
         <>
           <SectionPostsVert

@@ -8,6 +8,7 @@ import ChevronRightIcon from "../icons/chevron-right"
 import BaseLink from "./link/base-link"
 import type IClassProps from "../interfaces/class-props"
 import RoundedButtonLink from "./link/rounded-button-link"
+import React from "react"
 
 const BTN_CLS =
   "flex flex-row justify-center items-center min-w-8 h-8 border border-transparent"

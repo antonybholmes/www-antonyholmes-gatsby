@@ -10,15 +10,15 @@ const HeroPosts = ({ posts, imageMap, avatarMap }: IPostsProps) => {
   const topPosts = posts.slice(1, 4)
 
   return (
-    <section className="grid grid-cols-1 gap-12 xl:grid-cols-2">
+    <section className="grid grid-cols-1 gap-12 xl:grid-cols-10">
       <PreviewPost
         post={topPost}
         image={imageMap[topPost.frontmatter.hero]}
         avatarMap={avatarMap}
-        className="col-span-1"
+        className="xl:col-span-6"
       />
 
-      <BaseCol className="col-span-1 gap-y-4">
+      <BaseCol className="gap-y-4 xl:col-span-4">
         {topPosts.map((post, index) => {
           return (
             <HeroPostSmall

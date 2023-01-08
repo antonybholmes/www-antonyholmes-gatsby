@@ -63,7 +63,7 @@ export const pageQuery = graphql`
       name
       childImageSharp {
         gatsbyImageData(
-          width: 2048
+          width: 1800
           placeholder: BLURRED
           formats: [AUTO, WEBP, AVIF]
           transformOptions: { fit: COVER }

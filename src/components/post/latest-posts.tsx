@@ -16,6 +16,7 @@ const LatestPosts = ({ posts, imageMap, avatarMap }: IPostsProps) => (
             showAvatarImage={false}
             headerClassName="text-3xl"
             avatarMap={avatarMap}
+            dateBelow={true}
           />
         )
       })}
