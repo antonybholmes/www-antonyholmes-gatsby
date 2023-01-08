@@ -1,7 +1,7 @@
 import React from "react"
 import HCenterRow from "../components/h-center-row"
 import BlueIndexLink from "../components/link/blue-index-link"
-import PageTitle from "../components/page-title"
+import Title from "../components/title"
 import IDataPageProps from "../interfaces/data-page-props"
 import ContentLayout from "../layouts/content-layout"
 import Seo from "../layouts/seo"
@@ -16,7 +16,9 @@ export default function Page({ location }: IDataPageProps) {
       <></>
       <div className="mt-16">
         <HCenterRow>
-          <PageTitle title="The page you're looking for can't be found." />
+          <Title className="text-center">
+            The page you're looking for can't be found.
+          </Title>
         </HCenterRow>
         <HCenterRow>
           <BlueIndexLink

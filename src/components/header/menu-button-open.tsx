@@ -12,8 +12,8 @@ import IMenuProps from "./menu-props"
 
 const DURATION = 0.2
 
-const X1 = 22
-const X2 = 42
+const X1 = 20
+const X2 = 44
 const Y1 = 28
 const Y2 = 36
 
@@ -33,7 +33,6 @@ const MenuOpenButton = ({
 }: IMenuButtonProps) => {
   const [focus, setFocus] = useState(false)
   const [hover, setHover] = useState(false)
-  const isFirstRun = useRef(true)
 
   //const t1 = useRef(null)
   //const t2 = useRef(null)
@@ -127,21 +126,6 @@ const MenuOpenButton = ({
   // }, [])
 
   useEffect(() => {
-    //if (!isFirstRun.current) {
-    animate()
-    //}
-
-    // skip first render since we only
-    // want animations when user clicks,
-    // not when react first injects variable.
-    isFirstRun.current = false
-  }, [showMenu])
-
-  // useWindowResize(() => {
-  //   animate()
-  // })
-
-  const animate = () => {
     if (showMenu) {
       // @ts-ignore
       gsap
@@ -219,7 +203,7 @@ const MenuOpenButton = ({
           DURATION
         )
     }
-  }
+  }, [showMenu])
 
   const onMouseEnter: MouseEventHandler = e => {
     setHover(true)

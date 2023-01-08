@@ -62,16 +62,9 @@ export default function MenuLink({
         href={link.url}
         ariaLabel={`Visit ${link.name}`}
         className={cn(
-          "transition-ani flex flex-row items-center gap-x-2 overflow-hidden rounded-lg px-4 py-3 outline-none transition-colors",
-          [
-            selected,
-            "bg-blue-100/80 text-blue-600",
-            [
-              hover || hasFocus,
-              "bg-slate-100 text-slate-900",
-              "text-slate-600",
-            ],
-          ]
+          "transition-ani flex flex-row items-center gap-x-2 overflow-hidden  px-10 py-3 outline-none transition-colors",
+          [selected, " text-blue-600", "text-slate-900"],
+          [hover || hasFocus, "bg-slate-100"]
         )}
       >
         {/* <HCenterRow

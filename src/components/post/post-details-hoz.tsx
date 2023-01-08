@@ -2,7 +2,7 @@ import React from "react"
 import IFieldMap from "../../interfaces/field-map"
 import IPostProps from "../../interfaces/post-props"
 import cn from "../../lib/class-names"
-import Avatars from "../avatars"
+import Avatars from "../author/avatars"
 import DateFormatter from "./date-formatter"
 
 interface IProps extends IPostProps {

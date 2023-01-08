@@ -1,12 +1,12 @@
 import React from "react"
-import IClassProps from "../interfaces/class-props"
-import IFieldMap from "../interfaces/field-map"
-import cn from "../lib/class-names"
-import { getAuthorUrl } from "../lib/urls"
+import IClassProps from "../../interfaces/class-props"
+import IFieldMap from "../../interfaces/field-map"
+import cn from "../../lib/class-names"
+import { getAuthorUrl } from "../../lib/urls"
 import AvatarImage from "./avatar-image"
-import BaseCol from "./base-col"
-import BaseLink from "./link/base-link"
-import VCenterRow from "./v-center-row"
+import BaseCol from "../base-col"
+import BaseLink from "../link/base-link"
+import VCenterRow from "../v-center-row"
 
 interface IProps extends IClassProps {
   author: string

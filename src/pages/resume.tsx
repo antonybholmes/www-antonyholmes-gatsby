@@ -3,13 +3,10 @@ import education from "../../_content/education.json"
 import jobs from "../../_content/jobs.json"
 import skills from "../../_content/skills.json"
 import volunteer from "../../_content/volunteer.json"
-import ContentDiv from "../components/content-div"
 import IDataPageProps from "../interfaces/data-page-props"
 import ContentLayout from "../layouts/content-layout"
 import Seo from "../layouts/seo"
-import ThreeQuarterLayout from "../layouts/three-quarter-layout"
 import cn from "../lib/class-names"
-import { getPageCount, getPagePosts } from "../lib/paginate"
 
 export default function Page({ data, location }: IDataPageProps) {
   const skillList: any[] = []
@@ -31,6 +28,7 @@ export default function Page({ data, location }: IDataPageProps) {
             {skillList.map((skill, index) => {
               return (
                 <li
+                  key={index}
                   className={cn(
                     "transition-ani transition-color rounded-lg bg-gradient-to-br px-4 py-8 text-white",
                     [
@@ -52,7 +50,7 @@ export default function Page({ data, location }: IDataPageProps) {
           <h2 className="text-center text-5xl font-bold">Experience</h2>
           <ul className="mt-16 flex flex-col gap-y-8">
             {jobs.map((job, jobIndex) => (
-              <li>
+              <li key={jobIndex}>
                 <article className="grid grid-cols-1 gap-x-8 gap-y-4 lg:grid-cols-4">
                   <header className="mt-4">
                     <h3 className="font-bold">{job.title}</h3>
@@ -67,7 +65,7 @@ export default function Page({ data, location }: IDataPageProps) {
                     <p>{job.overview}</p>
                     <ul className="ml-6 mt-4 flex list-disc flex-col gap-y-2">
                       {job.details.map((detail, detailIndex) => (
-                        <li>{detail}</li>
+                        <li key={detailIndex}>{detail}</li>
                       ))}
                     </ul>
                   </div>
@@ -81,7 +79,7 @@ export default function Page({ data, location }: IDataPageProps) {
           <h2 className="text-center text-5xl font-bold">Volunteer Work</h2>
           <ul className="mt-16 flex flex-col gap-y-8">
             {volunteer.map((job, jobIndex) => (
-              <li>
+              <li key={jobIndex}>
                 <article className="grid grid-cols-1 gap-x-8 gap-y-4 lg:grid-cols-4">
                   <header className="mt-4">
                     <h3 className="font-bold">{job.title}</h3>
@@ -95,7 +93,7 @@ export default function Page({ data, location }: IDataPageProps) {
                   <div className="transition-ani transition-color col-span-3 rounded-2xl bg-slate-100 p-8  hover:bg-slate-200">
                     <ul className="ml-6 flex list-disc flex-col gap-y-2">
                       {job.details.map((detail, detailIndex) => (
-                        <li>{detail}</li>
+                        <li key={detailIndex}>{detail}</li>
                       ))}
                     </ul>
                   </div>
@@ -110,10 +108,10 @@ export default function Page({ data, location }: IDataPageProps) {
 
           <ul className="mt-16 flex flex-col gap-y-4">
             {education.map((degree, degreeIndex) => (
-              <li>
+              <li key={degreeIndex}>
                 <article className="grid grid-cols-1 gap-x-8 gap-y-4 lg:grid-cols-4">
                   <div></div>
-                  <div className="transition-ani transition-color col-span-3 h-full w-full rounded-2xl border border-slate-200 px-8 py-12 hover:border-slate-300">
+                  <div className="transition-ani transition-color col-span-3 h-full w-full rounded-2xl border border-slate-200 px-8 py-12 hover:border-blue-400">
                     <header>
                       <h3 className="text-xl font-bold">{degree.title}</h3>
                       {/* {degree.date !== '' && (
@@ -124,7 +122,7 @@ export default function Page({ data, location }: IDataPageProps) {
 
                     <ul className="mt-2 text-sm text-slate-500">
                       {degree.details.map((detail, detailIndex) => (
-                        <li>{detail}</li>
+                        <li key={detailIndex}>{detail}</li>
                       ))}
                     </ul>
                   </div>

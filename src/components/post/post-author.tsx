@@ -2,7 +2,7 @@ import React from "react"
 import IFieldMap from "../../interfaces/field-map"
 import IPostProps from "../../interfaces/post-props"
 import cn from "../../lib/class-names"
-import CompactAvatars from "../compact-avatars"
+import CompactAvatars from "../author/compact-avatars"
 
 interface IProps extends IPostProps {
   showAvatar?: boolean

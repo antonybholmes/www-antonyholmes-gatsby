@@ -1,11 +1,11 @@
 import React from "react"
-import IClassProps from "../interfaces/class-props"
-import IFieldMap from "../interfaces/field-map"
-import cn from "../lib/class-names"
-import { getAuthorUrl } from "../lib/urls"
+import IClassProps from "../../interfaces/class-props"
+import IFieldMap from "../../interfaces/field-map"
+import cn from "../../lib/class-names"
+import { getAuthorUrl } from "../../lib/urls"
 import AvatarImage from "./avatar-image"
-import BaseLink from "./link/base-link"
-import VCenterRow from "./v-center-row"
+import BaseLink from "../link/base-link"
+import VCenterRow from "../v-center-row"
 
 interface IProps extends IClassProps {
   authors: string[]
@@ -21,27 +21,28 @@ const CompactAvatars = ({
 }: IProps) => (
   <VCenterRow className="gap-x-3">
     {showImages && (
-      <div
+      <ul
         className={cn("relative h-12", className)}
         style={{ width: `${3 + (authors.length - 1) * 0.5}rem` }}
       >
         {authors.map((author, index) => (
-          <BaseLink
-            href={getAuthorUrl(author)}
-            ariaLabel={`View posts by ${author}`}
-          >
-            <AvatarImage
-              author={author}
-              avatarMap={avatarMap}
-              className={cn(
-                "absolute h-12 w-12 border border-white",
-                `ml-${index * 2}`
-              )}
-              key={index}
-            />
-          </BaseLink>
+          <li key={index}>
+            <BaseLink
+              href={getAuthorUrl(author)}
+              ariaLabel={`View posts by ${author}`}
+            >
+              <AvatarImage
+                author={author}
+                avatarMap={avatarMap}
+                className={cn(
+                  "absolute h-12 w-12 border border-white",
+                  `ml-${index * 2}`
+                )}
+              />
+            </BaseLink>
+          </li>
         ))}
-      </div>
+      </ul>
     )}
 
     <ul className="flex flex-row flex-wrap items-center gap-x-1 text-sm font-bold">
@@ -49,7 +50,7 @@ const CompactAvatars = ({
         <li key={index}>
           <BaseLink
             href={getAuthorUrl(author)}
-            ariaLabel={`Click to read more information about ${author}`}
+            ariaLabel={`View more posts by ${author}`}
             underline={true}
           >
             {author}

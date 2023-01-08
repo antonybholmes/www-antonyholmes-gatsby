@@ -1,9 +1,9 @@
 import React from "react"
-import IClassProps from "../interfaces/class-props"
-import IFieldMap from "../interfaces/field-map"
-import cn from "../lib/class-names"
+import IClassProps from "../../interfaces/class-props"
+import IFieldMap from "../../interfaces/field-map"
+import cn from "../../lib/class-names"
 import Avatar from "./avatar"
-import WrapRow from "./wrap-row"
+import WrapRow from "../wrap-row"
 
 interface IProps extends IClassProps {
   authors: string[]
