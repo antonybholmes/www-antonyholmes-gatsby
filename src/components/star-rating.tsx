@@ -1,6 +1,7 @@
-import StarIcon from "../icons/starr"
-import HalfStarIcon from "../icons/half-starr"
+import StarIcon from "../icons/star"
+import HalfStarIcon from "../icons/half-star"
 import BaseRow from "./base-row"
+import React from "react"
 
 interface IProps {
   rating: number
@@ -37,12 +38,9 @@ const StarRating = ({ rating, stars = 5 }: IProps) => {
   }
 
   return (
-    <BaseRow
-      tag="ul"
-      className="transition-color gap-1 fill-amber-300 duration-300 hover:fill-amber-200"
-    >
+    <ul className="transition-ani transition-color flex flex-row gap-1 fill-amber-300 hover:fill-amber-200">
       {items}
-    </BaseRow>
+    </ul>
   )
 }
 

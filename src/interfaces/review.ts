@@ -1,8 +1,6 @@
-import IAuthorReview from "./author-review"
-import IPostExcerpt from "./post-excerpt"
-import IPostHtml from "./post-html"
+import IPost from "./post"
+import IReviewFields from "./review-fields"
 
-export default interface IReview
-  extends IAuthorReview,
-    IPostExcerpt,
-    IPostHtml {}
+export default interface IReview extends IPost {
+  frontmatter: IReviewFields
+}

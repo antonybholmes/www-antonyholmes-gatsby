@@ -7,13 +7,13 @@ interface IProps {
   className?: string
 }
 
-const DateFormatter = ({ date, className }: IProps) => {
+export default function DateFormatter({ date, className }: IProps) {
   const d = parseISO(date)
   return (
     <time
       dateTime={date}
       className={cn(
-        "block whitespace-nowrap text-sm text-slate-600",
+        "block whitespace-nowrap text-sm text-slate-500",
         className
       )}
     >
@@ -22,5 +22,3 @@ const DateFormatter = ({ date, className }: IProps) => {
     </time>
   )
 }
-
-export default DateFormatter

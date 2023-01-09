@@ -3,8 +3,7 @@ title: 'Mint Mobile'
 product: 'Mint Mobile'
 description: 'Mint Mobile.'
 authors: ['Antony Holmes']
-readTime: '1 min'
-section: 'Cell Phone Plans'
+sections: [ 'Cell Phones']
 hero: 'phone'
 tags: ['Low Cost']
 rating: 4.5
@@ -12,7 +11,7 @@ pros: ['$22 for 10GB service.', 'Hot spot included.']
 cons: ['Have to buy 1 year of service for best monthly price.']
 details: ['Simple, all inclusive wireless provider.']
 url: 'https://www.mintmobile.com'
-draft: false
+status: "published"
 ---
 
 Mint Mobile is a great low cost wireless provider.

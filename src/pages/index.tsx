@@ -138,7 +138,7 @@ export const pageQuery = graphql`
         }
         frontmatter {
           title
-          section
+          sections
           tags
           authors
           hero

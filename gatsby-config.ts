@@ -32,6 +32,7 @@ const config: GatsbyConfig = {
       options: {
         "excerpt_separator": `<!-- end -->`,
         plugins: [
+          'gatsby-remark-reading-time',
           {
             resolve: `gatsby-remark-prismjs`,
             options: {},
@@ -64,6 +65,14 @@ const config: GatsbyConfig = {
         path: "./_content/posts",
       },
       __key: "posts",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "reviews",
+        path: "./_content/reviews",
+      },
+      __key: "reviews",
     },
     {
       resolve: "gatsby-source-filesystem",

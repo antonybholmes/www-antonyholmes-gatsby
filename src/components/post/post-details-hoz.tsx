@@ -3,7 +3,9 @@ import IFieldMap from "../../interfaces/field-map"
 import IPostProps from "../../interfaces/post-props"
 import cn from "../../lib/class-names"
 import Avatars from "../author/avatars"
+import VCenterRow from "../v-center-row"
 import DateFormatter from "./date-formatter"
+import ReadingTime from "./reading-time"
 
 interface IProps extends IPostProps {
   avatarMap: IFieldMap
@@ -18,10 +20,11 @@ const PostDetailsHoz = ({ post, avatarMap, className }: IProps) => (
   >
     <Avatars authors={post.frontmatter.authors} avatarMap={avatarMap} />
 
-    <DateFormatter
-      date={post.fields.date}
-      className="border-l border-slate-300 py-1 pl-6"
-    />
+    <VCenterRow className="gap-x-2 border-l border-slate-300 py-1 pl-6 text-sm">
+      <DateFormatter date={post.fields.date} />
+      <span className="h-1 w-1 rounded-full bg-slate-400" />
+      <ReadingTime post={post} />
+    </VCenterRow>
 
     {/* <PostTags post={post} /> */}
 

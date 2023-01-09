@@ -1,10 +1,10 @@
 ---
 title: "New website design!"
-description: "I've redesigned my website using React."
+description: "I've redesigned my website using Gatsby."
 authors: ["Antony Holmes"]
 readtime: "1 min"
-section: "News"
-tags: ["Website"]
+sections: [ "News", "Web Development"]
+tags: ["Website", "Gatsby", "React"]
 related: ""
 status: "published"
 hero: "generic1"

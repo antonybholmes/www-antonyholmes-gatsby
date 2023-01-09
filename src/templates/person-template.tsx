@@ -20,7 +20,7 @@ export default function Page({ pageContext, data, location }: IDataPageProps) {
         imageMap={imageMap}
         avatarMap={avatarMap}
         posts={posts}
-        currentPage={page}
+        page={page}
         pages={pages}
       />
     </ContentLayout>

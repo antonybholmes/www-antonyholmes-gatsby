@@ -34,7 +34,8 @@ const PostsPage = ({
 
   return (
     <BaseCol className="gap-y-16">
-      {page} {posts.length}
+      {/* {page} {posts.length} */}
+
       <HeroPosts posts={heroPosts} imageMap={imageMap} avatarMap={avatarMap} />
       {/* <HeadPost post={heroPost} /> */}
       {headPosts.length > 0 && (
@@ -44,8 +45,7 @@ const PostsPage = ({
           avatarMap={avatarMap}
         />
       )}
-      {/* <HeroPost post={heroPost} /> */}
-      {/* <MorePosts posts={morePosts} /> */}
+
       {page > -1 && restPosts.length > 0 && (
         <RestPosts
           posts={restPosts}
@@ -53,19 +53,22 @@ const PostsPage = ({
           avatarMap={avatarMap}
         />
       )}
+
       {/* <Pagination page={page} pages={pages} /> */}
-      {page > -1 && pages > 1 && (
+      {pages > 1 && (
         <HCenterRow className="mt-16">
           <PagePagination page={page} pages={pages} />
         </HCenterRow>
       )}
-      {page === -1 && restPosts.length && (
+
+      {page === -1 && restPosts.length > 0 && (
         <LatestPosts
           posts={restPosts}
           imageMap={imageMap}
           avatarMap={avatarMap}
         />
       )}
+
       {sectionMap && (
         <>
           <SectionPostsVert

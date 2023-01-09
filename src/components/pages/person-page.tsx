@@ -14,7 +14,7 @@ interface IProps {
   imageMap: IFieldMap
   avatarMap: IFieldMap
   posts: IPreviewPost[]
-  currentPage: number
+  page: number
   pages: number
 }
 
@@ -23,7 +23,7 @@ const PersonPage = ({
   posts,
   imageMap,
   avatarMap,
-  currentPage,
+  page,
   pages,
 }: IProps) => (
   <>
@@ -60,7 +60,7 @@ const PersonPage = ({
         posts={posts}
         imageMap={imageMap}
         avatarMap={avatarMap}
-        page={currentPage}
+        page={page}
         pages={pages}
       />
     </section>

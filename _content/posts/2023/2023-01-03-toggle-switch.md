@@ -2,9 +2,8 @@
 title: "Make a Web UI toggle switch"
 description: "How to make a simple toggle switch using Preact."
 authors: ["Antony Holmes"]
-readtime: "1 min"
-section: "Tutorial"
-tags: ["Typescript", "Preact", "React", "SVG"]
+sections: [ "Web Development"]
+tags: ["Typescript", "Preact", "React", "SVG", "Tutorials"]
 related: ""
 status: "published"
 hero: "generic4"

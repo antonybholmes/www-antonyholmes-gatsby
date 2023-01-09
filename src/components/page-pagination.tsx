@@ -131,6 +131,11 @@ export default function PagePagination({
   pages,
   root = "/blog",
 }: IProps) {
+  // Sometimes page is -1 to indicate a special type of
+  // root page, however it still represents page 0 of
+  // blog results
+  page = Math.max(0, page)
+
   const pageStart = Math.max(page - 1, 1)
   const pageEnd = Math.min(page + 1, pages - 2)
 

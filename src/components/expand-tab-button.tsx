@@ -3,6 +3,7 @@ import cn from "../lib/class-names"
 import IChildrenProps from "../interfaces/children-props"
 import ExpandTabArrow from "./expand-tab-arrow"
 import VCenterRow from "./v-center-row"
+import React from "react"
 
 interface IProps extends IChildrenProps {
   expanded?: boolean

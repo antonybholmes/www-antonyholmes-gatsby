@@ -1,11 +1,11 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const postTemplate = path.resolve(`./src/templates/post-template.tsx`)
+const reviewTemplate = path.resolve(`./src/templates/review-template.tsx`)
 const postsTemplate = path.resolve(`./src/templates/posts-template.tsx`)
 const personTemplate = path.resolve(`./src/templates/person-template.tsx`)
 
-const ROOT_RECORDS_PER_PAGE = 10
-const RECORDS_PER_PAGE = 9
+const RECORDS_PER_PAGE = 15
 
 function getTagSlug(tag) {
   return tag.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and")
@@ -31,17 +31,50 @@ exports.createPages = async function ({ actions, graphql }) {
       ) {
         nodes {
           id
-          excerpt(format: HTML)
+          excerpt
           fields {
             date
             slug
+            readingTime {
+              text
+            }
           }
           frontmatter {
             title
-            section
+            sections
             tags
             authors
             hero
+            status
+          }
+        }
+      }
+
+      reviews: allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/reviews/" } }
+      ) {
+        nodes {
+          id
+          excerpt
+          fields {
+            date
+            slug
+            readingTime {
+              text
+            }
+          }
+          frontmatter {
+            title
+            sections
+            tags
+            authors
+            hero
+            status
+            rating
+            pros
+            cons
+            details
+            url
           }
         }
       }
@@ -54,10 +87,9 @@ exports.createPages = async function ({ actions, graphql }) {
           name
           childImageSharp {
             gatsbyImageData(
-              width: 1024
+              width: 800
               placeholder: BLURRED
               formats: [AUTO, WEBP, AVIF]
-              transformOptions: {fit: COVER}
             )
           }
         }
@@ -68,7 +100,7 @@ exports.createPages = async function ({ actions, graphql }) {
       ) {
         nodes {
           id
-          excerpt(format: HTML)
+          excerpt
           fields {
             date
             slug
@@ -103,35 +135,48 @@ exports.createPages = async function ({ actions, graphql }) {
 
   // make a map of images
   const postImageMap = {}
-
   data.postImages.nodes.forEach(file => {
     postImageMap[file.name] = file
   })
 
   const avatarMap = {}
-
   data.peopleImages.nodes.forEach(file => {
     avatarMap[file.name] = file
   })
 
   // sort by date
-  const posts = data.posts.nodes.sort(
-    (a, b) => new Date(b.fields.date) - new Date(a.fields.date)
-  )
+  const posts = data.posts.nodes
+    .filter(post => {
+      return (
+        process.env.NODE_ENV === "development" ||
+        post.frontmatter.status === "published"
+      )
+    })
+    .sort((a, b) => new Date(b.fields.date) - new Date(a.fields.date))
+
+  const reviews = data.reviews.nodes
+    .filter(post => {
+      return (
+        process.env.NODE_ENV === "development" ||
+        post.frontmatter.status === "published"
+      )
+    })
+    .sort((a, b) => new Date(b.fields.date) - new Date(a.fields.date))
+
+  const allPosts = posts.concat(reviews).sort((a, b) => new Date(b.fields.date) - new Date(a.fields.date))
 
   const sectionMap = {}
-
-  posts.forEach(post => {
-    if (!(post.frontmatter.section in sectionMap)) {
-      sectionMap[post.frontmatter.section] = []
-    }
-
-    sectionMap[post.frontmatter.section].push(post)
-  })
-
   const tagMap = {}
 
-  posts.forEach(post => {
+  allPosts.forEach(post => {
+    post.frontmatter.sections.forEach(section => {
+      if (!(section in sectionMap)) {
+        sectionMap[section] = []
+      }
+
+      sectionMap[section].push(post)
+    })
+
     post.frontmatter.tags.forEach(tag => {
       if (!(tag in tagMap)) {
         tagMap[tag] = []
@@ -142,15 +187,16 @@ exports.createPages = async function ({ actions, graphql }) {
   })
 
   const pages = Math.floor(
-    (posts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
+    (allPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
   )
+
+  let pim = {}
+  let aim = {}
+  let pagePosts = []
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
-
-  let pim = {}
-  let pagePosts = []
 
   posts.forEach((post, index) => {
     // related
@@ -165,12 +211,46 @@ exports.createPages = async function ({ actions, graphql }) {
 
     pim = {}
     aim = {}
-    pim[post.frontmatter.hero] = postImageMap[post.frontmatter.hero]
+    // ensure the images from the post appear in the map since
+    // more posts might be empty
+    subsetImageMaps([post], postImageMap, avatarMap, pim, aim)
     subsetImageMaps(morePosts, postImageMap, avatarMap, pim, aim)
 
     createPage({
       path: `/blog/${post.fields.slug}`,
       component: postTemplate,
+      context: {
+        id: post.id,
+        title: post.frontmatter.title,
+        tab: "Blog",
+        hero: post.frontmatter.hero,
+        morePosts,
+        imageMap: pim,
+        avatarMap: aim,
+      },
+    })
+  })
+
+  // Make separate pages for reviews
+  reviews.forEach((post, index) => {
+    let morePosts = []
+
+    if (post.frontmatter.tags && post.frontmatter.tags.length > 0) {
+      morePosts = tagMap[post.frontmatter.tags[0]]
+        .filter(p => p.id !== post.id)
+        .slice(0, 3)
+    }
+
+    pim = {}
+    aim = {}
+    // ensure the images from the post appear in the map since
+    // more posts might be empty
+    subsetImageMaps([post], postImageMap, avatarMap, pim, aim)
+    subsetImageMaps(morePosts, postImageMap, avatarMap, pim, aim)
+
+    createPage({
+      path: `/blog/${post.fields.slug}`,
+      component: reviewTemplate,
       context: {
         id: post.id,
         title: post.frontmatter.title,
@@ -190,7 +270,7 @@ exports.createPages = async function ({ actions, graphql }) {
   // special case for root blog page where we send
   // 10 posts so that latest posts works correctly
 
-  pagePosts = posts.slice(0, ROOT_RECORDS_PER_PAGE)
+  pagePosts = allPosts.slice(0, RECORDS_PER_PAGE)
 
   pim = {}
   aim = {}
@@ -201,7 +281,7 @@ exports.createPages = async function ({ actions, graphql }) {
     component: postsTemplate,
     context: {
       title: "Blog",
-      page: -1,
+      page: 0,
       pages,
       posts: pagePosts,
       imageMap: pim,
@@ -248,7 +328,7 @@ exports.createPages = async function ({ actions, graphql }) {
       (sectionPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
     )
 
-    pagePosts = sectionPosts.slice(0, ROOT_RECORDS_PER_PAGE)
+    pagePosts = sectionPosts.slice(0, RECORDS_PER_PAGE)
     pim = {}
     aim = {}
     subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
@@ -309,7 +389,7 @@ exports.createPages = async function ({ actions, graphql }) {
       (tagPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
     )
 
-    pagePosts = tagPosts.slice(0, ROOT_RECORDS_PER_PAGE)
+    pagePosts = tagPosts.slice(0, RECORDS_PER_PAGE)
 
     pim = {}
     aim = {}
@@ -367,7 +447,7 @@ exports.createPages = async function ({ actions, graphql }) {
       (personPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
     )
 
-    pagePosts = personPosts.slice(0, ROOT_RECORDS_PER_PAGE)
+    pagePosts = personPosts.slice(0, RECORDS_PER_PAGE)
     pim = {}
     aim = {}
     subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)

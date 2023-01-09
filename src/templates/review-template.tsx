@@ -1,6 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
-import PostPage from "../components/pages/post-page"
+import ReviewPage from "../components/pages/review-page"
 import IDataPageProps from "../interfaces/data-page-props"
 import BaseLayout from "../layouts/base-layout"
 import Seo from "../layouts/seo"
@@ -20,7 +20,7 @@ export default function Page({ pageContext, data, location }: IDataPageProps) {
       headerMode="dark"
       location={location}
     >
-      <PostPage
+      <ReviewPage
         post={post}
         image={data.postImage}
         imageMap={imageMap}
@@ -54,6 +54,11 @@ export const pageQuery = graphql`
         sections
         tags
         hero
+        rating
+        pros
+        cons
+        details
+        url
       }
     }
 

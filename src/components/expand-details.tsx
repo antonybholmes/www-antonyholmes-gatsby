@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import useWindowResize from "../hooks/use-window-resize"
 import cn from "../lib/class-names"
 import IChildrenProps from "../interfaces/children-props"
+import React from "react"
 
 interface IProps extends IChildrenProps {
   expanded: boolean
@@ -24,7 +25,10 @@ const ExpandDetails = ({ expanded = true, className, children }: IProps) => {
   return (
     <div
       ref={ref}
-      className={cn("overflow-hidden transition-all duration-300", className)}
+      className={cn(
+        "transition-ani overflow-hidden transition-transform",
+        className
+      )}
       style={{ height: expanded ? height : "0px" }}
     >
       {/* <div className={expanded ? 'block': 'hidden'}> */}

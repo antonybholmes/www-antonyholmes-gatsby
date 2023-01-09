@@ -3,8 +3,7 @@ title: 'Should you talk to chuck?'
 product: 'Schwab'
 description: 'My review of Schwab.'
 authors: ['Antony Holmes']
-readTime: '1 min'
-section: 'Brokerages'
+sections: [ 'Brokerages']
 tags: ['Low Cost']
 hero: 'bank'
 rating: 4
@@ -26,7 +25,7 @@ details:
     'Unlimited 1.5% cash back credit card.',
   ]
 url: https://www.fidelity.com
-draft: false
+status: "published"
 ---
 
 Schwab is a great one-stop-shop for all your banking and investing needs. Let's see why.

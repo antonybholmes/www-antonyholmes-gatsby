@@ -23,69 +23,62 @@ interface IProps {
   readMorePosts?: IPreviewPost[]
 }
 
-const PostPage = ({
+export default function PostPage({
   post,
   image,
   imageMap,
   avatarMap,
   morePosts = [],
   readMorePosts = [],
-}: IProps) => (
-  <>
-    <article>
-      <PostHeader post={post} image={image} />
+}: IProps) {
+  return (
+    <>
+      <article>
+        <PostHeader post={post} image={image} />
 
-      <ContentDiv className="my-40">
-        <></>
-        <BaseCol className="gap-y-4 lg:gap-y-8">
-          <PostDetailsHoz post={post} avatarMap={avatarMap} />
+        <ContentDiv className="my-40">
+          <></>
+          <BaseCol className="gap-y-4 lg:gap-y-8">
+            <PostDetailsHoz post={post} avatarMap={avatarMap} />
 
-          <PostSocialMedia post={post} className="lg:hidden" />
+            <PostSocialMedia post={post} className="lg:hidden" />
 
-          <PostLayout>
-            <PostSocialMediaVert post={post} />
+            <PostLayout>
+              <PostSocialMediaVert post={post} />
 
-            <BaseCol tag="section" className="gap-y-8">
-              <PostBody html={post.html} className="text-justify" />
-              <PostTags post={post} />
-            </BaseCol>
+              <BaseCol tag="section" className="gap-y-8">
+                <PostBody html={post.html} className="text-justify" />
+                <PostTags post={post} />
+              </BaseCol>
 
-            <div>
-              {morePosts.length > 0 && (
-                <MorePosts
-                  posts={morePosts}
-                  imageMap={imageMap}
-                  avatarMap={avatarMap}
-                  title={post.frontmatter.tags[0]}
-                />
-              )}
-            </div>
-          </PostLayout>
-        </BaseCol>
-        <></>
-      </ContentDiv>
-    </article>
+              <div>
+                {morePosts.length > 0 && (
+                  <MorePosts
+                    posts={morePosts}
+                    imageMap={imageMap}
+                    avatarMap={avatarMap}
+                    title={post.frontmatter.tags[0]}
+                  />
+                )}
+              </div>
+            </PostLayout>
+          </BaseCol>
+          <></>
+        </ContentDiv>
+      </article>
 
-    {readMorePosts.length > 0 && (
-      <ContentDiv className="py-16">
-        <></>
-        <RelatedPosts
-          posts={readMorePosts}
-          imageMap={imageMap}
-          title="Keep Reading"
-          avatarMap={avatarMap}
-        />
-        <></>
-      </ContentDiv>
-    )}
-  </>
-)
-
-// "Guides & Tutorials",
-//   "Opinions",
-//   "Retirement",
-//   "News & Announcements",
-//ightMode={index % 2 === 0}
-//key={index}
-
-export default PostPage
+      {readMorePosts.length > 0 && (
+        <ContentDiv className="py-16">
+          <></>
+          <RelatedPosts
+            posts={readMorePosts}
+            imageMap={imageMap}
+            title="Keep Reading"
+            avatarMap={avatarMap}
+          />
+          <></>
+        </ContentDiv>
+      )}
+    </>
+  )
+}

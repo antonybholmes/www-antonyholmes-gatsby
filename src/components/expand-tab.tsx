@@ -1,3 +1,4 @@
+import React from "react"
 import { MouseEventHandler, useState } from "react"
 import IChildrenProps from "../interfaces/children-props"
 import ExpandDetails from "./expand-details"

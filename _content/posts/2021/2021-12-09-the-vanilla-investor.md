@@ -4,11 +4,11 @@ authors: ['Antony Holmes']
 date: '2021-12-09'
 description: "You get what you don't pay for."
 readTime: '1 min'
-section: 'Guides'
-tags: ['Investing', 'Portfolio Design']
+sections: [ 'Investing']
+tags: ['Portfolio Design', 'Guides']
 hero: 'vanilla'
 heroCaption: "If you don't eat your cake, you can't have any pudding!"
-draft: false
+status: "published"
 related: []
 ---
 
