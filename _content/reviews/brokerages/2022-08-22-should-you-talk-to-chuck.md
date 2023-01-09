@@ -1,29 +1,25 @@
 ---
-title: 'Should you talk to chuck?'
-product: 'Schwab'
-description: 'My review of Schwab.'
-authors: ['Antony Holmes']
-sections: [ 'Brokerages']
-tags: ['Low Cost']
-hero: 'bank'
+title: "Should you talk to chuck?"
+product: "Schwab"
+description: "My review of Schwab."
+authors: ["Antony Holmes"]
+categories: ["Reviews/Brokerages"]
+tags: ["Low Cost"]
+hero: "bank"
 rating: 4
 pros:
   [
-    'No cost investing.',
-    'Early deposit of direct deposits.',
-    'Cashback automatically deposited into cgecking account.',
+    "No cost investing.",
+    "Early deposit of direct deposits.",
+    "Cashback automatically deposited into cgecking account.",
   ]
 cons:
   [
-    'Promotes funds with higher expense ratios over cheaper index versions.',
-    'App and website are a bit outdated.',
-    'Holds on money transfered in can be up to 4 days.'
+    "Promotes funds with higher expense ratios over cheaper index versions.",
+    "App and website are a bit outdated.",
+    "Holds on money transfered in can be up to 4 days.",
   ]
-details:
-  [
-    'Basically no account fees.',
-    'Unlimited 1.5% cash back credit card.',
-  ]
+details: ["Basically no account fees.", "Unlimited 1.5% cash back credit card."]
 url: https://www.fidelity.com
 status: "published"
 ---
@@ -50,7 +46,6 @@ It offers amongst other things:
 - Free ATM withdrawls worldwide from any ATM so you don't have to worry about going out of network
 - Free transfers between accounts at other institutions.
 - Early deposit of direct deposits. Get your paycheck a day early.
-
 
 # Credit Card
 

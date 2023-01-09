@@ -21,6 +21,7 @@ export const DEFAULT_SECTION = env.DEFAULT_SECTION
 export const POST_SLUG = env.POST_SLUG
 export const AUTHOR_SLUG = env.AUTHOR_SLUG
 export const PEOPLE_SLUG = env.PEOPLE_SLUG
+export const CATEGORY_SLUG = env.CATEGORY_SLUG
 export const SECTION_SLUG = env.SECTION_SLUG
 export const REVIEW_SLUG = env.REVIEW_SLUG
 export const CREDIT_CARD_SLUG = env.CREDIT_CARD_SLUG

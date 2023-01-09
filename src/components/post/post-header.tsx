@@ -3,16 +3,16 @@ import IPostWithImageProps from "../../interfaces/post-with-image-props"
 import ContentDiv from "../content-div"
 import PageTitle from "../page-title"
 import HeroImage from "./hero-image"
-import PostSectionLink from "./post-section-link"
+import PostCategoryLink from "./post-category-link"
 
 const PostHeader = ({ post, image }: IPostWithImageProps) => (
   <section className="bg-slate-800">
     <ContentDiv className="pt-24">
       <></>
       <>
-        <div className="flex flex-col gap-y-2 md:w-60/100">
+        <div className="flex flex-col gap-y-2 md:w-70/100">
           {/* <Breadcrumb  /> */}
-          <PostSectionLink post={post} />
+          <PostCategoryLink post={post} showSections={true} />
 
           <PageTitle
             title={post.frontmatter.title}

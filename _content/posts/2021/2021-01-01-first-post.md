@@ -2,7 +2,7 @@
 title: "First Post! Welcome"
 description: "Welcome to my personal website."
 authors: ["Antony Holmes"]
-sections: ["News"]
+categories: ["News"]
 tags: ["Website"]
 related: []
 hero: "post"

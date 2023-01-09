@@ -1,17 +1,17 @@
-import { getSectionUrl } from "../../lib/urls"
+import React from "react"
 import IPostsProps from "../../interfaces/posts-props"
+import { getCategoryBaseUrl } from "../../lib/urls"
 import BaseLink from "../link/base-link"
 import BaseSectionPostsVert from "./base-section-posts-vert"
 import PostsHeader from "./posts-header"
-import React from "react"
 
 interface IProps extends IPostsProps {
-  section: string
+  category: string
   rightMode?: boolean
 }
 
-const SectionPostsVert = ({
-  section,
+const CategoryPostsVert = ({
+  category: section,
   posts,
   imageMap,
   avatarMap,
@@ -25,7 +25,7 @@ const SectionPostsVert = ({
     <section>
       <PostsHeader>
         <BaseLink
-          href={getSectionUrl(section)}
+          href={getCategoryBaseUrl(section)}
           ariaLabel={`View all articles on ${section}`}
         >
           {section}
@@ -42,4 +42,4 @@ const SectionPostsVert = ({
   )
 }
 
-export default SectionPostsVert
+export default CategoryPostsVert

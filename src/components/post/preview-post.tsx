@@ -7,7 +7,7 @@ import HTML from "../html"
 import VCenterRow from "../v-center-row"
 import DateFormatter from "./date-formatter"
 import PostImage from "./post-image"
-import PostSectionLink from "./post-section-link"
+import PostCategoryLink from "./post-category-link"
 import PostTitleLink from "./post-title-link"
 
 interface IProps extends IPostWithAvatarProps {
@@ -52,7 +52,7 @@ export default function PreviewPost({
 
       <BaseCol className={cn("gap-y-2", innerClassName)}>
         <BaseCol className="gap-y-1">
-          {showSection && <PostSectionLink post={post} />}
+          {showSection && <PostCategoryLink post={post} />}
           <PostTitleLink post={post} className={headerClassName} />
         </BaseCol>
         {showDescription && (

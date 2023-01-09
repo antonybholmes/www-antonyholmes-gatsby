@@ -8,8 +8,6 @@ import BaseLink from "./link/base-link"
 import ToBlackLink from "./link/to-black-link"
 import VCenterRow from "./v-center-row"
 
-const EXCLUDE = ["Tag", "Section", "Page"]
-
 interface BreadcrumbProps extends IClassProps, ICrumbProps {}
 
 export default function Breadcrumb({

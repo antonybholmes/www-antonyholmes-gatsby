@@ -2,11 +2,11 @@
 title: "Simplifying class name strings"
 description: "How to simplify conditional class name strings."
 authors: ["Antony Holmes"]
-sections: [ "Web Development"]
+categories: [ "Web Development"]
 tags: ["Tailwind", "Tutorials"]
 related: ""
 status: "published"
-hero: "generic3"
+hero: "code"
 ---
 
 Simplify class name strings without external libraries.

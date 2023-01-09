@@ -2,7 +2,7 @@ import BaseLink from "../link/base-link"
 import MenuOpenButton from "./menu-button-open"
 //import Search from '../search/search'
 import React from "react"
-import LogoIcon from "../../icons/logo-icon"
+import LogoIcon from "../../icons/logo-icon-com"
 import HCenterRow from "../h-center-row"
 import IHeaderProps from "./header-props"
 import MenuOverlay, { IMenuOverlayProps } from "./menu-overlay"

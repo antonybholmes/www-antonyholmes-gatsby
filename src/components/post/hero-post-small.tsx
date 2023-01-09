@@ -6,7 +6,7 @@ import BaseCol from "../base-col"
 import HTML from "../html"
 import DateFormatter from "./date-formatter"
 import PostImage from "./post-image"
-import PostSectionLink from "./post-section-link"
+import PostCategoryLink from "./post-category-link"
 import PostTitleLink from "./post-title-link"
 
 interface IProps extends IPostWithAvatarProps {
@@ -36,7 +36,7 @@ const HeroPostSmall = ({
 
     <BaseCol className="col-span-4 gap-y-1 xl:col-span-2 3xl:col-span-3">
       <BaseCol>
-        <PostSectionLink post={post} textSize="text-normal" />
+        <PostCategoryLink post={post} textSize="text-normal" />
         <PostTitleLink post={post} className="text-2xl" />
       </BaseCol>
       {showDescription && (

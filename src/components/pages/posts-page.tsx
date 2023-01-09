@@ -8,14 +8,14 @@ import HeadPosts from "../post/head-posts"
 import HeroPosts from "../post/hero-posts"
 import LatestPosts from "../post/latest-posts"
 import RestPosts from "../post/rest-posts"
-import SectionPosts from "../post/section-posts"
-import SectionPostsVert from "../post/section-posts-vert"
+import CategoryPosts from "../post/category-posts"
+import CategoryPostsVert from "../post/category-posts-vert"
 
 interface IProps {
   posts: IPreviewPost[]
   page: number
   pages: number
-  sectionMap?: IFieldMap
+  categoryMap?: IFieldMap
   imageMap: IFieldMap
   avatarMap: IFieldMap
 }
@@ -26,7 +26,7 @@ const PostsPage = ({
   pages = 1,
   imageMap,
   avatarMap,
-  sectionMap,
+  categoryMap,
 }: IProps) => {
   const heroPosts = posts.slice(0, 4)
   const headPosts = posts.slice(4, 6)
@@ -69,33 +69,33 @@ const PostsPage = ({
         />
       )}
 
-      {sectionMap && (
+      {categoryMap && (
         <>
-          <SectionPostsVert
-            section="Guides & Tutorials"
-            posts={sectionMap["Guides & Tutorials"]}
+          <CategoryPostsVert
+            category="Guides & Tutorials"
+            posts={categoryMap["Guides & Tutorials"]["Default"]}
             imageMap={imageMap}
             avatarMap={avatarMap}
           />
-          <SectionPosts
+          <CategoryPosts
             section="Opinions"
-            posts={sectionMap["Opinions"]}
+            posts={categoryMap["Opinions"]["Default"]}
             imageMap={imageMap}
             avatarMap={avatarMap}
           />
 
-          <SectionPostsVert
-            section="Retirement"
-            posts={sectionMap["Retirement"]}
+          {/* <CategoryPostsVert
+            category="Retirement"
+            posts={categoryMap["Retirement"]["Default"]}
             imageMap={imageMap}
             avatarMap={avatarMap}
-          />
+          /> */}
 
-          {/* <SectionPosts section="Reviews" posts={sectionMap['Reviews']} /> */}
+          {/* <SectionPosts section="Reviews" posts={categoryMap['Reviews']} /> */}
 
-          <SectionPostsVert
-            section="News & Announcements"
-            posts={sectionMap["News & Announcements"]}
+          <CategoryPostsVert
+            category="News"
+            posts={categoryMap["News"]["Default"]}
             imageMap={imageMap}
             avatarMap={avatarMap}
           />

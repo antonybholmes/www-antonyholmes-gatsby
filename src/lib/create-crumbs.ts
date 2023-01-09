@@ -1,7 +1,7 @@
 import type ICrumb from "../interfaces/crumb"
 import { toCapitalCase } from "./text"
 
-const EXCLUDE = ["Tag", "Section", "Page"]
+export const BREADCRUMB_EXCLUDE = ["Category", "Section", "Tag", "Page"]
 
 function _formatName(name: string) {
   return toCapitalCase(name.replace(/^\d{4}-\d{2}-\d{2}-/, ""))
@@ -21,7 +21,7 @@ export default function createCrumbs(url: string): ICrumb[] {
     const name = _formatName(segments[i])
 
     const path = `/${segments.slice(0, i + 1).join("/")}`
-    if (!EXCLUDE.includes(name) && name.search(/^\d+$/) === -1) {
+    if (!BREADCRUMB_EXCLUDE.includes(name) && name.search(/^\d+$/) === -1) {
       crumbs.push([name, path])
     }
   }

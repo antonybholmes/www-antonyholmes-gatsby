@@ -51,7 +51,7 @@ export const pageQuery = graphql`
         title
         description
         authors
-        sections
+        categories
         tags
         hero
       }

@@ -1,16 +1,16 @@
 ---
-title: 'Mint Mobile'
-product: 'Mint Mobile'
-description: 'Mint Mobile.'
-authors: ['Antony Holmes']
-sections: [ 'Cell Phones']
-hero: 'phone'
-tags: ['Low Cost']
+title: "Mint Mobile"
+product: "Mint Mobile"
+description: "Mint Mobile."
+authors: ["Antony Holmes"]
+categories: ["Reviews/Cell Phones"]
+hero: "phone"
+tags: ["Low Cost", "MNVO"]
 rating: 4.5
-pros: ['$22 for 10GB service.', 'Hot spot included.']
-cons: ['Have to buy 1 year of service for best monthly price.']
-details: ['Simple, all inclusive wireless provider.']
-url: 'https://www.mintmobile.com'
+pros: ["$22 for 10GB service.", "Hot spot included."]
+cons: ["Have to buy 1 year of service for best monthly price."]
+details: ["Simple, all inclusive wireless provider."]
+url: "https://www.mintmobile.com"
 status: "published"
 ---
 

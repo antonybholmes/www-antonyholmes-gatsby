@@ -7,6 +7,7 @@ import {
   REVIEW_SLUG,
   SECTION_SLUG,
   TAG_SLUG,
+  CATEGORY_SLUG,
 } from "../constants"
 import { getUrlFriendlyTag } from "./tags"
 
@@ -30,12 +31,14 @@ export const getPortfolioTagUrl = (tag: string) => {
   return `${PORTFOLIO_SLUG}/tag/${getUrlFriendlyTag(tag)}`
 }
 
-export const getSectionBaseUrl = (section: string) => {
-  return `${SECTION_SLUG}/${getUrlFriendlyTag(section)}`
+export const getCategoryBaseUrl = (category: string) => {
+  return `${CATEGORY_SLUG}/${getUrlFriendlyTag(category)}`
 }
 
-export const getSectionUrl = (section: string) => {
-  return `${getSectionBaseUrl(section)}${PAGE_1_SLUG}`
+export const getSectionBaseUrl = (category: string, section: string) => {
+  return `${CATEGORY_SLUG}/${getUrlFriendlyTag(
+    category
+  )}/section/${getUrlFriendlyTag(section)}`
 }
 
 export const getTagBaseUrl = (tag: string) => {

@@ -1,12 +1,12 @@
 ---
-title: "Make a Web UI toggle switch"
-description: "How to make a simple toggle switch using Preact."
+title: "Creating a React toggle switch using SVG"
+description: "How to make a simple toggle switch using React."
 authors: ["Antony Holmes"]
-sections: [ "Web Development"]
+categories: [ "Web Development"]
 tags: ["Typescript", "Preact", "React", "SVG", "Tutorials"]
 related: ""
 status: "published"
-hero: "generic4"
+hero: "code"
 ---
 
 Let's make a simple UI toggle switch using Preact and SVG. No need for some huge library dependency.

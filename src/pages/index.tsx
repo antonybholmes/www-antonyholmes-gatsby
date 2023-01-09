@@ -41,7 +41,7 @@ export default function Page({ data, location }: IDataPageProps) {
               <div className="relative z-10 overflow-hidden rounded-full">
                 <GatsbyBaseImage
                   src={meImage}
-                  className="transition-ani h-64 w-64 scale-104 transition-transform hover:scale-108"
+                  className="transition-ani h-64 w-64 scale-102 transition-transform hover:scale-105"
                   alt="Antony Holmes"
                 />
               </div>
@@ -138,7 +138,7 @@ export const pageQuery = graphql`
         }
         frontmatter {
           title
-          sections
+          categories
           tags
           authors
           hero
@@ -152,7 +152,7 @@ export const pageQuery = graphql`
         name
         childImageSharp {
           gatsbyImageData(
-            width: 1024
+            width: 800
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )
@@ -168,7 +168,7 @@ export const pageQuery = graphql`
         name
         childImageSharp {
           gatsbyImageData(
-            width: 320
+            width: 240
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )

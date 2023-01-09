@@ -1,21 +1,21 @@
 ---
-title: 'Citi Double Cash Card'
-product: 'Citi Double Cash'
-description: 'My review of the Citi Double Cash credit card.'
-authors: ['Antony Holmes']
-readTime: '1 min'
-sections: [ 'Credit Cards']
-hero: 'credit-cards'
-tags: ['Cash Back']
+title: "Citi Double Cash Card"
+product: "Citi Double Cash"
+description: "My review of the Citi Double Cash credit card."
+authors: ["Antony Holmes"]
+readTime: "1 min"
+categories: ["Reviews/Credit Cards"]
+tags: ["Cash Back"]
+hero: "credit-cards"
 rating: 4
 pros:
   [
-    'Unlimited 2% cash back.',
-    'Cashback automatically deposited into Fidelity account.',
+    "Unlimited 2% cash back.",
+    "Cashback automatically deposited into Fidelity account.",
   ]
-cons: ['No special categories for cash back.', 'Low credit limit.']
-details: ['Straightforward 2% cash back card.']
-url: 'https://www.citi.com'
+cons: ["No special categories for cash back.", "Low credit limit."]
+details: ["Straightforward 2% cash back card."]
+url: "https://www.citi.com"
 status: "published"
 ---
 

@@ -7,9 +7,8 @@ export default interface IPostFields extends IBaseFields {
   hero: string
   heroCaption: string
   authors: string[]
-  sections: string[]
+  categories: string[]
   related: string[]
   status: string
-
   tags: string[]
 }

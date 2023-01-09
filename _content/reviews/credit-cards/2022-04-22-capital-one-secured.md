@@ -1,21 +1,21 @@
 ---
-title: 'Capital One Secured Mastercard Credit Card'
-product: 'Capital One Secured Mastercard'
-description: 'My review of the Capital One Secured Mastercard credit card.'
-authors: ['Antony Holmes']
-readTime: '1 min'
-sections: [ 'Credit Cards']
-hero: 'credit-cards'
-tags: ['Secured']
+title: "Capital One Secured Mastercard Credit Card"
+product: "Capital One Secured Mastercard"
+description: "My review of the Capital One Secured Mastercard credit card."
+authors: ["Antony Holmes"]
+readTime: "1 min"
+categories: ["Reviews/Credit Cards"]
+hero: "credit-cards"
+tags: ["Secured"]
 rating: 4
 pros:
   [
-    'Easy to get approved for.',
-    'Cashback automatically deposited into Fidelity account.',
+    "Easy to get approved for.",
+    "Cashback automatically deposited into Fidelity account.",
   ]
-cons: ['No rewards.', 'Slow website.', 'Requires refundable deposit.']
-details: ['Great starter credit card.']
-url: 'https://www.capitalone.com/credit-cards/secured-mastercard'
+cons: ["No rewards.", "Slow website.", "Requires refundable deposit."]
+details: ["Great starter credit card."]
+url: "https://www.capitalone.com/credit-cards/secured-mastercard"
 status: "published"
 ---
 

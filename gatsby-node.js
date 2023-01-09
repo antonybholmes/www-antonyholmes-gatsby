@@ -4,6 +4,7 @@ const postTemplate = path.resolve(`./src/templates/post-template.tsx`)
 const reviewTemplate = path.resolve(`./src/templates/review-template.tsx`)
 const postsTemplate = path.resolve(`./src/templates/posts-template.tsx`)
 const personTemplate = path.resolve(`./src/templates/person-template.tsx`)
+const tagTemplate = path.resolve(`./src/templates/tag-template.tsx`)
 
 const RECORDS_PER_PAGE = 12
 
@@ -41,7 +42,7 @@ exports.createPages = async function ({ actions, graphql }) {
           }
           frontmatter {
             title
-            sections
+            categories
             tags
             authors
             hero
@@ -65,7 +66,7 @@ exports.createPages = async function ({ actions, graphql }) {
           }
           frontmatter {
             title
-            sections
+            categories
             tags
             authors
             hero
@@ -163,18 +164,34 @@ exports.createPages = async function ({ actions, graphql }) {
     })
     .sort((a, b) => new Date(b.fields.date) - new Date(a.fields.date))
 
-  const allPosts = posts.concat(reviews).sort((a, b) => new Date(b.fields.date) - new Date(a.fields.date))
+  const allPosts = posts
+    .concat(reviews)
+    .sort((a, b) => new Date(b.fields.date) - new Date(a.fields.date))
 
-  const sectionMap = {}
+  const categoryMap = {}
   const tagMap = {}
 
   allPosts.forEach(post => {
-    post.frontmatter.sections.forEach(section => {
-      if (!(section in sectionMap)) {
-        sectionMap[section] = []
+    post.frontmatter.categories.forEach(category => {
+      let sections = category.split("/")
+
+      if (!(sections[0] in categoryMap)) {
+        categoryMap[sections[0]] = {}
       }
 
-      sectionMap[section].push(post)
+      if (!("Default" in categoryMap[sections[0]])) {
+        categoryMap[sections[0]]["Default"] = []
+      }
+
+      categoryMap[sections[0]]["Default"].push(post)
+
+      if (sections.length > 1) {
+        if (!(sections[1] in categoryMap[sections[0]])) {
+          categoryMap[sections[0]][sections[1]] = []
+        }
+
+        categoryMap[sections[0]][sections[1]].push(post)
+      }
     })
 
     post.frontmatter.tags.forEach(tag => {
@@ -185,6 +202,9 @@ exports.createPages = async function ({ actions, graphql }) {
       tagMap[tag].push(post)
     })
   })
+
+  const categories = Object.keys(categoryMap).sort()
+  const tags = Object.keys(tagMap).sort()
 
   const pages = Math.floor(
     (allPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
@@ -314,65 +334,142 @@ exports.createPages = async function ({ actions, graphql }) {
   }
 
   //
-  // Split posts into sections
+  // Split posts into categories
   //
 
-  for (const [section, sectionPosts] of Object.entries(sectionMap)) {
-    if (sectionPosts.length == 0) {
-      continue
-    }
+  categories.forEach(category => {
+    let catPosts = categoryMap[category]["Default"]
 
-    const slug = getTagSlug(section)
+    console.log('cat', category, catPosts.length)
 
-    let pages = Math.floor(
-      (sectionPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
-    )
+    const slug = getTagSlug(category)
 
-    pagePosts = sectionPosts.slice(0, RECORDS_PER_PAGE)
-    pim = {}
-    aim = {}
-    subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
+    if (catPosts.length > 0) {
+      
 
-    createPage({
-      path: `/blog/section/${slug}`,
-      component: postsTemplate,
-      context: {
-        title: section,
-        superTitle: "Section",
-        showTitle: true,
-        page: 0,
-        pages,
-        posts: pagePosts,
-        imageMap: pim,
-        avatarMap: aim,
-      },
-    })
+      let pages = Math.floor(
+        (catPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
+      )
 
-    for (let page = 0; page < pages; ++page) {
-      pagePosts = sectionPosts.slice(page, page + RECORDS_PER_PAGE)
-
+      pagePosts = catPosts.slice(0, RECORDS_PER_PAGE)
       pim = {}
       aim = {}
       subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
 
-      const path = `/blog/section/${slug}/page/${page + 1}`
-
       createPage({
-        path: path,
+        path: `/blog/category/${slug}`,
         component: postsTemplate,
         context: {
-          title: section,
-          superTitle: "Section",
+          title: category,
+          superTitle: "Category",
           showTitle: true,
-          page,
+          page: 0,
           pages,
           posts: pagePosts,
           imageMap: pim,
           avatarMap: aim,
         },
       })
+
+      for (let page = 0; page < pages; ++page) {
+        pagePosts = catPosts.slice(page, page + RECORDS_PER_PAGE)
+
+        pim = {}
+        aim = {}
+        subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
+
+        const path = `/blog/category/${slug}/page/${page + 1}`
+
+        createPage({
+          path: path,
+          component: postsTemplate,
+          context: {
+            title: category,
+            superTitle: "Category",
+            showTitle: true,
+            page,
+            pages,
+            posts: pagePosts,
+            imageMap: pim,
+            avatarMap: aim,
+          },
+        })
+      }
     }
-  }
+
+    // Now detail with sub sections
+
+    Object.keys(categoryMap[category])
+      .filter(x => x !== "Default")
+      .sort()
+      .forEach(section => {
+        console.log('section', section)
+        catPosts = categoryMap[category][section]
+
+        if (catPosts.length > 0) {
+          const slug2 = getTagSlug(section)
+
+          let pages = Math.floor(
+            (catPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
+          )
+
+          pagePosts = catPosts.slice(0, RECORDS_PER_PAGE)
+          pim = {}
+          aim = {}
+          subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
+
+          createPage({
+            path: `/blog/category/${slug}/section/${slug2}`,
+            component: postsTemplate,
+            context: {
+              title: section,
+              superTitle: "Section",
+              showTitle: true,
+              page: 0,
+              pages,
+              posts: pagePosts,
+              imageMap: pim,
+              avatarMap: aim,
+            },
+          })
+
+          for (let page = 0; page < pages; ++page) {
+            pagePosts = catPosts.slice(page, page + RECORDS_PER_PAGE)
+
+            pim = {}
+            aim = {}
+            subsetImageMaps(pagePosts, postImageMap, avatarMap, pim, aim)
+
+            const path = `/blog/category/${slug}/section/${slug2}/page/${page + 1}`
+
+            createPage({
+              path: path,
+              component: postsTemplate,
+              context: {
+                title: section,
+                superTitle: "Section",
+                showTitle: true,
+                page,
+                pages,
+                posts: pagePosts,
+                imageMap: pim,
+                avatarMap: aim,
+              },
+            })
+          }
+        }
+      })
+  })
+
+  createPage({
+    path: `/blog/category`,
+    component: tagTemplate,
+    context: {
+      title: "Category",
+      url: "category",
+      tags: categories,
+    },
+  })
 
   //
   // Split posts into tags
@@ -435,6 +532,20 @@ exports.createPages = async function ({ actions, graphql }) {
       })
     }
   }
+
+  createPage({
+    path: `/blog/tag`,
+    component: tagTemplate,
+    context: {
+      title: "Tag",
+      url: "tag",
+      tags,
+    },
+  })
+
+  //
+  // Make a page for authors
+  //
 
   people.forEach(person => {
     const slug = getTagSlug(person.frontmatter.name)
