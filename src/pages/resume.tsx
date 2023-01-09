@@ -12,9 +12,13 @@ export default function Page({ data, location }: IDataPageProps) {
   const skillList: any[] = []
 
   skills.map((skillset: any, skillSetIndex: number) => {
-    skillset.skills.map((skill: any, skillIndex: number) => {
-      skillList.push(skill)
-    })
+    skillset.skills
+      .sort((a: { name: string }, b: { name: string }) =>
+        a.name.localeCompare(b.name)
+      )
+      .map((skill: any, skillIndex: number) => {
+        skillList.push(skill)
+      })
   })
 
   return (
@@ -39,7 +43,7 @@ export default function Page({ data, location }: IDataPageProps) {
                   )}
                 >
                   <h3 className="font-bold">{skill.name}</h3>
-                  <p>{skill.details}</p>
+                  <p>{skill.details.sort().join(", ")}</p>
                 </li>
               )
             })}

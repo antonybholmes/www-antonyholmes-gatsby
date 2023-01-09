@@ -5,7 +5,7 @@ const reviewTemplate = path.resolve(`./src/templates/review-template.tsx`)
 const postsTemplate = path.resolve(`./src/templates/posts-template.tsx`)
 const personTemplate = path.resolve(`./src/templates/person-template.tsx`)
 
-const RECORDS_PER_PAGE = 15
+const RECORDS_PER_PAGE = 12
 
 function getTagSlug(tag) {
   return tag.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and")
@@ -291,7 +291,7 @@ exports.createPages = async function ({ actions, graphql }) {
 
   for (let page = 0; page < pages; ++page) {
     const s = page * RECORDS_PER_PAGE
-    pagePosts = posts.slice(s, s + RECORDS_PER_PAGE)
+    pagePosts = allPosts.slice(s, s + RECORDS_PER_PAGE)
 
     pim = {}
     aim = {}

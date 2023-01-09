@@ -1,14 +1,14 @@
 import { range } from "lodash"
-import cn from "../lib/class-names"
-import type IChildrenProps from "../interfaces/children-props"
-import type IAriaProps from "../interfaces/aria-props"
-import RoundedButton from "./link/rounded-button"
+import React from "react"
 import ChevronLeftIcon from "../icons/chevron-left"
 import ChevronRightIcon from "../icons/chevron-right"
-import BaseLink from "./link/base-link"
+import type IAriaProps from "../interfaces/aria-props"
+import type IChildrenProps from "../interfaces/children-props"
 import type IClassProps from "../interfaces/class-props"
+import cn from "../lib/class-names"
 import RoundedButtonLink from "./link/rounded-button-link"
-import React from "react"
+
+const INTERMEDIATE_BUTTONS = 3
 
 const BTN_CLS =
   "flex flex-row justify-center items-center min-w-8 h-8 border border-transparent"
@@ -134,6 +134,11 @@ export default function PagePagination({
   // Sometimes page is -1 to indicate a special type of
   // root page, however it still represents page 0 of
   // blog results
+
+  // FOR TESTING ONLY
+  //pages = 50
+  //page = 45
+
   page = Math.max(0, page)
 
   const pageStart = Math.max(page - 1, 1)
@@ -149,16 +154,12 @@ export default function PagePagination({
       </li>
 
       <li>
-        <PageButton
-          page={page}
-          href={getPath(page, root)}
-          selected={page === 0}
-        />
+        <PageButton page={0} href={getPath(0, root)} selected={page === 0} />
       </li>
 
       {pageStart > 1 && <Ellipsis />}
 
-      {range(pageStart, pageEnd, 1).map((p: number, index: number) => (
+      {range(pageStart, pageEnd + 1).map((p: number, index: number) => (
         <li key={p}>
           <PageButton href={getPath(p, root)} page={p} selected={p === page} />
         </li>
@@ -166,15 +167,13 @@ export default function PagePagination({
 
       {pageEnd < pages - 2 && <Ellipsis />}
 
-      {pages > 1 && (
-        <li>
-          <PageButton
-            href={getPath(pages - 1, root)}
-            page={pages - 1}
-            selected={page === pages - 1}
-          />
-        </li>
-      )}
+      <li>
+        <PageButton
+          href={getPath(pages - 1, root)}
+          page={pages - 1}
+          selected={page === pages - 1}
+        />
+      </li>
 
       <li>
         <NextButton href={getPath(nextPage, root)} />
