@@ -12,6 +12,31 @@ function getTagSlug(tag) {
   return tag.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and")
 }
 
+function getCategories(post) {
+  const ret = []
+
+  post.frontmatter.categories.forEach(category => {
+    
+    let path = category.split('/').concat(['All'])
+
+    let pathMap = {}
+    ret.push(pathMap)
+
+    pathMap[path[0]] = {}
+    pathMap[path[0]]['All'] = {}
+
+    path.forEach(p => {
+      if (!(p in pathMap)) {
+        pathMap[p] = {}
+      }
+
+      pathMap = pathMap[p]
+    })
+  })
+
+  return ret
+}
+
 function subsetImageMaps(posts, imageMap, avatarMap, pim, aim) {
   posts.forEach(p => {
     pim[p.frontmatter.hero] = imageMap[p.frontmatter.hero]
@@ -172,6 +197,8 @@ exports.createPages = async function ({ actions, graphql }) {
   const tagMap = {}
 
   allPosts.forEach(post => {
+    const cat = getCategories(post)
+    console.log(cat)
     post.frontmatter.categories.forEach(category => {
       let sections = category.split("/")
 

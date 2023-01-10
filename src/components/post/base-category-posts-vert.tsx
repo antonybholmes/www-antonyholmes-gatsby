@@ -8,7 +8,7 @@ interface IProps extends IPostsProps {
   rightMode?: boolean
 }
 
-const BaseSectionPostsVert = ({
+const BaseCategoryPostsVert = ({
   posts,
   imageMap,
   avatarMap,
@@ -94,4 +94,4 @@ const BaseSectionPostsVert = ({
   )
 }
 
-export default BaseSectionPostsVert
+export default BaseCategoryPostsVert

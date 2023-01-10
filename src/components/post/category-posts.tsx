@@ -2,7 +2,7 @@ import React from "react"
 import IPostsProps from "../../interfaces/posts-props"
 import { getCategoryBaseUrl } from "../../lib/urls"
 import BaseLink from "../link/base-link"
-import BaseSectionPosts from "./base-section-posts"
+import BaseCategoryPosts from "./base-category-posts"
 import PostsHeader from "./posts-header"
 
 interface IProps extends IPostsProps {
@@ -27,7 +27,7 @@ const CategoryPosts = ({
       </BaseLink>
     </PostsHeader>
 
-    <BaseSectionPosts
+    <BaseCategoryPosts
       posts={posts}
       rightMode={rightMode}
       imageMap={imageMap}

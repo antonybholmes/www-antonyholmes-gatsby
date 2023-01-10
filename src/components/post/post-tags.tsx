@@ -6,7 +6,7 @@ import React from "react"
 
 const PostTags = ({ post, className }: IPostProps) => (
   <VCenterRow className={cn("gap-x-6", className)}>
-    <span className=" font-bold">Tags:</span>
+    <span className="font-bold">Tags:</span>
     <ul className="flex flex-row flex-wrap gap-2">
       {post.frontmatter.tags
         .sort()

@@ -2,7 +2,7 @@
 title: "Creating a React toggle switch using SVG"
 description: "How to make a simple toggle switch using React."
 authors: ["Antony Holmes"]
-categories: [ "Web Development"]
+categories: ["Web Development"]
 tags: ["Typescript", "Preact", "React", "SVG", "Tutorials"]
 related: ""
 status: "published"
@@ -69,9 +69,7 @@ If you are using a framework such as Astro/Next/Gatsby, you will probably have a
 @tailwind components;
 @tailwind utilities;
 
-...
-
-.transition-ani {
+... .transition-ani {
   @apply duration-300 ease-in-out;
 }
 ```

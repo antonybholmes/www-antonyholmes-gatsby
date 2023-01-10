@@ -2,8 +2,7 @@
 title: "New website design!"
 description: "I've redesigned my website using Gatsby."
 authors: ["Antony Holmes"]
-readtime: "1 min"
-categories: [ "News", "Web Development"]
+categories: [ "News,Web Development"]
 tags: ["Website", "Gatsby", "React"]
 related: ""
 status: "published"

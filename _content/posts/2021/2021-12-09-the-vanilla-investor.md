@@ -1,12 +1,10 @@
 ---
-title: 'The Vanilla Investor'
-authors: ['Antony Holmes']
-date: '2021-12-09'
+title: "The Vanilla Investor"
+authors: ["Antony Holmes"]
 description: "You get what you don't pay for."
-readTime: '1 min'
-categories: [ 'Investing']
-tags: ['Portfolio Design', 'Guides']
-hero: 'vanilla'
+categories: ["Investing"]
+tags: ["Portfolio Design", "Guides"]
+hero: "vanilla"
 heroCaption: "If you don't eat your cake, you can't have any pudding!"
 status: "published"
 related: []

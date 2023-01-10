@@ -2,7 +2,7 @@
 title: "Simplifying class name strings"
 description: "How to simplify conditional class name strings."
 authors: ["Antony Holmes"]
-categories: [ "Web Development"]
+categories: ["Web Development"]
 tags: ["Tailwind", "Tutorials"]
 related: ""
 status: "published"
