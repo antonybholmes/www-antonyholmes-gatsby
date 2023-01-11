@@ -28,7 +28,7 @@ export default function PreviewPost({
   avatarMap,
   className,
   imageClassName = "h-64 md:h-72",
-  headerClassName = "text-4xl",
+  headerClassName = "text-2xl md:text-4xl",
   innerClassName,
   contentClassName,
   showSection = true,

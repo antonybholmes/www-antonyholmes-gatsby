@@ -20,7 +20,6 @@ const HeadPosts = ({
         image={imageMap[post.frontmatter.hero]}
         showAvatar={showAvatar}
         className="border-t border-slate-200 pt-6"
-        headerClassName="text-4xl"
         imageClassName="h-64 md:h-72"
         avatarMap={avatarMap}
       />
