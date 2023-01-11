@@ -106,7 +106,7 @@ function PageButton({ href, page, selected }: IPageButtonProps) {
       <BasePageButton
         href={href}
         page={page}
-        className="transition duration-300 hover:border-slate-300"
+        className="hover:border-slate-300"
       />
     )
   }
