@@ -8,6 +8,7 @@ import PostLayout from "../../layouts/post-layout"
 import BaseCol from "../base-col"
 import ContentDiv from "../content-div"
 import ExpandTab from "../expand-tab"
+import HCenterRow from "../h-center-row"
 import MorePosts from "../post/more-posts"
 import PostBody from "../post/post-body"
 import PostDetailsHoz from "../post/post-details-hoz"
@@ -62,15 +63,12 @@ export default function ReviewPage({
                       <ul className="flex flex-col gap-y-2 text-sm">
                         {post.frontmatter.pros.map(pro => {
                           return (
-                            <li className="grid grid-cols-16 items-center gap-x-2 lg:grid-cols-20">
-                              <div className="col-span-1">
-                                <div className="flex h-4 w-4 flex-row items-center justify-center rounded-full bg-emerald-400 stroke-white">
-                                  <CheckIcon className="w-3 stroke-4" />
-                                </div>
-                              </div>
-                              <div className="lg:col-span-19 col-span-15">
-                                {pro}
-                              </div>
+                            <li className="flex flex-row items-center gap-x-2">
+                              <HCenterRow className="h-4 w-4 shrink-0 items-center rounded-full bg-emerald-400 stroke-white">
+                                <CheckIcon className="w-3 stroke-4" />
+                              </HCenterRow>
+
+                              <div>{pro}</div>
                             </li>
                           )
                         })}
@@ -79,15 +77,12 @@ export default function ReviewPage({
                       <ul className="flex flex-col gap-y-2 text-sm">
                         {post.frontmatter.cons.map(con => {
                           return (
-                            <li className="grid grid-cols-16 items-center gap-x-2 lg:grid-cols-20">
-                              <div className="col-span-1">
-                                <div className="flex h-4 w-4 flex-row items-center justify-center rounded-full bg-rose-400 stroke-white">
-                                  <CloseIcon className="w-3 stroke-4" />
-                                </div>
-                              </div>
-                              <div className="lg:col-span-19 col-span-15">
-                                {con}
-                              </div>
+                            <li className="flex flex-row items-center gap-x-2">
+                              <HCenterRow className="h-4 w-4 items-center rounded-full bg-rose-400 stroke-white">
+                                <CloseIcon className="w-3 stroke-4" />
+                              </HCenterRow>
+
+                              <div>{con}</div>
                             </li>
                           )
                         })}

@@ -1,14 +1,13 @@
-import StarIcon from "../icons/star"
-import HalfStarIcon from "../icons/half-star"
-import BaseRow from "./base-row"
 import React from "react"
+import HalfStarIcon from "../icons/half-star"
+import StarIcon from "../icons/star"
 
 interface IProps {
   rating: number
   stars?: number
 }
 
-const StarRating = ({ rating, stars = 5 }: IProps) => {
+export default function StarRating({ rating, stars = 5 }: IProps) {
   const n = Math.floor(rating)
 
   const items = []
@@ -43,5 +42,3 @@ const StarRating = ({ rating, stars = 5 }: IProps) => {
     </ul>
   )
 }
-
-export default StarRating

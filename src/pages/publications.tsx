@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 
+import SearchBar from "../components/search/searchbar"
 import getBooleanSearch from "../lib/boolean-search"
 import getJournalPublications from "../lib/pub/journal-publications"
 import sortPublications from "../lib/pub/sort-publications"
 import getTopAuthors from "../lib/pub/top-authors"
 import getTopJournals from "../lib/pub/top-journals"
-import SearchBar from "../components/search/searchbar"
 
 //import BlueButton from "../link/blue-button"
 import JournalFilter from "../components/publication/journal-filter"
@@ -17,26 +17,26 @@ import BaseRow from "../components/base-row"
 
 import VCenterRow from "../components/v-center-row"
 
-import getAuthorPublications from "../lib/pub/author-publications"
 import HCenterRow from "../components/h-center-row"
 import Pagination from "../components/pagination"
 import AuthorFilter from "../components/publication/author-filter"
+import getAuthorPublications from "../lib/pub/author-publications"
 
-import { RECORDS_PER_PAGE, TEXT_SHOW_MORE } from "../constants"
-import SortIcon from "../icons/sort"
-import ThreeQuarterLayout from "../layouts/three-quarter-layout"
-import pubYearCount from "../lib/pub/pub-year-count"
-import { getShortName } from "../lib/text"
+import { graphql } from "gatsby"
+import React from "react"
 import BaseCol from "../components/base-col"
+import HCenterCol from "../components/h-center-col"
 import BlueRoundedButton from "../components/link/blue-rounded-button"
 import ToggleSwitch from "../components/link/toggle-switch"
 import PubRangeSlider from "../components/publication/pub-range-slider"
-import React from "react"
-import Seo from "../layouts/seo"
-import { graphql } from "gatsby"
-import IDataPageProps from "../interfaces/data-page-props"
 import PubMedLink from "../components/publication/pubmed-link"
-import HCenterCol from "../components/h-center-col"
+import { SEARCH_RECORDS_PER_PAGE, TEXT_SHOW_MORE } from "../constants"
+import SortIcon from "../icons/sort"
+import IDataPageProps from "../interfaces/data-page-props"
+import Seo from "../layouts/seo"
+import ThreeQuarterLayout from "../layouts/three-quarter-layout"
+import pubYearCount from "../lib/pub/pub-year-count"
+import { getShortName } from "../lib/text"
 
 const EMPTY_QUERY = ""
 
@@ -256,7 +256,7 @@ export default function Page({ data, location }: IDataPageProps) {
   const [year1, setYear1] = useState(-1)
   const [year2, setYear2] = useState(-1)
 
-  const [recordsPerPage, setRecordsPerPage] = useState(RECORDS_PER_PAGE)
+  const [recordsPerPage, setRecordsPerPage] = useState(SEARCH_RECORDS_PER_PAGE)
 
   const [showAll, setShowAll] = useState(false)
 

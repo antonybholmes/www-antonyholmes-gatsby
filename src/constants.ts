@@ -7,6 +7,7 @@ export const SITE_DESCRIPTION = env.SITE_DESCRIPTION
 export const TWITTER = env.TWITTER
 export const EMAIL = env.EMAIL
 export const RECORDS_PER_PAGE = env.RECORDS_PER_PAGE
+export const SEARCH_RECORDS_PER_PAGE = env.SEARCH_RECORDS_PER_PAGE
 export const AUTHOR_LATEST_POSTS = env.AUTHOR_LATEST_POSTS
 export const GTAG = env.GTAG
 export const VERSION = env.VERSION

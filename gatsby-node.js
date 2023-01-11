@@ -198,26 +198,26 @@ exports.createPages = async function ({ actions, graphql }) {
 
   allPosts.forEach(post => {
     const cat = getCategories(post)
-    console.log(cat)
+
     post.frontmatter.categories.forEach(category => {
-      let sections = category.split("/")
+      let path = category.split("/")
 
-      if (!(sections[0] in categoryMap)) {
-        categoryMap[sections[0]] = {}
+      if (!(path[0] in categoryMap)) {
+        categoryMap[path[0]] = {}
       }
 
-      if (!("Default" in categoryMap[sections[0]])) {
-        categoryMap[sections[0]]["Default"] = []
+      if (!("Default" in categoryMap[path[0]])) {
+        categoryMap[path[0]]["Default"] = []
       }
 
-      categoryMap[sections[0]]["Default"].push(post)
+      categoryMap[path[0]]["Default"].push(post)
 
-      if (sections.length > 1) {
-        if (!(sections[1] in categoryMap[sections[0]])) {
-          categoryMap[sections[0]][sections[1]] = []
+      if (path.length > 1) {
+        if (!(path[1] in categoryMap[path[0]])) {
+          categoryMap[path[0]][path[1]] = []
         }
 
-        categoryMap[sections[0]][sections[1]].push(post)
+        categoryMap[path[0]][path[1]].push(post)
       }
     })
 
@@ -367,13 +367,9 @@ exports.createPages = async function ({ actions, graphql }) {
   categories.forEach(category => {
     let catPosts = categoryMap[category]["Default"]
 
-    console.log('cat', category, catPosts.length)
-
     const slug = getTagSlug(category)
 
     if (catPosts.length > 0) {
-      
-
       let pages = Math.floor(
         (catPosts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
       )
@@ -430,7 +426,6 @@ exports.createPages = async function ({ actions, graphql }) {
       .filter(x => x !== "Default")
       .sort()
       .forEach(section => {
-        console.log('section', section)
         catPosts = categoryMap[category][section]
 
         if (catPosts.length > 0) {

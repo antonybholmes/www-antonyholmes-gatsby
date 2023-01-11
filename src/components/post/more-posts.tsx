@@ -28,7 +28,10 @@ export default function MorePosts({
               avatarMap={avatarMap}
               headerClassName="text-xl"
               dateBelow={true}
-              className={cn([index > 0, "border-t border-slate-200 pt-4"])}
+              className={cn("text-sm", [
+                index > 0,
+                "border-t border-slate-200 pt-4",
+              ])}
             />
           </li>
         ))}

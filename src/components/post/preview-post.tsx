@@ -20,7 +20,6 @@ interface IProps extends IPostWithAvatarProps {
   showAvatar?: boolean
   showAvatarImage?: boolean
   dateBelow?: boolean
-  lazy?: boolean
 }
 
 export default function PreviewPost({
@@ -31,23 +30,17 @@ export default function PreviewPost({
   imageClassName = "h-64 md:h-72",
   headerClassName = "text-4xl",
   innerClassName,
-  contentClassName = "text-base",
+  contentClassName,
   showSection = true,
   showDescription = true,
   showAvatar = true,
   showAvatarImage = true,
   dateBelow = false,
-  lazy = false,
 }: IProps) {
   return (
     <article className={cn("flex flex-col gap-y-4", className)}>
       {image && (
-        <PostImage
-          post={post}
-          image={image}
-          lazy={lazy}
-          className={imageClassName}
-        />
+        <PostImage post={post} image={image} className={imageClassName} />
       )}
 
       <BaseCol className={cn("gap-y-2", innerClassName)}>
