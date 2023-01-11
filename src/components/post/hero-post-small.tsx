@@ -36,7 +36,7 @@ const HeroPostSmall = ({
 
     <BaseCol className="col-span-4 gap-y-1 xl:col-span-2 3xl:col-span-3">
       <BaseCol>
-        <PostCategoryLink post={post} textSize="text-normal" />
+        <PostCategoryLink post={post} textSize="text-2xl md:text-base" />
         <PostTitleLink post={post} className="text-2xl" />
       </BaseCol>
       {showDescription && (

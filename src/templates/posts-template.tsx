@@ -17,7 +17,7 @@ export default function PostsTemplate({
     posts,
     imageMap,
     avatarMap,
-    sectionMap,
+    categoryMap,
   } = pageContext
 
   //const imageMap = getImageMap(data.postImages)
@@ -37,7 +37,7 @@ export default function PostsTemplate({
         posts={posts}
         page={page}
         pages={pages}
-        sectionMap={sectionMap}
+        categoryMap={categoryMap}
         imageMap={imageMap}
         avatarMap={avatarMap}
       />
