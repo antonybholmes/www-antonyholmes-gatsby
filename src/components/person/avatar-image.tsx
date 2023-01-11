@@ -3,7 +3,7 @@ import IClassProps from "../../interfaces/class-props"
 import IFieldMap from "../../interfaces/field-map"
 import cn from "../../lib/class-names"
 import { getUrlFriendlyTag } from "../../lib/tags"
-import GatsbyBaseImage from "./../gatsby-base-image"
+import GatsbyBaseImage from "../gatsby-base-image"
 
 export interface IAvatarProps extends IClassProps {
   author: string

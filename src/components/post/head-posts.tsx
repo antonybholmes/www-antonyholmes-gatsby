@@ -12,18 +12,22 @@ const HeadPosts = ({
   avatarMap,
   showAvatar = true,
 }: IProps) => (
-  <section className="grid grid-cols-1 gap-12 md:grid-cols-2">
-    {posts.map((post, index) => (
-      <PreviewPost
-        key={index}
-        post={post}
-        image={imageMap[post.frontmatter.hero]}
-        showAvatar={showAvatar}
-        className="border-t border-slate-200 pt-6"
-        imageClassName="h-64 md:h-72"
-        avatarMap={avatarMap}
-      />
-    ))}
+  <section>
+    {" "}
+    <ul className="grid grid-cols-1 gap-12 md:grid-cols-2">
+      {posts.map((post, index) => (
+        <li key={index}>
+          <PreviewPost
+            post={post}
+            image={imageMap[post.frontmatter.hero]}
+            showAvatar={showAvatar}
+            className="border-t border-slate-200 pt-6"
+            imageClassName="h-64 md:h-72"
+            avatarMap={avatarMap}
+          />
+        </li>
+      ))}
+    </ul>
   </section>
 )
 

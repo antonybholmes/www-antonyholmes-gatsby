@@ -1,6 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
-import CompactAvatars from "../components/author/compact-avatars"
+import CompactAvatars from "../components/person/compact-avatars"
 import IAuthor from "../interfaces/author"
 import IDataPageProps from "../interfaces/data-page-props"
 import ContentLayout from "../layouts/content-layout"

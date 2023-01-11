@@ -1,9 +1,8 @@
-import cn from "../../lib/class-names"
+import React from "react"
 import IPostsProps from "../../interfaces/posts-props"
-import BaseCol from "../base-col"
+import cn from "../../lib/class-names"
 import HeroPostSmall from "./hero-post-small"
 import PreviewPost from "./preview-post"
-import React from "react"
 
 const HeroPosts = ({ posts, imageMap, avatarMap }: IPostsProps) => {
   const topPost = posts[0]
@@ -18,19 +17,20 @@ const HeroPosts = ({ posts, imageMap, avatarMap }: IPostsProps) => {
         className="xl:col-span-6"
       />
 
-      <BaseCol className="gap-y-4 xl:col-span-4">
+      <ul className="flex flex-col gap-y-4 xl:col-span-4">
         {topPosts.map((post, index) => {
           return (
-            <HeroPostSmall
-              post={post}
-              image={imageMap[post.frontmatter.hero]}
-              avatarMap={avatarMap}
-              className={cn([index > 0, "border-t border-slate-200 pt-6"])}
-              key={index}
-            />
+            <li key={index}>
+              <HeroPostSmall
+                post={post}
+                image={imageMap[post.frontmatter.hero]}
+                avatarMap={avatarMap}
+                className={cn([index > 0, "border-t border-slate-200 pt-6"])}
+              />
+            </li>
           )
         })}
-      </BaseCol>
+      </ul>
     </section>
   )
 }
