@@ -1,3 +1,4 @@
+import React from "react"
 import IPostsProps from "../../interfaces/posts-props"
 import { getCategoryBaseUrl } from "../../lib/urls"
 import BaseLink from "../link/base-link"

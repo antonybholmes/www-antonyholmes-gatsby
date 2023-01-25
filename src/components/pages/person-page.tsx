@@ -10,7 +10,8 @@ import PostBody from "../post/post-body"
 import PostsPage from "./posts-page"
 
 interface IProps {
-  author: IAuthor
+  person: IAuthor
+  personImage: any
   imageMap: IFieldMap
   avatarMap: IFieldMap
   posts: IPreviewPost[]
@@ -19,7 +20,8 @@ interface IProps {
 }
 
 const PersonPage = ({
-  author,
+  person,
+  personImage,
   posts,
   imageMap,
   avatarMap,
@@ -32,24 +34,24 @@ const PersonPage = ({
         <HCenterRow className="mb-8 lg:hidden">
           <div className="overflow-hidden">
             <AvatarImageLarge
-              author={author.frontmatter.name}
-              avatarMap={avatarMap}
+              person={person.frontmatter.name}
+              personImage={personImage}
               imgClassName="w-56"
             />
           </div>
         </HCenterRow>
         <PageTitle
-          title={author.frontmatter.name}
+          title={person.frontmatter.name}
           superTitle="Posts by"
-          subTitle={author.frontmatter.title}
+          subTitle={person.frontmatter.title}
           className="text-center lg:text-left"
         />
-        <PostBody html={author.html} className="mt-8" />
+        <PostBody html={person.html} className="mt-8" />
       </div>
       <div className="hidden lg:block">
         <AvatarImageLarge
-          author={author.frontmatter.name}
-          avatarMap={avatarMap}
+          person={person.frontmatter.name}
+          personImage={personImage}
           className="h-56 w-56"
         />
       </div>

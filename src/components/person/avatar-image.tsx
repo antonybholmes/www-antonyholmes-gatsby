@@ -1,16 +1,12 @@
 import React from "react"
 import IClassProps from "../../interfaces/class-props"
-import IFieldMap from "../../interfaces/field-map"
 import cn from "../../lib/class-names"
-import { getUrlFriendlyTag } from "../../lib/tags"
-import GatsbyBaseImage from "../gatsby-base-image"
+import PlaceholderImage, { IPlaceholderProps } from "../placeholder-image"
 
-export interface IAvatarProps extends IClassProps {
-  author: string
-  avatarMap: IFieldMap
+export interface IAvatarProps extends IClassProps, IPlaceholderProps {
+  person: string
+  personImage: any
   lazy?: boolean
-  containerClassName?: string
-  imgClassName?: string
 }
 
 interface IProps extends IAvatarProps {
@@ -19,23 +15,21 @@ interface IProps extends IAvatarProps {
   root?: string
 }
 
-const AvatarImage = ({
-  author,
-  avatarMap,
+export default function AvatarImage({
+  person,
+  personImage,
   size = [320, 320],
   className,
   containerClassName,
   imgClassName,
-}: IProps) => {
+}: IProps) {
   return (
-    <GatsbyBaseImage
-      src={avatarMap[getUrlFriendlyTag(author)]}
-      alt={`Picture of ${author}`}
+    <PlaceholderImage
+      src={personImage}
+      alt={`Picture of ${person}`}
       containerClassName={cn("rounded-full", className)}
       className={containerClassName}
       imgClassName={cn("rounded-full", imgClassName)}
     />
   )
 }
-
-export default AvatarImage

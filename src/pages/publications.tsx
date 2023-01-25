@@ -37,6 +37,9 @@ import Seo from "../layouts/seo"
 import ThreeQuarterLayout from "../layouts/three-quarter-layout"
 import pubYearCount from "../lib/pub/pub-year-count"
 import { getShortName } from "../lib/text"
+import Accordion from "../components/accordion"
+import BaseButton from "../components/link/base-button"
+import CondComp from "../components/component"
 
 const EMPTY_QUERY = ""
 
@@ -547,40 +550,34 @@ export default function Page({ data, location }: IDataPageProps) {
         </HCenterCol>
       </div>
 
-      <BaseCol className="gap-y-6 text-sm">
-        {/* <ToggleSwitch
-                isSelected={showAbstract}
-                onClick={onShowAbstractsChange}
-              >
-                Show Abstracts
-              </ToggleSwitch> */}
+      <BaseCol className="text-sm">
+        <CondComp cond={yearData.length > 0}>
+          <Accordion title="Years" isExpanded={true}>
+            <PubRangeSlider
+              data={yearData}
+              r1={year1}
+              setYear1={setYear1}
+              r2={year2}
+              setYear2={setYear2}
+            />
+          </Accordion>
+        </CondComp>
 
-        {yearData.length > 0 && (
-          <PubRangeSlider
-            data={yearData}
-            r1={year1}
-            setYear1={setYear1}
-            r2={year2}
-            setYear2={setYear2}
-          />
-        )}
-
-        <div>
+        <Accordion title="Sort">
           <VCenterRow className="justify-between">
-            <h2>Sort</h2>
             <BaseRow className="overflow-hidden">
-              <button
-                aria-label="Sort ascending"
+              <BaseButton
+                ariaLabel="Sort ascending"
                 onClick={() => setDescending(!descending)}
-                className="flex h-6 w-6 flex-row items-center justify-center  transition-colors "
+                className="flex h-5 w-5 flex-row items-center justify-center  transition-colors "
               >
                 <SortIcon className="w-4" descending={descending} />
-              </button>
+              </BaseButton>
             </BaseRow>
           </VCenterRow>
 
           <SortOrder onChange={onSortChange} selected={sortOrder} />
-        </div>
+        </Accordion>
 
         <JournalFilter
           journals={journals}

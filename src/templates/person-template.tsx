@@ -8,7 +8,7 @@ import Seo from "../layouts/seo"
 export default function Page({ pageContext, data, location }: IDataPageProps) {
   const { page, pages, posts, imageMap, avatarMap } = pageContext
 
-  const person = data.person
+  const { person, personImage } = data
   //const imageMap = getImageMap(data.postImages)
   //const avatarMap = getImageMap(data.peopleImages)
 
@@ -16,7 +16,8 @@ export default function Page({ pageContext, data, location }: IDataPageProps) {
     <ContentLayout title={person.frontmatter.name} location={location}>
       <></>
       <PersonPage
-        author={person}
+        person={person}
+        personImage={personImage}
         imageMap={imageMap}
         avatarMap={avatarMap}
         posts={posts}
@@ -49,6 +50,19 @@ export const pageQuery = graphql`
         title
         email
         pubmed
+      }
+    }
+
+    personImage: file(
+      name: { eq: $personId }
+      absolutePath: { regex: "/images/people/" }
+    ) {
+      childImageSharp {
+        gatsbyImageData(
+          width: 480
+          placeholder: BLURRED
+          formats: [AUTO, WEBP, AVIF]
+        )
       }
     }
   }

@@ -1,5 +1,6 @@
 import React from "react"
 import IPostWithImageProps from "../../interfaces/post-with-image-props"
+import cn from "../../lib/class-names"
 import { getPostRelativeUrl } from "../../lib/posts"
 import BaseLink from "../link/base-link"
 import BasePostImage from "./base-post-image"
@@ -9,7 +10,7 @@ const PostImage = ({ post, image, className }: IPostWithImageProps) => {
     <BasePostImage
       post={post}
       image={image}
-      containerClassName="rounded-lg"
+      containerClassName={cn("rounded-lg", className)}
       className="scale-102 hover:scale-105"
     />
   )

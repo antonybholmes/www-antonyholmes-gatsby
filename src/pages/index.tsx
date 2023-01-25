@@ -24,8 +24,7 @@ import { getAuthorBaseUrl } from "../lib/urls"
 
 export default function Page({ data, location }: IDataPageProps) {
   const allPosts = data.allPosts.nodes
-  const meImage = data.meImage
-  const person = data.person
+  const { person, meImage } = data
   const imageMap = getImageMap(data.postImages)
   const avatarMap = getImageMap(data.peopleImages)
 
@@ -43,9 +42,9 @@ export default function Page({ data, location }: IDataPageProps) {
               ariaLabel="View profile"
             >
               <AvatarImageLarge
-                author="Antony Holmes"
+                person="Antony Holmes"
+                personImage={meImage}
                 className="h-64 w-64"
-                avatarMap={avatarMap}
               />
             </BaseLink>
 

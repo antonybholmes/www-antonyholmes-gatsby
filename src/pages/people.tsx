@@ -191,7 +191,7 @@ export default function Page({ data, location }: IDataPageProps) {
           return (
             <li key={index}>
               <CompactAvatars
-                authors={[author.frontmatter.name]}
+                people={[author.frontmatter.name]}
                 avatarMap={avatarMap}
               />
             </li>

@@ -1,11 +1,8 @@
 import React from "react"
 import IPostWithImageProps from "../../interfaces/post-with-image-props"
-import GatsbyBaseImage from "../gatsby-base-image"
+import PlaceholderImage, { IPlaceholderProps } from "../placeholder-image"
 
-interface IProps extends IPostWithImageProps {
-  containerClassName?: string
-  imgClassName?: string
-}
+interface IProps extends IPostWithImageProps, IPlaceholderProps {}
 
 export default function BasePostImage({
   post,
@@ -15,7 +12,7 @@ export default function BasePostImage({
   imgClassName,
 }: IProps) {
   return (
-    <GatsbyBaseImage
+    <PlaceholderImage
       src={image}
       alt={post.frontmatter.title}
       containerClassName={containerClassName}

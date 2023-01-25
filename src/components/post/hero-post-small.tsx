@@ -29,7 +29,7 @@ const HeroPostSmall = ({
       className
     )}
   >
-    <PostImage post={post} image={image} containerClassName="h-48 md:h-32" />
+    <PostImage post={post} image={image} className="h-48 md:h-32" />
 
     <BaseCol className="col-span-3 gap-y-1 lg:col-span-3 xl:col-span-2">
       <BaseCol>
@@ -43,7 +43,7 @@ const HeroPostSmall = ({
       <BaseCol className="xl:gap-y-1">
         <CondComp cond={showAvatar}>
           <CompactAvatars
-            authors={post.frontmatter.authors}
+            people={post.frontmatter.authors}
             avatarMap={avatarMap}
             showImages={false}
           />

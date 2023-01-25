@@ -1,6 +1,6 @@
-import IFieldMap from "./field-map"
+import { CSSProperties } from "react"
 
 export default interface IClassProps {
   className?: string
-  style?: IFieldMap
+  style?: CSSProperties
 }

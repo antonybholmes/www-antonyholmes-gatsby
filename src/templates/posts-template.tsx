@@ -15,6 +15,7 @@ export default function PostsTemplate({
     page,
     pages,
     posts,
+    showLatest,
     imageMap,
     avatarMap,
     categoryMap,
@@ -37,6 +38,7 @@ export default function PostsTemplate({
         posts={posts}
         page={page}
         pages={pages}
+        showLatest={showLatest}
         categoryMap={categoryMap}
         imageMap={imageMap}
         avatarMap={avatarMap}

@@ -1,18 +1,20 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { CSSProperties } from "react"
 import type IClassProps from "../interfaces/class-props"
-import IFieldMap from "../interfaces/field-map"
 import cn from "../lib/class-names"
 
-export interface IImageProps extends IClassProps {
-  src: any
-  alt: string
+export interface IPlaceholderProps extends IClassProps {
   containerClassName?: string
   imgClassName?: string
-  imgStyle?: IFieldMap
 }
 
-export default function GatsbyBaseImage({
+export interface IImageProps extends IPlaceholderProps {
+  src: any
+  alt: string
+  imgStyle?: CSSProperties
+}
+
+export default function PlaceholderImage({
   src,
   alt,
   className,
@@ -21,18 +23,11 @@ export default function GatsbyBaseImage({
   imgClassName,
   imgStyle,
 }: IImageProps) {
-  const image = getImage(src)
-
   return (
-    <div
-      className={cn(
-        "relative z-10 h-full w-full overflow-hidden",
-        containerClassName
-      )}
-    >
+    <div className={cn("relative z-10 overflow-hidden", containerClassName)}>
       <GatsbyImage
         //@ts-ignore
-        image={image}
+        image={getImage(src)}
         className={cn(
           "trans-ani-700 h-full w-full transition-placeholder",
           className

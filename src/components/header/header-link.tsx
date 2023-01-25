@@ -14,7 +14,7 @@ export const LINK_CLS = cn(
   "h-10",
   "justify-center",
   "whitespace-nowrap",
-  "trans-ani-300",
+  "trans-ani-300 ",
   "transition-colors",
   "whitespace-nowrap",
   "rounded-lg",

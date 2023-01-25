@@ -70,7 +70,7 @@ export default function PreviewPost({
           <CondComp cond={showAvatar}>
             <CompactAvatars
               showImages={showAvatarImage}
-              authors={post.frontmatter.authors}
+              people={post.frontmatter.authors}
               avatarMap={avatarMap}
             />
           </CondComp>
