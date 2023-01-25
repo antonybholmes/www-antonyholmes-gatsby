@@ -1,17 +1,25 @@
 import React from "react"
+import IClassProps from "../../interfaces/class-props"
 import type ILink from "../../interfaces/link"
 import cn from "../../lib/class-names"
 import { HEADER_LINKS } from "../../menus"
 import MenuLink from "./menu-link"
 
-interface IProps {
+interface IProps extends IClassProps {
   title: string
   headerMode?: string
   tab?: string
   onClick: any
 }
 
-function MenuLinks({ title, headerMode = "light", tab = "", onClick }: IProps) {
+export default function MenuLinks({
+  title,
+  headerMode = "light",
+  tab = "",
+  onClick,
+  className,
+  style,
+}: IProps) {
   // // let ref
   // // const tMenuLinkF
   // // const tMenuLinkR
@@ -64,10 +72,12 @@ function MenuLinks({ title, headerMode = "light", tab = "", onClick }: IProps) {
 
   return (
     <ul
-      className={cn("flex flex-col border-t border-slate-200 pt-2 text-sm", [
-        headerMode === "dark",
-        "bg-slate-800",
-      ])}
+      className={cn(
+        "flex flex-col px-3 pt-4",
+        [headerMode === "dark", "bg-slate-800"],
+        className
+      )}
+      style={style}
     >
       {HEADER_LINKS.map((link: ILink, index: number) => {
         const selected = title == link.name || tab == link.name
@@ -86,5 +96,3 @@ function MenuLinks({ title, headerMode = "light", tab = "", onClick }: IProps) {
     </ul>
   )
 }
-
-export default MenuLinks

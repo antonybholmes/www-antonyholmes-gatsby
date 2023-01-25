@@ -1,15 +1,15 @@
-import cn from "../../lib/class-names"
-import ILinkProps from "../../interfaces/link-props"
-import IMouseProps from "../../interfaces/mouse-props"
 import React from "react"
 import IFocusProps from "../../interfaces/focus-props"
+import ILinkProps from "../../interfaces/link-props"
+import IMouseProps from "../../interfaces/mouse-props"
+import cn from "../../lib/class-names"
 
 interface IProps extends ILinkProps, IMouseProps, IFocusProps {
   target?: string
   underline?: boolean
 }
 
-const ExtLink = ({
+export default function ExtLink({
   href,
   ariaLabel,
   target = "_blank",
@@ -23,7 +23,7 @@ const ExtLink = ({
   onBlur,
   className,
   children,
-}: IProps) => {
+}: IProps) {
   if (children === undefined || children === null) {
     children = <>{href}</>
   }
@@ -46,5 +46,3 @@ const ExtLink = ({
     </a>
   )
 }
-
-export default ExtLink

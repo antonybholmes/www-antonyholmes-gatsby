@@ -1,29 +1,24 @@
 import cn from "../../lib/class-names"
 import ILinkProps from "../../interfaces/link-props"
 import BaseLink from "./base-link"
-import React from "react"
 
 export const BLUE_TEXT = "text-blue-600"
 
-interface IProps extends ILinkProps {
-  underline?: boolean
-}
-
-const BlueLink = ({
+export default function BlueLink({
   href,
   ariaLabel,
   underline = true,
   className,
   children,
-}: IProps) => (
-  <BaseLink
-    href={href}
-    ariaLabel={ariaLabel}
-    underline={underline}
-    className={cn(BLUE_TEXT, className)}
-  >
-    {children}
-  </BaseLink>
-)
-
-export default BlueLink
+}: ILinkProps) {
+  return (
+    <BaseLink
+      href={href}
+      ariaLabel={ariaLabel}
+      underline={underline}
+      className={cn(BLUE_TEXT, className)}
+    >
+      {children}
+    </BaseLink>
+  )
+}

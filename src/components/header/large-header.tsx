@@ -1,41 +1,74 @@
 import BaseLink from "../link/base-link"
 //import Search from '../search/search'
-import React from "react"
-import LogoIcon from "../../icons/logo-icon-com"
+import LogoIconSmall from "../../icons/logo-icon-small"
 import ContentDiv from "../content-div"
+import VCenterRow from "../v-center-row"
 import HeaderLinks from "./header-links"
 import IHeaderProps from "./header-props"
+import MenuOpenButton from "./menu-button-open"
+import { IMenuOverlayProps } from "./menu-overlay"
+import useWindowResize from "../../hooks/use-window-resize"
+import { useState } from "react"
+import cn from "../../lib/class-names"
+import React from "react"
 
-interface IProps extends IHeaderProps {
+interface IProps extends IHeaderProps, IMenuOverlayProps {
   scrollY: number
 }
 
-function LargeHeader({
+export default function LargeHeader({
   title,
   tab,
+  showMenu,
+  onClick,
   headerMode = "light",
   scrollY,
   children,
 }: IProps) {
-  return (
-    <ContentDiv className="hidden md:flex">
-      <></>
-      <nav className="flex flex-row items-center gap-x-8 lg:gap-x-16">
-        <BaseLink href="/" ariaLabel="Goto Homepage" className="block">
-          <LogoIcon headerMode={headerMode} />
-        </BaseLink>
+  const [showLinks, setShowLinks] = useState(false)
 
-        <HeaderLinks
-          title={title}
-          tab={tab}
-          headerMode={headerMode}
-          scrollY={scrollY}
-        />
-        <div className="grow">{children && children}</div>
+  useWindowResize(({ width, height }) => {
+    setShowLinks(width > 768)
+  })
+
+  return (
+    <ContentDiv className="py-3">
+      <></>
+      <nav className="grid  h-full grid-cols-2 items-center gap-x-1 2lg:grid-cols-3">
+        <VCenterRow className="gap-x-4">
+          <VCenterRow className="gap-x-2">
+            <MenuOpenButton
+              onClick={onClick}
+              showMenu={showMenu}
+              headerMode={headerMode}
+              className="visible opacity-100 transition-opacity md:invisible md:opacity-0"
+            />
+            {/* <span className="border-l border-slate-300 h-10 md:hidden" style={{width: "1px"}}/> */}
+            <BaseLink href="/" ariaLabel="Goto Homepage">
+              <LogoIconSmall
+                headerMode={headerMode}
+                className="ml-0 transition-all md:-ml-9"
+              />
+              {/* <LogoIcon headerMode={headerMode} className="hidden 3xl:block" /> */}
+            </BaseLink>
+          </VCenterRow>
+
+          <HeaderLinks
+            title={title}
+            tab={tab}
+            headerMode={headerMode}
+            scrollY={scrollY}
+            className={cn([
+              showLinks,
+              "overlay-show visible opacity-100",
+              "overlay-hide invisible opacity-0",
+            ])}
+          />
+        </VCenterRow>
+        <div className="hidden md:block">{children && children}</div>
+        {/* <div /> */}
       </nav>
       <></>
     </ContentDiv>
   )
 }
-
-export default LargeHeader

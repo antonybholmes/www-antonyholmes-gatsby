@@ -482,7 +482,7 @@ export default function Page({ data, location }: IDataPageProps) {
           onSearch={onSearch}
           placeholder="Search publications..."
           text={query}
-          className="w-full lg:w-3/4"
+          className="w-full"
         />
       }
       className="gap-x-16"
@@ -492,7 +492,7 @@ export default function Page({ data, location }: IDataPageProps) {
           onSearch={onSearch}
           placeholder="Search publications..."
           text={query}
-          className="mb-8 lg:hidden"
+          className="mb-8 md:hidden"
         />
 
         <VCenterRow className="justify-between">

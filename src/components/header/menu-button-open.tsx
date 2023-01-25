@@ -1,39 +1,33 @@
 import { gsap } from "gsap"
 import React from "react"
-import {
-  FocusEventHandler,
-  MouseEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import { useEffect, useRef } from "react"
+import IClassProps from "../../interfaces/class-props"
 import cn from "../../lib/class-names"
+import BaseButton from "../link/base-button"
 import IMenuProps from "./menu-props"
 
-const DURATION = 0.2
+const DURATION = 0.1
 
-const X1 = 21
-const X2 = 43
-const Y1 = 26
-const Y2 = 32
-const Y3 = 38
+const X1 = 0
+const X2 = 16
+const Y1 = 4
+const Y2 = 8
+const Y3 = 12
 
-const LINE_STYLE = {
-  strokeWidth: 2,
-}
-
-export interface IMenuButtonProps extends IMenuProps {
+export interface IMenuButtonProps extends IMenuProps, IClassProps {
   showMenu: boolean
   headerMode?: string
 }
 
-const MenuOpenButton = ({
+export default function MenuButtonOpen({
   showMenu,
   headerMode = "light",
   onClick,
-}: IMenuButtonProps) => {
-  const [focus, setFocus] = useState(false)
-  const [hover, setHover] = useState(false)
+  className,
+  style,
+}: IMenuButtonProps) {
+  //const [focus, setFocus] = useState(false)
+  //const [hover, setHover] = useState(false)
 
   //const t1 = useRef(null)
   //const t2 = useRef(null)
@@ -136,7 +130,7 @@ const MenuOpenButton = ({
           ref1.current,
           {
             duration: DURATION,
-            attr: { y1: 32, y2: 32 },
+            attr: { y1: Y2, y2: Y2 },
           },
           0
         )
@@ -144,18 +138,18 @@ const MenuOpenButton = ({
           ref3.current,
           {
             duration: DURATION,
-            attr: { y1: 32, y2: 32 },
+            attr: { y1: Y2, y2: Y2 },
           },
           0
         )
-        .to(
-          ref2.current,
-          {
-            duration: DURATION,
-            opacity: 0,
-          },
-          0
-        )
+        // .to(
+        //   ref2.current,
+        //   {
+        //     duration: DURATION,
+        //     opacity: 0,
+        //   },
+        //   0
+        // )
         .to(
           ref1.current,
           {
@@ -196,14 +190,14 @@ const MenuOpenButton = ({
           },
           0
         )
-        .to(
-          ref2.current,
-          {
-            duration: DURATION,
-            opacity: 1,
-          },
-          0
-        )
+        // .to(
+        //   ref2.current,
+        //   {
+        //     duration: DURATION,
+        //     opacity: 1,
+        //   },
+        //   0
+        // )
         .to(
           ref1.current,
           {
@@ -223,48 +217,67 @@ const MenuOpenButton = ({
     }
   }, [showMenu])
 
-  const onMouseEnter: MouseEventHandler = e => {
-    setHover(true)
-  }
+  // function onMouseEnter() {
+  //   setHover(true)
+  // }
 
-  const onMouseLeave: MouseEventHandler = e => {
-    setHover(false)
-  }
+  // function onMouseLeave() {
+  //   setHover(false)
+  // }
 
-  const onFocus: FocusEventHandler = e => {
-    setFocus(true)
-  }
+  // function onFocus() {
+  //   setFocus(true)
+  // }
 
-  const onBlur: FocusEventHandler = e => {
-    setFocus(false)
-  }
-
-  const cls = cn([
-    headerMode === "dark",
-    "stroke-white/80 group-hover:stroke-white",
-    "stroke-slate-600 group-hover:stroke-slate-900",
-  ])
+  // function onBlur() {
+  //   setFocus(false)
+  // }
 
   return (
-    <button
+    <BaseButton
       onClick={onClick}
-      className="group relative h-16 min-w-16 outline-none"
-      aria-label={showMenu ? "Close Menu" : "Open Menu"}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onFocus={onFocus}
-      onBlur={onBlur}
+      className={cn(
+        "trans-ani-300 transition-color relative -ml-3 flex shrink-0 grow-0 flex-row items-center justify-center p-3",
+        [
+          headerMode === "dark",
+          "stroke-white",
+          "stroke-slate-400 hover:stroke-slate-900",
+        ],
+        className
+      )}
+      style={style}
+      ariaLabel={showMenu ? "Close Menu" : "Open Menu"}
+      // onMouseEnter={onMouseEnter}
+      // onMouseLeave={onMouseLeave}
+      // onFocus={onFocus}
+      // onBlur={onBlur}
     >
       {/* <span ref={refl1} className={cn(cls, "top-7")} style={style} />
       <span ref={refl3} className={cn(cls, "top-9")} style={style} /> */}
 
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-        <line ref={ref1} x1={X1} y1={Y1} x2={X2} y2={Y1} className={cls} />
-        <line ref={ref2} x1={X1} y1={Y2} x2={X2} y2={Y2} className={cls} />
-        <line ref={ref3} x1={X1} y1={Y3} x2={X2} y2={Y3} className={cls} />
+      <svg
+        viewBox="0 0 16 16"
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-4 w-4"
+      >
+        <line
+          ref={ref1}
+          x1={X1}
+          y1={Y1}
+          x2={X2}
+          y2={Y1}
+          shapeRendering="crispEdges"
+        />
+        {/* <line ref={ref2} x1={X1} y1={Y2} x2={X2} y2={Y2} className={cls} /> */}
+        <line
+          ref={ref3}
+          x1={X1}
+          y1={Y3}
+          x2={X2}
+          y2={Y3}
+          shapeRendering="crispEdges"
+        />
       </svg>
-    </button>
+    </BaseButton>
   )
 }
-
-export default MenuOpenButton

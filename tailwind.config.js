@@ -12,14 +12,18 @@ module.exports = {
     extend: {
       width: {
         4.5: "1.125rem",
+        15: "3.75rem",
         "1/20": "5%",
         "9/20": "45%",
         "5/100": "5%",
         "15/100": "15%",
         "25/100": "25%",
         "30/100": "30%",
+        "35/100": "35%",
         "40/100": "40%",
+        "45/100": "45%",
         "48/100": "48%",
+        "55/100": "55%",
         "60/100": "60%",
         "64/100": "64%",
         "70/100": "70%",
@@ -30,7 +34,6 @@ module.exports = {
         "95/100": "95%",
         100: "25rem",
         120: "30rem",
-        128: "32rem",
       },
       height: {
         14: "3.5rem",
@@ -104,6 +107,7 @@ module.exports = {
         "2/3": "66.666667%",
       },
       screens: {
+        "2lg": "1152px",
         "2xl": "1440px",
         "3xl": "1600px",
         "4xl": "1800px",
@@ -114,7 +118,6 @@ module.exports = {
         101: "1.01",
         102: "1.02",
         104: "1.04",
-        108: "1.08",
       },
       lineHeight: {
         8: "2rem",
@@ -143,6 +146,7 @@ module.exports = {
       boxShadow: {
         box: "0 0 16px 4px rgba(0, 0, 0, 0.1)",
         box2: "0 0 16px 4px rgba(0, 0, 0, 0.15)",
+        header: "0 4px 16px 0 rgba(0, 0, 0, 0.1)",
       },
       borderWidth: {
         3: "3px",
@@ -168,23 +172,32 @@ module.exports = {
         4: "4px",
       },
       transitionProperty: {
-        'filter': 'filter',
+        filter: "filter",
+        placeholder: "opacity, filter, transform",
       },
       margin: {
-        '18': '4.5rem',
+        18: "4.5rem",
       },
       translate: {
-        'toggle':'8px'
+        toggle: "8px",
       },
       keyframes: {
-        'header-link': {
-          '0%': { opacity: 0},
-          '100%': { opacity: 1, width:'calc(100% - 2rem)' },
-        }
+        "header-links-show": {
+          "0%": { opacity: 0, display: "block" },
+          "100%": { opacity: 1 },
+        },
+        "header-links-hide": {
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0, display: "none" },
+        },
       },
       animation: {
-        'header-link': 'header-link 200ms ease-in-out 200ms forwards',
-      }
+        "header-links-show": "header-links-show 300ms ease-out forwards",
+        "header-links-hide": "header-links-hide 300ms ease-out forwards",
+      },
+      opacity: {
+        98: ".98",
+      },
     },
   },
 	plugins: [],

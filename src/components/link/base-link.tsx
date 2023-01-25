@@ -1,16 +1,16 @@
-import cn from "../../lib/class-names"
+import { Link } from "gatsby"
+import React from "react"
+import IFocusProps from "../../interfaces/focus-props"
 import ILinkProps from "../../interfaces/link-props"
 import IMouseProps from "../../interfaces/mouse-props"
+import cn from "../../lib/class-names"
 import ExtLink from "./ext-link"
-import React from "react"
-import { Link } from "gatsby"
-import IFocusProps from "../../interfaces/focus-props"
 
 interface IProps extends ILinkProps, IMouseProps, IFocusProps {
   underline?: boolean
 }
 
-const BaseLink = ({
+export default function BaseLink({
   href,
   target = "_blank",
   ariaLabel,
@@ -24,15 +24,13 @@ const BaseLink = ({
   onFocus,
   onBlur,
   children,
-}: IProps) => {
+}: IProps) {
   if (!ariaLabel) {
     ariaLabel = `Click to visit ${href}`
   }
 
   // Test if we use the NextJS router link or a regular a for external urls
-  const isExt =
-    href &&
-    (!href.startsWith("/") || href.startsWith("http") || href.startsWith("www"))
+  const isExt = href && (href.startsWith("http") || href.startsWith("www"))
 
   if (isExt) {
     return (
@@ -54,15 +52,11 @@ const BaseLink = ({
       </ExtLink>
     )
   } else {
-    if (!children) {
-      children = <>{href}</>
-    }
-
     return (
       <Link
         to={href}
         aria-label={ariaLabel}
-        className={cn("m-0 p-0", [underline, `hover:underline`], className)}
+        className={cn([underline, `hover:underline`], className)}
         onClick={onClick}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
@@ -76,5 +70,3 @@ const BaseLink = ({
     )
   }
 }
-
-export default BaseLink

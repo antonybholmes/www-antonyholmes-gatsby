@@ -4,6 +4,7 @@ import CloseIcon from "../../icons/close"
 import SearchIcon from "../../icons/search"
 import type IClassProps from "../../interfaces/class-props"
 import cn from "../../lib/class-names"
+import BaseButton from "../link/base-button"
 import VCenterRow from "../v-center-row"
 
 const H = "h-12"
@@ -15,13 +16,13 @@ interface ISearchButtonProps {
 
 function SearchButton({ globalHover, onClick }: ISearchButtonProps) {
   return (
-    <button
+    <BaseButton
       onClick={onClick}
-      aria-label="Search"
-      className="transition-ani flex h-7 w-7 min-w-7 grow-0 flex-row items-center justify-center rounded-full fill-slate-400 transition-colors hover:fill-slate-900"
+      ariaLabel="Search"
+      className="trans-ani-300 flex h-7 w-7 min-w-7 grow-0 flex-row items-center justify-center rounded fill-slate-400 transition-colors hover:fill-slate-900"
     >
       <SearchIcon className="w-4" />
-    </button>
+    </BaseButton>
   )
 }
 
@@ -32,16 +33,16 @@ interface ClearButtonProps {
 
 function ClearButton({ onClick, visible }: ClearButtonProps) {
   return (
-    <button
+    <BaseButton
       className={cn(
-        "transition-ani flex h-7 w-7 min-w-7 grow-0 flex-row items-center justify-center rounded-full stroke-slate-400 transition-colors hover:stroke-slate-900",
+        "trans-ani-300 flex h-7 w-7 min-w-7 grow-0 flex-row items-center justify-center rounded stroke-slate-400 transition-colors hover:stroke-slate-900",
         [visible, "visible", "invisible"]
       )}
       style={{ strokeWidth: "3px" }}
       onClick={onClick}
     >
-      <CloseIcon className="w-4 stroke-4" />
-    </button>
+      <CloseIcon className="w-4 stroke-2" />
+    </BaseButton>
   )
 }
 
@@ -79,6 +80,7 @@ export default function SearchBar({
   function onKeyDown(e: any) {
     if (e.key === "Enter") {
       if (onSearch) {
+        console.group("ssss0", e.target.value)
         onSearch(e.target.value, true)
       }
     }
@@ -109,7 +111,7 @@ export default function SearchBar({
   return (
     <VCenterRow
       className={cn(
-        "transition-ani m-0 gap-x-2 overflow-hidden rounded-lg border border-slate-100 bg-slate-100 py-1.5 pl-3 pr-2 transition hover:border-slate-200 hover:bg-white",
+        "trans-ani-300 m-0 gap-x-2 overflow-hidden rounded-lg border border-slate-100 bg-slate-100 py-1 pl-3 pr-2 transition hover:border-slate-200 hover:bg-white",
         className
       )}
       onMouseEnter={onMouseEnter}
