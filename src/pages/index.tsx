@@ -1,27 +1,31 @@
 import { graphql } from "gatsby"
 import React from "react"
-import BaseCol from "../components/base-col"
-import GatsbyBaseImage from "../components/gatsby-base-image"
 import HCenterCol from "../components/h-center-col"
+import ArrowLink from "../components/link/arrow-link"
 import BaseLink from "../components/link/base-link"
-import BlueButtonArrowLink from "../components/link/blue-button-arrow-link"
+import BlueButtonLink from "../components/link/blue-button-link"
 import BlueLink from "../components/link/blue-link"
+import { OUTLINE_CLS } from "../components/link/outline-rounded-button-link"
+import { SECONDARY_BUTTON_CLS } from "../components/link/secondary-button-link"
 import PostsPage from "../components/pages/posts-page"
+import AvatarImageLarge from "../components/person/avatar-image-large"
 import VCenterCol from "../components/v-center-col"
 import VCenterRow from "../components/v-center-row"
-import { EMAIL } from "../constants"
+import { EMAIL, GITHUB_URL } from "../constants"
 import EnvelopeIcon from "../icons/envelope"
-import LinkIcon from "../icons/link"
+import GitHubIcon from "../icons/github"
 import IDataPageProps from "../interfaces/data-page-props"
 import ContentLayout from "../layouts/content-layout"
 import Seo from "../layouts/seo"
+import cn from "../lib/class-names"
 import { getImageMap } from "../lib/images"
 import { getPagePosts } from "../lib/paginate"
-import { getAuthorUrl } from "../lib/urls"
+import { getAuthorBaseUrl } from "../lib/urls"
 
 export default function Page({ data, location }: IDataPageProps) {
   const allPosts = data.allPosts.nodes
   const meImage = data.meImage
+  const person = data.person
   const imageMap = getImageMap(data.postImages)
   const avatarMap = getImageMap(data.peopleImages)
 
@@ -32,63 +36,20 @@ export default function Page({ data, location }: IDataPageProps) {
     <ContentLayout title="Home" showCrumbs={false} location={location}>
       <></>
       <>
-        <div className="grid grid-cols-1 gap-y-8 xl:grid-cols-2 xl:gap-x-12">
-          <VCenterCol className="h-full items-center gap-y-8">
+        <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2">
+          <VCenterCol className="items-center gap-y-8">
             <BaseLink
-              href={getAuthorUrl("Antony Holmes")}
+              href={getAuthorBaseUrl("Antony Holmes")}
               ariaLabel="View profile"
             >
-              <div className="relative z-10 overflow-hidden rounded-full">
-                <GatsbyBaseImage
-                  src={meImage}
-                  className="transition-ani h-64 w-64 scale-102 transition-transform hover:scale-105"
-                  alt="Antony Holmes"
-                />
-              </div>
+              <AvatarImageLarge
+                author="Antony Holmes"
+                className="h-64 w-64"
+                avatarMap={avatarMap}
+              />
             </BaseLink>
-            <BaseCol className="gap-y-2">
-              <VCenterRow className="group gap-x-2">
-                <EnvelopeIcon className="w-4 fill-slate-500" />
-                <BlueLink href={`mailto:${EMAIL}`}>{EMAIL}</BlueLink>
-              </VCenterRow>
-              <VCenterRow className="group  gap-x-2">
-                <LinkIcon className="w-4 fill-slate-500" />
-                <BlueLink href="https://github.com/antonybholmes">
-                  github.com/antonybholmes
-                </BlueLink>
-              </VCenterRow>
-            </BaseCol>
-          </VCenterCol>
 
-          <VCenterCol className="gap-y-16 bg-gradient-to-br from-slate-50 to-slate-100 p-8 xl:p-16">
-            <HCenterCol className="gap-y-5 text-lg">
-              <h1 className="text-5xl font-semibold">Hi There.</h1>
-
-              <p className="text-center">
-                I'm Antony Holmes, and welcome to my personal website.
-              </p>
-
-              <p className="text-center">
-                That's me in the photo, posing by the Hudson River for no
-                particular reason.
-              </p>
-
-              <p className="text-center">
-                I'm a full stack developer and researcher in New York with
-                experience using Java, Python, React, Gatsby, Next.js, Astro and
-                other tech, some of which was used to make this very site.
-              </p>
-
-              <p className="text-center ">
-                I have an aptly named publications page where you can view all
-                of the scientific literature I have written, primarily focused
-                on cancer genetics.
-              </p>
-
-              <p>My life story probably won't be optioned.</p>
-            </HCenterCol>
-
-            <VCenterRow className="justify-center">
+            {/*<VCenterRow className="justify-center text-sm font-semibold">
               <div className="flex flex-row gap-6">
                 <BlueButtonArrowLink
                   href="/resume"
@@ -96,14 +57,78 @@ export default function Page({ data, location }: IDataPageProps) {
                   text="Resume"
                 />
 
-                <BlueLink
+                 <BlueLink
                   href="/publications"
-                  className="flex flex-row items-center "
+                  className="flex flex-row items-center"
                 >
                   Publications
-                </BlueLink>
+                </BlueLink> 
               </div>
-            </VCenterRow>
+            </VCenterRow>*/}
+          </VCenterCol>
+
+          <VCenterCol className="gap-y-16 font-medium xl:py-16">
+            <HCenterCol className="gap-y-5 text-lg">
+              <h1 className="text-6xl font-extrabold">Hi There.</h1>
+
+              <p className="text-center">
+                I'm Antony Holmes, and welcome to my personal website. That's me
+                in the photo, posing by the Hudson River for no particular
+                reason.
+              </p>
+
+              <p className="text-center">
+                I'm a developer and researcher in New York who learned how to do
+                a few cool things with Java, Python, React, Gatsby, Next.js,
+                Astro and other tech, some of which was used to make what your
+                looking at now.
+              </p>
+
+              <p className="text-center">
+                I made this site with love, mostly to try and get high{" "}
+                <BlueLink href="https://pagespeed.web.dev/">
+                  Lighthouse
+                </BlueLink>{" "}
+                scores and a pass on the{" "}
+                <BlueLink href="https://validator.w3.org/">
+                  Markup Validation Service
+                </BlueLink>
+                . I think I mostly succeeded.
+              </p>
+
+              <p className="text-center">
+                I have an aptly named publications page where you can view all
+                of the scientific literature I have written, primarily focused
+                on cancer genetics.
+              </p>
+
+              <p className="text-center">
+                My life story probably won't be optioned.
+              </p>
+            </HCenterCol>
+
+            <div className="flex flex-col items-center justify-center gap-6  xl:flex-row">
+              <BlueButtonLink
+                href={`mailto:${EMAIL}`}
+                className="w-full gap-x-2 rounded-lg border border-transparent fill-white px-4 py-2.5 font-semibold text-white xl:w-auto"
+              >
+                <EnvelopeIcon className="w-4" />
+                <span>{EMAIL}</span>
+              </BlueButtonLink>
+              <ArrowLink
+                href={GITHUB_URL}
+                className={cn(
+                  OUTLINE_CLS,
+                  SECONDARY_BUTTON_CLS,
+                  "w-full  rounded-lg stroke-slate-900 px-4 py-2.5 font-semibold xl:w-auto"
+                )}
+              >
+                <VCenterRow className="gap-x-2">
+                  <GitHubIcon className="w-4" />
+                  <span>antonybholmes</span>
+                </VCenterRow>
+              </ArrowLink>
+            </div>
           </VCenterCol>
         </div>
         <section className="mt-16 border-t border-slate-200 pt-16">
@@ -186,6 +211,25 @@ export const pageQuery = graphql`
           placeholder: BLURRED
           formats: [AUTO, WEBP, AVIF]
         )
+      }
+    }
+
+    person: markdownRemark(
+      id: { eq: "antony-holmes" }
+      fileAbsolutePath: { regex: "/people/" }
+    ) {
+      id
+      excerpt(format: HTML)
+      html
+      fields {
+        slug
+        date
+      }
+      frontmatter {
+        name
+        title
+        email
+        pubmed
       }
     }
   }

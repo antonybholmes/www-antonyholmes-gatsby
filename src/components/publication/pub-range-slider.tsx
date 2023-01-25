@@ -4,16 +4,7 @@ import HCenterCol from "../h-center-col"
 import SecondaryButton from "../link/secondary-button"
 import VCenterRow from "../v-center-row"
 
-interface IBarProps {
-  x: number
-  y: number
-  width: number
-  height: number
-  isColored: boolean
-  isHighlighted: boolean
-}
-
-function Bar({ x, y, height, width, isColored, isHighlighted }: IBarProps) {
+function Bar({ x, y, height, width, isColored, isHighlighted }) {
   return (
     <rect
       fill={
@@ -27,21 +18,7 @@ function Bar({ x, y, height, width, isColored, isHighlighted }: IBarProps) {
   )
 }
 
-interface IYearSelectorProps {
-  x: number
-  y: number
-  r?: number
-  onMouseUp: any
-  onMouseDown: any
-}
-
-const YearSelector = ({
-  x,
-  y,
-  r = 8,
-  onMouseUp,
-  onMouseDown,
-}: IYearSelectorProps) => {
+function YearSelector({ x, y, r = 8, onMouseUp, onMouseDown }) {
   return (
     <circle
       cx={x}
@@ -52,20 +29,6 @@ const YearSelector = ({
       className="cursor-pointer fill-white stroke-emerald-400 stroke-2"
     />
   )
-}
-
-interface IPubRangeSliderProps {
-  data: { name: string; value: number }[]
-  barWidth?: number
-  barMargin?: number
-  height?: number
-  sliderHeight?: number
-  xMargin?: number
-  yMax?: number
-  r1: number
-  setYear1: any
-  r2: number
-  setYear2: any
 }
 
 export default function PubRangeSlider({
@@ -80,7 +43,7 @@ export default function PubRangeSlider({
   setYear1,
   r2,
   setYear2,
-}: IPubRangeSliderProps) {
+}) {
   const ref = useRef(null)
   const refHint = useRef(null)
   const [highlightIdx, setHighlightIdx] = useState(-1)
@@ -134,19 +97,22 @@ export default function PubRangeSlider({
     window.removeEventListener("mouseup", onMouseUpYear2)
   }
 
-  function onMouseEnter(e: any) {
+  const onMouseEnter = (e: any) => {
     // @ts-ignore
     refHint.current.style.visibility = "visible"
   }
 
   function onMouseMove(e: any) {
-    if (e.offsetY < height) {
+    if (e.nativeEvent.offsetY < height) {
       // @ts-ignore
       refHint.current.style.visibility = "visible"
 
       const idx = Math.max(
         0,
-        Math.min(data.length - 1, Math.floor((e.offsetX - xMargin) / barW))
+        Math.min(
+          data.length - 1,
+          Math.floor((e.nativeEvent.offsetX - xMargin) / barW)
+        )
       )
       const p = idx * barW + halfBarWidth + xMargin
 
@@ -172,7 +138,10 @@ export default function PubRangeSlider({
   function onClick(e: any) {
     const idx = Math.max(
       0,
-      Math.min(data.length - 1, Math.floor((e.offsetX - xMargin) / barW))
+      Math.min(
+        data.length - 1,
+        Math.floor((e.nativeEvent.offsetX - xMargin) / barW)
+      )
     )
 
     setYear1(idx)
@@ -198,7 +167,7 @@ export default function PubRangeSlider({
         // slider for 1 year so only 1 label required
         text1 = (
           <text x={(x1 + x2) / 2} y={y + 25} textAnchor="middle">
-            {data[r1].name}
+            {`${data[r1].name} `}
           </text>
         )
       } else {
@@ -223,10 +192,12 @@ export default function PubRangeSlider({
 
   return (
     <div className="w-full">
-      <VCenterRow className="justify-between">
-        <h2>Years</h2>
-
-        <SecondaryButton onClick={onResetClick} ariaLabel="Reset year range">
+      <VCenterRow className="justify-end">
+        <SecondaryButton
+          onClick={onResetClick}
+          ariaLabel="Reset year range"
+          className="py-1 px-2"
+        >
           Reset
         </SecondaryButton>
       </VCenterRow>

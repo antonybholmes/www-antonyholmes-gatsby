@@ -2,6 +2,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React from "react"
 import type IClassProps from "../interfaces/class-props"
 import IFieldMap from "../interfaces/field-map"
+import cn from "../lib/class-names"
 
 export interface IImageProps extends IClassProps {
   src: any
@@ -24,7 +25,7 @@ export default function GatsbyBaseImage({
     <GatsbyImage
       //@ts-ignore
       image={image}
-      className={className}
+      className={cn("trans-ani-700 transition-placeholder", className)}
       style={style}
       imgClassName={imgClassName}
       imgStyle={imgStyle}

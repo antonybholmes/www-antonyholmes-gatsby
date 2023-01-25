@@ -1,6 +1,7 @@
 import cn from "../../lib/class-names"
 import ILinkProps from "../../interfaces/link-props"
 import BaseLink from "./base-link"
+import React from "react"
 
 export default function WhiteLink({
   href,

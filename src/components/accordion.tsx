@@ -1,7 +1,7 @@
-import { MouseEventHandler, useState } from "react"
+import React, { useState } from "react"
 import IChildrenProps from "../interfaces/children-props"
+import AccordionButton from "./accordion-button"
 import ExpandDetails from "./expand-details"
-import ExpandTabButton from "./expand-tab-button"
 
 interface IProps extends IChildrenProps {
   title: string
@@ -9,9 +9,9 @@ interface IProps extends IChildrenProps {
   onClick?: (e: MouseEvent) => void
 }
 
-export default function ExpandTab({
+export default function Accordion({
   title,
-  isExpanded = true,
+  isExpanded = false,
   className,
   children,
   onClick,
@@ -30,11 +30,13 @@ export default function ExpandTab({
 
   return (
     <div className={className}>
-      <ExpandTabButton isExpanded={status} onClick={_onClick}>
+      <AccordionButton isExpanded={status} onClick={_onClick}>
         {title}
-      </ExpandTabButton>
+      </AccordionButton>
 
-      <ExpandDetails isExpanded={status}>{children}</ExpandDetails>
+      <ExpandDetails isExpanded={status}>
+        <div className="px-4 py-2">{children}</div>
+      </ExpandDetails>
     </div>
   )
 }

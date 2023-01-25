@@ -1,41 +1,81 @@
-import { useEffect, useRef, useState } from "react"
-import useWindowResize from "../hooks/use-window-resize"
-import cn from "../lib/class-names"
-import IChildrenProps from "../interfaces/children-props"
+import { gsap, Power3 } from "gsap"
 import React from "react"
+import { useEffect, useRef } from "react"
+import { ANIMATION_DURATION_S } from "../constants"
+import IChildrenProps from "../interfaces/children-props"
+import cn from "../lib/class-names"
+
+const OPACITY_ANIMATION_S = 2 * ANIMATION_DURATION_S
 
 interface IProps extends IChildrenProps {
-  expanded: boolean
+  isExpanded: boolean
 }
 
-const ExpandDetails = ({ expanded = true, className, children }: IProps) => {
-  const [height, setHeight] = useState(expanded ? "auto" : "0px")
-  const ref = useRef(null)
+export default function ExpandDetails({
+  isExpanded = true,
+  className,
+  children,
+}: IProps) {
+  const containerRef = useRef(null)
+  const innerRef = useRef(null)
+  const didMount = useRef(false)
 
   useEffect(() => {
-    // @ts-ignore
-    setHeight(`${ref.current.scrollHeight}px`)
-  }, [])
+    gsap
+      .timeline()
+      .to(
+        containerRef.current,
+        {
+          duration: ANIMATION_DURATION_S,
+          height: isExpanded
+            ? didMount.current
+              ? `${containerRef.current.scrollHeight}px`
+              : "auto"
+            : 0,
 
-  useWindowResize((e: { width: number; height: number }) => {
-    // @ts-ignore
-    setHeight(`${ref.current.scrollHeight}px`)
-  })
+          ease: Power3.easeOut,
+        },
+        0
+      )
+      // .to(
+      //   containerRef.current,
+      //   {
+      //     duration: OPACITY_ANIMATION_S,
+      //     opacity: isExpanded ? 1 : 0,
+      //     ease: Power3.easeOut,
+      //   },
+      //   0
+      // )
+      .to(
+        innerRef.current,
+        {
+          duration: ANIMATION_DURATION_S,
+          y: isExpanded
+            ? 0
+            : didMount.current
+            ? `-${containerRef.current.scrollHeight}px`
+            : 0,
+          ease: Power3.easeOut,
+        },
+        0
+      )
+
+    // .to(
+    //   ref.current,
+    //   {
+    //     duration: OPACITY_ANIMATION_S,
+    //     opacity: isExpanded ? 1 : 0,
+    //     ease: Power3.easeOut,
+    //   },
+    //   0
+    // )
+
+    didMount.current = true
+  }, [isExpanded])
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "transition-ani overflow-hidden transition-transform",
-        className
-      )}
-      style={{ height: expanded ? height : "0px" }}
-    >
-      {/* <div className={expanded ? 'block': 'hidden'}> */}
-      {children}
-      {/* </div> */}
+    <div ref={containerRef} className={cn("overflow-hidden", className)}>
+      <div ref={innerRef}>{children}</div>
     </div>
   )
 }
-
-export default ExpandDetails

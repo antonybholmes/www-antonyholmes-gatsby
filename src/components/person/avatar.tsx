@@ -2,11 +2,11 @@ import React from "react"
 import IClassProps from "../../interfaces/class-props"
 import IFieldMap from "../../interfaces/field-map"
 import cn from "../../lib/class-names"
-import { getAuthorUrl } from "../../lib/urls"
-import AvatarImage from "./avatar-image"
+import { getAuthorBaseUrl } from "../../lib/urls"
 import BaseCol from "../base-col"
 import BaseLink from "../link/base-link"
 import VCenterRow from "../v-center-row"
+import AvatarImage from "./avatar-image"
 
 interface IProps extends IClassProps {
   author: string
@@ -22,7 +22,7 @@ const Avatar = ({
   isSmall = false,
   className,
 }: IProps) => {
-  const href = getAuthorUrl(author)
+  const href = getAuthorBaseUrl(author)
 
   return (
     <VCenterRow className={cn("gap-x-3", className)}>

@@ -1,3 +1,4 @@
+import React from "react"
 import { MouseEvent } from "react"
 import useMouseUpListener from "../../hooks/use-mouseup-listener"
 import type IAriaProps from "../../interfaces/aria-props"

@@ -9,6 +9,7 @@ export interface IAvatarProps extends IClassProps {
   author: string
   avatarMap: IFieldMap
   lazy?: boolean
+  containerClassName?: string
   imgClassName?: string
 }
 
@@ -23,15 +24,20 @@ const AvatarImage = ({
   avatarMap,
   size = [320, 320],
   className,
+  containerClassName,
   imgClassName,
 }: IProps) => {
   return (
-    <GatsbyBaseImage
-      src={avatarMap[getUrlFriendlyTag(author)]}
-      alt={`Picture of ${author}`}
-      className={cn("relative z-10 rounded-full", className)}
-      imgClassName={cn("rounded-full", imgClassName)}
-    />
+    <div
+      className={cn("relative z-10 overflow-hidden rounded-full", className)}
+    >
+      <GatsbyBaseImage
+        src={avatarMap[getUrlFriendlyTag(author)]}
+        alt={`Picture of ${author}`}
+        className={cn("h-full w-full", containerClassName)}
+        imgClassName={cn("rounded-full w-full h-full", imgClassName)}
+      />
+    </div>
   )
 }
 

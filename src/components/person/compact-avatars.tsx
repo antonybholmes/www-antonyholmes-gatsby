@@ -2,10 +2,10 @@ import React from "react"
 import IClassProps from "../../interfaces/class-props"
 import IFieldMap from "../../interfaces/field-map"
 import cn from "../../lib/class-names"
-import { getAuthorUrl } from "../../lib/urls"
-import AvatarImage from "./avatar-image"
+import { getAuthorBaseUrl } from "../../lib/urls"
 import BaseLink from "../link/base-link"
 import VCenterRow from "../v-center-row"
+import AvatarImage from "./avatar-image"
 
 interface IProps extends IClassProps {
   authors: string[]
@@ -28,7 +28,7 @@ const CompactAvatars = ({
         {authors.map((author, index) => (
           <li key={index}>
             <BaseLink
-              href={getAuthorUrl(author)}
+              href={getAuthorBaseUrl(author)}
               ariaLabel={`View more posts by ${author}`}
             >
               <AvatarImage
@@ -49,7 +49,7 @@ const CompactAvatars = ({
       {authors.map((author, index) => (
         <li key={index}>
           <BaseLink
-            href={getAuthorUrl(author)}
+            href={getAuthorBaseUrl(author)}
             ariaLabel={`View more posts by ${author}`}
             underline={true}
           >
@@ -64,3 +64,6 @@ const CompactAvatars = ({
 )
 
 export default CompactAvatars
+function getAuthorUrl(author: string): string {
+  throw new Error("Function not implemented.")
+}

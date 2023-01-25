@@ -8,6 +8,8 @@ import BaseLink from "./link/base-link"
 import ToBlackLink from "./link/to-black-link"
 import VCenterRow from "./v-center-row"
 
+const EXCLUDE = ["Tag", "Section", "Page"]
+
 interface BreadcrumbProps extends IClassProps, ICrumbProps {}
 
 export default function Breadcrumb({
@@ -38,11 +40,11 @@ export default function Breadcrumb({
 
     ret.push(
       <li key={`divider-${i}`} className="group flex flex-row gap-x-2">
-        <BreadcrumbChevronIcon className="transition-ani transition-color w-4 stroke-slate-400 group-hover:translate-x-0.5 group-hover:stroke-slate-900" />
+        <BreadcrumbChevronIcon className="trans-ani-300 transition-color w-4 stroke-slate-400 group-hover:translate-x-0.5 group-hover:stroke-slate-900" />
         <BaseLink
           href={crumb[1]}
           ariaLabel={`Visit ${crumb[0]}`}
-          className="transition-ani transition-color text-blue-600 group-hover:text-slate-900"
+          className="trans-ani-300 transition-color text-blue-600 group-hover:text-slate-900"
         >
           {crumb[0]}
         </BaseLink>
@@ -54,7 +56,7 @@ export default function Breadcrumb({
     <VCenterRow>
       <ul
         className={cn(
-          "flex flex-row flex-nowrap items-center gap-x-2 text-sm font-bold",
+          "flex flex-row flex-nowrap items-center gap-x-2 text-sm font-semibold",
           className
         )}
       >

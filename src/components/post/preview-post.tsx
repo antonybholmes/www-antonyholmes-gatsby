@@ -11,7 +11,7 @@ import PostCategoryLink from "./post-category-link"
 import PostTitleLink from "./post-title-link"
 
 interface IProps extends IPostWithAvatarProps {
-  imageClassName?: string
+  imgClassName?: string
   headerClassName?: string
   innerClassName?: string
   contentClassName?: string
@@ -27,7 +27,7 @@ export default function PreviewPost({
   image,
   avatarMap,
   className,
-  imageClassName = "h-64 md:h-72",
+  imgClassName = "h-64 md:h-72",
   headerClassName = "text-2xl md:text-4xl",
   innerClassName,
   contentClassName,
@@ -40,7 +40,7 @@ export default function PreviewPost({
   return (
     <article className={cn("flex flex-col gap-y-4", className)}>
       {image && (
-        <PostImage post={post} image={image} className={imageClassName} />
+        <PostImage post={post} image={image} className={imgClassName} />
       )}
 
       <BaseCol className={cn("gap-y-2", innerClassName)}>

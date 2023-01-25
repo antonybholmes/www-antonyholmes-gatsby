@@ -1,3 +1,4 @@
+import React from "react"
 import type ILinkProps from "../../interfaces/link-props"
 import BaseLink from "./base-link"
 

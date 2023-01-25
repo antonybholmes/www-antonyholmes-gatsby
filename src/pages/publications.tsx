@@ -540,6 +540,11 @@ export default function Page({ data, location }: IDataPageProps) {
             />
           </HCenterRow>
         )}
+
+        <HCenterCol className="mt-32 items-center gap-y-2">
+          <span>See more on</span>
+          <PubMedLink person={person} />
+        </HCenterCol>
       </div>
 
       <BaseCol className="gap-y-6 text-sm">
@@ -590,11 +595,6 @@ export default function Page({ data, location }: IDataPageProps) {
           onClick={onAuthorClick}
           max={8}
         />
-
-        <HCenterCol className="gap-y-2">
-          <p>See more on</p>
-          <PubMedLink person={person} />
-        </HCenterCol>
       </BaseCol>
     </ThreeQuarterLayout>
   )

@@ -1,4 +1,3 @@
-import React from "react"
 import IChildrenProps from "../../interfaces/children-props"
 
 const PostTitle = ({ children }: IChildrenProps) => (

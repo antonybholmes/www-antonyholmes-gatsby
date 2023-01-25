@@ -1,4 +1,3 @@
-import React from "react"
 import IPostsProps from "../../interfaces/posts-props"
 import { getCategoryBaseUrl } from "../../lib/urls"
 import BaseLink from "../link/base-link"
@@ -6,17 +5,11 @@ import BaseCategoryPosts from "./base-category-posts"
 import PostsHeader from "./posts-header"
 
 interface IProps extends IPostsProps {
-  section: string
+  category: string
   rightMode?: boolean
 }
 
-const CategoryPosts = ({
-  section: category,
-  posts,
-  imageMap,
-  avatarMap,
-  rightMode = false,
-}: IProps) => (
+const CategoryPosts = ({ category, posts, rightMode = false }: IProps) => (
   <section className="mt-8">
     <PostsHeader>
       <BaseLink
@@ -27,12 +20,7 @@ const CategoryPosts = ({
       </BaseLink>
     </PostsHeader>
 
-    <BaseCategoryPosts
-      posts={posts}
-      rightMode={rightMode}
-      imageMap={imageMap}
-      avatarMap={avatarMap}
-    />
+    <BaseCategoryPosts posts={posts} rightMode={rightMode} />
   </section>
 )
 

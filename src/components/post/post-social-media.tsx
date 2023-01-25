@@ -1,16 +1,16 @@
-import { getPostUrl } from "../../lib/posts"
 import cn from "../../lib/class-names"
 import IPostProps from "../../interfaces/post-props"
 import FacebookIcon from "../../icons/facebook"
 import LinkedInIcon from "../../icons/linkedin"
 import TwitterIcon from "../../icons/twitter"
 import BaseLink from "../link/base-link"
+import { getPostUrl } from "../../lib/urls"
 import React from "react"
 
 export const CLS_TEXT_GRAY_HOVER = "w-6"
 
 export const CLS_SOCIAL_ICON =
-  "fill-slate-300 hover:fill-blue-400 transition-ani transition-color border border-slate-200 rounded-full flex flex-row items-center justify-center w-10 h-10"
+  "fill-slate-300 hover:fill-blue-400 trans-ani-300 transition-color border border-slate-200 rounded-full flex flex-row items-center justify-center w-10 h-10"
 
 const PostSocialMedia = ({ post, className }: IPostProps) => {
   const url = getPostUrl(post.fields.slug)

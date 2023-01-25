@@ -11,12 +11,12 @@ interface IProps extends IPostProps {
   showSections?: boolean
 }
 
-const PostCategoryLink = ({
+export default function PostCategoryLink({
   post,
-  textSize = "text-2xl md:text-lg",
+  textSize = "text-xl md:text-lg",
   showSections = false,
   className,
-}: IProps) => {
+}: IProps) {
   const items: any[] = []
 
   post.frontmatter.categories.sort().forEach((category, index) => {
@@ -32,30 +32,30 @@ const PostCategoryLink = ({
       )
     }
 
-    const sections = category.split("/")
+    const path = category.split("/")
 
     items.push(
       <li key={items.length}>
-        <VCenterRow className="gap-x-1">
+        <VCenterRow className="gap-x-2">
           <BaseLink
-            href={getCategoryBaseUrl(sections[0])}
-            ariaLabel={`Read more ${sections[0]} posts`}
+            href={getCategoryBaseUrl(path[0])}
+            ariaLabel={`Read more ${path[0]} posts`}
             underline={true}
             className={cn(
-              "bg-gradient-to-r from-purple-500 to-red-500 bg-clip-text font-bold text-transparent",
+              "bg-gradient-to-r from-violet-500 to-red-500 bg-clip-text font-bold text-transparent",
               textSize,
               className
             )}
           >
-            {sections[0]}
+            {path[0]}
           </BaseLink>
 
-          {showSections && sections.length > 1 && (
+          {showSections && path.length > 1 ? (
             <>
               {/* <span className="text-white">/</span> */}
-              <BreadcrumbChevronIcon className="w-4 stroke-white" />
+              <BreadcrumbChevronIcon className="w-4 stroke-slate-500 stroke-1" />
               <BaseLink
-                href={getSectionBaseUrl(sections[0], sections[1])}
+                href={getSectionBaseUrl(path[0], path[1])}
                 ariaLabel={`Read more ${category} posts`}
                 underline={true}
                 className={cn(
@@ -64,9 +64,11 @@ const PostCategoryLink = ({
                   className
                 )}
               >
-                {sections[1]}
+                {path[1]}
               </BaseLink>
             </>
+          ) : (
+            <></>
           )}
         </VCenterRow>
       </li>
@@ -75,5 +77,3 @@ const PostCategoryLink = ({
 
   return <ul className="flex flex-row items-center gap-x-2">{items}</ul>
 }
-
-export default PostCategoryLink

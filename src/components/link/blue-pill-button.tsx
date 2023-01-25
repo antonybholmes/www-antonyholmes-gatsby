@@ -3,6 +3,7 @@ import { BLUE_BUTTON_CLS } from "./blue-button-link"
 import type { IButtonProps } from "./base-button"
 import { COLOR_BUTTON_CLS } from "./color-button-link"
 import PillButton from "./pill-button"
+import React from "react"
 
 export default function BluePillButton({
   onClick,
