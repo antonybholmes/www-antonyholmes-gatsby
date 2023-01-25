@@ -1,4 +1,3 @@
-import React from "react"
 import type IUnderlineLinkProps from "../../interfaces/underline-link-props"
 import cn from "../../lib/class-names"
 import ArrowLink from "./arrow-link"

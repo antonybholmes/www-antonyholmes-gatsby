@@ -1,11 +1,8 @@
-import { gsap } from "gsap"
-import React, { useRef } from "react"
-import { useEffect } from "react"
-import { ANIMATION_DURATION_MS } from "../../constants"
-import LogoIcon from "../../icons/logo-icon-com"
+import React from "react"
+import SmallLogoIcon from "../../icons/logo-icon-small"
 import cn from "../../lib/class-names"
-import HCenterRow from "../h-center-row"
 import BaseLink from "../link/base-link"
+import VCenterRow from "../v-center-row"
 import IHeaderProps from "./header-props"
 import MenuOpenButton from "./menu-button-open"
 import MenuLinks from "./menu-links"
@@ -21,76 +18,125 @@ export default function MenuOverlay({
   showMenu,
   onClick,
 }: IMenuOverlayProps) {
-  const ref1 = useRef(null)
-  const ref2 = useRef(null)
-
-  useEffect(() => {
-    if (showMenu) {
-      // @ts-ignore
-      gsap
-        .timeline()
-        .from(
-          ref1.current,
-          {
-            duration: ANIMATION_DURATION_MS,
-            opacity: 0,
-          },
-          0
-        )
-        .from(
-          ref1.current,
-          {
-            x: "-2rem",
-            duration: ANIMATION_DURATION_MS,
-          },
-          0
-        )
-    }
-  }, [showMenu])
+  // const overlayRef = useRef(null)
+  // const sideMenuRef = useRef(null)
 
   // useEffect(() => {
-  //   if (!isFirstRun.current) {
-  //     if (showMenu) {
-  //       // @ts-ignore
-  //       t2.current.pause()
-  //       // @ts-ignore
-  //       t1.current.restart()
-  //     } else {
-  //       // @ts-ignore
-  //       t1.current.pause()
-  //       // @ts-ignore
-  //       t2.current.restart()
-  //     }
+  //   if (showMenu) {
+  //     gsap
+  //       .timeline()
+  //       .set(overlayRef.current, {
+  //         visibility: "visible",
+  //       })
+  //       .to(
+  //         overlayRef.current,
+  //         {
+  //           duration: ANIMATION_DURATION_S,
+  //           opacity: 1,
+  //           ease: Power3.easeOut,
+  //         },
+  //         0
+  //       )
+  //       .to(
+  //         sideMenuRef.current,
+  //         {
+  //           duration: ANIMATION_DURATION_S,
+  //           opacity: 1,
+  //           ease: Power3.easeOut,
+  //         },
+  //         0
+  //       )
+  //       .to(
+  //         sideMenuRef.current,
+  //         {
+  //           x: 0,
+  //           duration: ANIMATION_DURATION_S,
+  //           ease: Power3.easeOut,
+  //         },
+  //         0
+  //       )
+  //   } else {
+  //     gsap
+  //       .timeline()
+  //       .to(
+  //         overlayRef.current,
+  //         {
+  //           duration: ANIMATION_DURATION_S,
+  //           opacity: 0,
+  //           ease: Power3.easeOut,
+  //         },
+  //         0
+  //       )
+  //       .to(
+  //         overlayRef.current,
+  //         {
+  //           duration: ANIMATION_DURATION_S,
+  //           opacity: 0,
+  //           ease: Power3.easeOut,
+  //         },
+  //         0
+  //       )
+  //       .to(
+  //         sideMenuRef.current,
+  //         {
+  //           duration: ANIMATION_DURATION_S,
+  //           opacity: 0,
+  //           ease: Power3.easeOut,
+  //         },
+  //         0
+  //       )
+  //       .to(
+  //         sideMenuRef.current,
+  //         {
+  //           x: "-4rem",
+  //           duration: ANIMATION_DURATION_S,
+  //           ease: Power3.easeOut,
+  //         },
+  //         0
+  //       )
+  //       .set(overlayRef.current, {
+  //         visibility: "hidden",
+  //       })
   //   }
-
-  //   isFirstRun.current = false
   // }, [showMenu])
 
   return (
     <div
+      //ref={overlayRef}
       className={cn(
-        "fixed left-0 top-0 z-100 flex h-screen w-full flex-row bg-black/50 backdrop-blur-sm"
+        "fixed left-0 top-0 z-100 flex h-screen w-full flex-row bg-black/70 backdrop-blur-sm overflow-hidden",
+        [
+          showMenu,
+          "overlay-show opacity-100 visible",
+          "overlay-hide opacity-0 invisible",
+        ]
       )}
     >
-      <div ref={ref1} className=" h-full w-3/4 bg-white py-2">
-        {/* <MenuOpenButton showMenu={showMenu} onClick={onClick} />
-
-        <div className="mt-2 mr-2 w-full">
-          <MenuLinks title={title} tab={tab} onClick={onClick} />
-        </div> */}
-        <BaseLink href="/">
-          <LogoIcon className="mx-8 mt-1 mb-4" />
-        </BaseLink>
-        <MenuLinks title={title} tab={tab} onClick={onClick} />
+      <div
+        //ref={sideMenuRef}
+        className={cn(
+          "h-full w-72 bg-white trans-ani-300 transition-translation",
+          [showMenu, "ml-0", "-ml-8"]
+        )}
+      >
+        <VCenterRow className="gap-x-2 px-5 py-3">
+          <MenuOpenButton showMenu={showMenu} onClick={onClick} />
+          <div>
+            <BaseLink href="/">
+              <SmallLogoIcon className="shrink-0" />
+            </BaseLink>
+          </div>
+        </VCenterRow>
+        <MenuLinks title={title} tab={tab} onClick={onClick} className="grow" />
       </div>
-      <div ref={ref2} onClick={onClick} className="h-full">
-        <HCenterRow>
+      <div onClick={onClick} className="h-full grow">
+        {/* <HCenterRow>
           <MenuOpenButton
             showMenu={showMenu}
             onClick={onClick}
             headerMode="dark"
           />
-        </HCenterRow>
+        </HCenterRow>  */}
       </div>
     </div>
   )

@@ -1,7 +1,6 @@
 import cn from "../../lib/class-names"
 import type IUnderlineLinkProps from "../../interfaces/underline-link-props"
 import BaseLink from "./base-link"
-import React from "react"
 
 export default function ToBlueLink({
   href,
@@ -16,7 +15,7 @@ export default function ToBlueLink({
       ariaLabel={ariaLabel}
       underline={underline}
       className={cn(
-        `transition-ani transition-colors hover:text-blue-600`,
+        `trans-ani-300 transition-colors hover:text-blue-600`,
         className
       )}
     >

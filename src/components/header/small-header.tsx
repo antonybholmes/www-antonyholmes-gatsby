@@ -1,14 +1,21 @@
 import BaseLink from "../link/base-link"
 import MenuOpenButton from "./menu-button-open"
 //import Search from '../search/search'
-import React from "react"
-import LogoIcon from "../../icons/logo-icon-com"
-import HCenterRow from "../h-center-row"
+import LogoIcon from "../../icons/logo-icon-small"
+import VCenterRow from "../v-center-row"
 import IHeaderProps from "./header-props"
-import MenuOverlay, { IMenuOverlayProps } from "./menu-overlay"
+import { IMenuOverlayProps } from "./menu-overlay"
+import React from "react"
 
 interface IProps extends IHeaderProps, IMenuOverlayProps {}
-function SmallHeader({ title, tab, headerMode, showMenu, onClick }: IProps) {
+
+export default function SmallHeader({
+  title,
+  tab,
+  headerMode,
+  showMenu,
+  onClick,
+}: IProps) {
   //const isFirstRun = useRef(true)
 
   // useEffect(() => {
@@ -41,35 +48,19 @@ function SmallHeader({ title, tab, headerMode, showMenu, onClick }: IProps) {
   // }, [showMenu])
 
   return (
-    <>
-      {showMenu && (
-        <MenuOverlay
-          title={title}
-          tab={tab}
-          showMenu={showMenu}
+    <nav className="w-full xl:hidden">
+      <VCenterRow>
+        <MenuOpenButton
           onClick={onClick}
+          showMenu={showMenu}
+          headerMode={headerMode}
+          style={{ marginBottom: "-1px" }}
         />
-      )}
-      <nav className="w-full md:hidden">
-        <div className="grid h-16 w-full grid-cols-5 items-center">
-          <div>
-            <MenuOpenButton
-              onClick={onClick}
-              showMenu={showMenu}
-              headerMode={headerMode}
-            />
-          </div>
 
-          <HCenterRow className="col-span-3 items-center">
-            <BaseLink href="/" ariaLabel="Goto Homepage">
-              <LogoIcon headerMode={headerMode} />
-            </BaseLink>
-          </HCenterRow>
-          <div></div>
-        </div>
-      </nav>
-    </>
+        <BaseLink href="/" ariaLabel="Goto Homepage">
+          <LogoIcon headerMode={headerMode} style={{ marginBottom: "-1px" }} />
+        </BaseLink>
+      </VCenterRow>
+    </nav>
   )
 }
-
-export default SmallHeader

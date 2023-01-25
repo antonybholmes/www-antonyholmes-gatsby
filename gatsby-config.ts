@@ -30,9 +30,9 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-transformer-remark",
       options: {
-        "excerpt_separator": `<!-- end -->`,
+        excerpt_separator: `<!-- end -->`,
         plugins: [
-          'gatsby-remark-reading-time',
+          "gatsby-remark-reading-time",
           {
             resolve: `gatsby-remark-prismjs`,
             options: {},
@@ -94,6 +94,77 @@ const config: GatsbyConfig = {
     "gatsby-transformer-json",
     "gatsby-plugin-sass",
     "gatsby-plugin-postcss",
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.nodes
+                .map((node:any) => {
+                  const match = node.fields.slug.match(
+                    /(\d{4})-(\d{2})-(\d{2})/
+                  )
+                  const date = match
+                    ? match.slice(1, 4).join("-")
+                    : "2022-01-01"
+                  return {
+                    ...node,
+                    fields: {
+                      ...node.fields,
+                      date,
+                    },
+                  }
+                })
+                .sort(
+                  (a: any, b: any) =>
+                    new Date(b.fields.date) - new Date(a.fields.date)
+                )
+                .map((node: any) => {
+                  return Object.assign({}, node.frontmatter, {
+                    description: node.excerpt,
+                    date: node.fields.date,
+                    url: site.siteMetadata.siteUrl + '/blog/' + node.fields.slug,
+                    guid: site.siteMetadata.siteUrl + '/blog/' + node.fields.slug,
+                    //custom_elements: [{ "content:encoded": node.html }],
+                  })
+                })
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  filter: { fileAbsolutePath: { regex: "/posts/" } }
+                ) {
+                    nodes {
+                      excerpt
+                      fields {
+                        slug
+                      }
+                      frontmatter {
+                        title
+                      }
+                    }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: `Antony Holmes RSS Feed`,
+          },
+        ],
+      },
+    },
   ],
 }
 

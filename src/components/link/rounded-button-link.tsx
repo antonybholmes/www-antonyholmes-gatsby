@@ -1,4 +1,3 @@
-import React from "react"
 import type ILinkProps from "../../interfaces/link-props"
 import cn from "../../lib/class-names"
 import ButtonLink from "./button-link"

@@ -1,4 +1,3 @@
-import React from "react"
 import ILinkProps from "../../interfaces/link-props"
 import BaseLink from "./base-link"
 

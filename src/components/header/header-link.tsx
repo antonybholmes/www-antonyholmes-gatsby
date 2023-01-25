@@ -1,21 +1,20 @@
-import { useEffect, useRef, useState } from "react"
-import { gsap } from "gsap"
+import React from "react"
+import ILink from "../../interfaces/link"
 import cn from "../../lib/class-names"
 import BaseLink from "../link/base-link"
-import ILink from "../../interfaces/link"
-import React from "react"
 import VCenterCol from "../v-center-col"
 
-const DURATION = 0.5
-const BAR_WIDTH = "3px"
+//const DURATION = 0.5
+//const BAR_WIDTH = "3px"
 
 export const LINK_CLS = cn(
-  "font-bold",
+  "font-semibold",
   "text-sm",
   "px-2",
-  "py-2",
+  "h-10",
+  "justify-center",
   "whitespace-nowrap",
-  "transition-ani",
+  "trans-ani-300",
   "transition-colors",
   "whitespace-nowrap",
   "rounded-lg",
@@ -36,146 +35,130 @@ export default function HeaderLink({
   scrollY,
   headerMode = "light",
 }: IProps) {
-  const ref = useRef(null)
-  const [hover, setHover] = useState(false)
-  const [down, setDown] = useState(false)
+  // const ref = useRef(null)
+  // const [hover, setHover] = useState(false)
+  //const [down, setDown] = useState(false)
 
-  const isFirstRun = useRef(true)
-  const t1 = useRef(null)
-  const t2 = useRef(null)
+  // const isFirstRun = useRef(true)
+  // const t1 = useRef(null)
+  // const t2 = useRef(null)
 
-  const onMouseEnter = () => {
-    if (!selected) {
-      setHover(true)
-    }
-  }
+  // useEffect(() => {
+  //   // @ts-ignore
+  //   t1.current = gsap
+  //     .timeline({ paused: true })
+  //     .to(
+  //       ref.current,
+  //       {
+  //         x: "-100%",
+  //         width: "100%",
+  //         duration: 0,
+  //       },
+  //       0
+  //     )
+  //     .to(
+  //       ref.current,
+  //       {
+  //         x: 0,
+  //         duration: DURATION,
+  //         ease: "power3.out",
+  //       },
+  //       0
+  //     )
+  //     .to(
+  //       ref.current,
+  //       {
+  //         x: 10,
+  //         duration: DURATION,
+  //         ease: "power3.out",
+  //       },
+  //       0.2
+  //     )
 
-  const onMouseLeave = () => {
-    if (!selected) {
-      setHover(false)
-    }
-  }
+  //     .to(
+  //       ref.current,
+  //       {
+  //         x: 0,
+  //         duration: DURATION,
+  //         ease: "power3.out",
+  //       },
+  //       0.4
+  //     )
+  //     .to(
+  //       ref.current,
+  //       {
+  //         width: "95%",
+  //         duration: DURATION,
+  //         ease: "power3.out",
+  //       },
+  //       0.5
+  //     )
+  //     .to(
+  //       ref.current,
+  //       {
+  //         width: "100%",
+  //         duration: DURATION,
+  //         ease: "power3.out",
+  //       },
+  //       0.7
+  //     )
 
-  useEffect(() => {
-    // @ts-ignore
-    t1.current = gsap
-      .timeline({ paused: true })
-      .to(
-        ref.current,
-        {
-          x: "-100%",
-          width: "100%",
-          duration: 0,
-        },
-        0
-      )
-      .to(
-        ref.current,
-        {
-          x: 0,
-          duration: DURATION,
-          ease: "power3.out",
-        },
-        0
-      )
-      .to(
-        ref.current,
-        {
-          x: 10,
-          duration: DURATION,
-          ease: "power3.out",
-        },
-        0.2
-      )
+  //   // @ts-ignore
+  //   t2.current = gsap.timeline({ paused: true }).to(
+  //     ref.current,
+  //     {
+  //       x: "110%",
+  //       duration: DURATION,
+  //       ease: "power3.out",
+  //     },
+  //     0
+  //   )
+  // }, [])
 
-      .to(
-        ref.current,
-        {
-          x: 0,
-          duration: DURATION,
-          ease: "power3.out",
-        },
-        0.4
-      )
-      .to(
-        ref.current,
-        {
-          width: "95%",
-          duration: DURATION,
-          ease: "power3.out",
-        },
-        0.5
-      )
-      .to(
-        ref.current,
-        {
-          width: "100%",
-          duration: DURATION,
-          ease: "power3.out",
-        },
-        0.7
-      )
+  // useEffect(() => {
+  //   if (!isFirstRun.current) {
+  //     if (hover) {
+  //       // @ts-ignore
+  //       t2.current.pause()
+  //       // @ts-ignore
+  //       t1.current.restart()
+  //     } else {
+  //       // @ts-ignore
+  //       t1.current.pause()
+  //       // @ts-ignore
+  //       t2.current.restart()
+  //     }
+  //   }
 
-    // @ts-ignore
-    t2.current = gsap.timeline({ paused: true }).to(
-      ref.current,
-      {
-        x: "110%",
-        duration: DURATION,
-        ease: "power3.out",
-      },
-      0
-    )
-  }, [])
-
-  useEffect(() => {
-    if (!isFirstRun.current) {
-      if (hover) {
-        // @ts-ignore
-        t2.current.pause()
-        // @ts-ignore
-        t1.current.restart()
-      } else {
-        // @ts-ignore
-        t1.current.pause()
-        // @ts-ignore
-        t2.current.restart()
-      }
-    }
-
-    isFirstRun.current = false
-  }, [hover])
+  //   isFirstRun.current = false
+  // }, [hover])
 
   return (
     <BaseLink
       href={link.url}
       ariaLabel={`View ${link.name}`}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onMouseDown={() => setDown(true)}
-      onMouseUp={() => setDown(false)}
+      // onMouseEnter={onMouseEnter}
+      // onMouseLeave={onMouseLeave}
+      // onMouseDown={() => setDown(true)}
+      // onMouseUp={() => setDown(false)}
     >
-      <VCenterCol className="group relative h-16 justify-center overflow-hidden">
-        <div
-          className={cn(LINK_CLS, [
-            selected,
-            [headerMode === "dark", "text-slate-50", "text-blue-600"],
-            [
-              headerMode === "dark",
-              [[down, "bg-white/10"], "text-white/60 group-hover:text-white"],
-              [
-                [down, "border-blue-500 bg-gray-100"],
-                "text-slate-500 group-hover:text-slate-900",
-              ],
-            ],
-          ])}
-        >
-          {link.name}
-        </div>
-        <div
+      <VCenterCol
+        className={cn(LINK_CLS, [
+          selected,
+          [headerMode === "dark", "text-slate-50", "text-blue-600"],
+          [
+            headerMode === "dark",
+            "text-white/60 hover:bg-slate-600 hover:bg-white/10 hover:text-white active:bg-white/20",
+            "text-slate-500 hover:bg-slate-100 hover:text-slate-900 active:border-blue-500 active:bg-slate-200",
+          ],
+        ])}
+      >
+        {link.name}
+
+        {/* <div
           ref={ref}
           className={cn(
-            "transition-ani absolute bottom-0 transition-opacity",
+            "trans-ani-300 absolute bottom-0 transition-opacity",
             [headerMode === "light", "bg-blue-600", "bg-white"],
             [
               selected,
@@ -188,7 +171,7 @@ export default function HeaderLink({
             ]
           )}
           style={{ height: BAR_WIDTH }}
-        />
+        /> */}
       </VCenterCol>
     </BaseLink>
   )
