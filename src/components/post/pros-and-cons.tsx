@@ -6,6 +6,7 @@ import ExpandTab from "../expand-tab"
 import HCenterRow from "../h-center-row"
 import StarRating from "./star-rating"
 import VCenterRow from "../v-center-row"
+import React from "react"
 
 interface IProps {
   post: IPost

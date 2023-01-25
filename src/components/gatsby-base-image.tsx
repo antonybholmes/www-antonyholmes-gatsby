@@ -7,6 +7,7 @@ import cn from "../lib/class-names"
 export interface IImageProps extends IClassProps {
   src: any
   alt: string
+  containerClassName?: string
   imgClassName?: string
   imgStyle?: IFieldMap
 }
@@ -16,20 +17,31 @@ export default function GatsbyBaseImage({
   alt,
   className,
   style,
+  containerClassName,
   imgClassName,
   imgStyle,
 }: IImageProps) {
   const image = getImage(src)
 
   return (
-    <GatsbyImage
-      //@ts-ignore
-      image={image}
-      className={cn("trans-ani-700 transition-placeholder", className)}
-      style={style}
-      imgClassName={imgClassName}
-      imgStyle={imgStyle}
-      alt={alt}
-    />
+    <div
+      className={cn(
+        "relative z-10 h-full w-full overflow-hidden",
+        containerClassName
+      )}
+    >
+      <GatsbyImage
+        //@ts-ignore
+        image={image}
+        className={cn(
+          "trans-ani-700 h-full w-full transition-placeholder",
+          className
+        )}
+        style={style}
+        imgClassName={cn("w-full h-full", imgClassName)}
+        imgStyle={imgStyle}
+        alt={alt}
+      />
+    </div>
   )
 }

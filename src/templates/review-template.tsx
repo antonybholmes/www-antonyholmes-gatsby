@@ -50,6 +50,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         description
+        type
         authors
         categories
         tags

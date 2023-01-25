@@ -1,14 +1,11 @@
 import React from "react"
-import CheckIcon from "../../icons/check"
-import CloseIcon from "../../icons/close"
 import IFieldMap from "../../interfaces/field-map"
 import IPreviewPost from "../../interfaces/preview-post"
 import IReview from "../../interfaces/review"
 import PostLayout from "../../layouts/post-layout"
 import BaseCol from "../base-col"
+import CondComp from "../component"
 import ContentDiv from "../content-div"
-import ExpandTab from "../expand-tab"
-import HCenterRow from "../h-center-row"
 import MorePosts from "../post/more-posts"
 import PostBody from "../post/post-body"
 import PostDetailsHoz from "../post/post-details-hoz"
@@ -16,9 +13,8 @@ import PostHeader from "../post/post-header"
 import PostSocialMedia from "../post/post-social-media"
 import PostSocialMediaVert from "../post/post-social-media-vert"
 import PostTags from "../post/post-tags"
+import ProsAndCons from "../post/pros-and-cons"
 import RelatedPosts from "../post/related-posts"
-import StarRating from "../star-rating"
-import VCenterRow from "../v-center-row"
 
 interface IProps {
   post: IReview
@@ -53,51 +49,9 @@ export default function ReviewPage({
               <PostSocialMediaVert post={post} />
 
               <BaseCol tag="section" className="gap-y-8">
-                <BaseCol className="gap-y-2">
-                  <VCenterRow>
-                    <StarRating rating={post.frontmatter.rating} />
-                  </VCenterRow>
-
-                  <ExpandTab title="Pros & Cons" isExpanded={true}>
-                    <div className="my-2 grid grid-cols-1 gap-4 lg:grid-cols-2">
-                      <ul className="flex flex-col gap-y-2 text-sm">
-                        {post.frontmatter.pros.map((pro: string) => {
-                          return (
-                            <li className="flex flex-row items-center gap-x-2">
-                              <HCenterRow className="h-4 w-4 shrink-0 items-center rounded-full bg-emerald-400 stroke-white">
-                                <CheckIcon className="w-3 stroke-4" />
-                              </HCenterRow>
-
-                              <div>{pro}</div>
-                            </li>
-                          )
-                        })}
-                      </ul>
-
-                      <ul className="flex flex-col gap-y-2 text-sm">
-                        {post.frontmatter.cons.map((con: string) => {
-                          return (
-                            <li className="flex flex-row items-center gap-x-2">
-                              <HCenterRow className="h-4 w-4 items-center rounded-full bg-rose-400 stroke-white">
-                                <CloseIcon className="w-3 stroke-4" />
-                              </HCenterRow>
-
-                              <div>{con}</div>
-                            </li>
-                          )
-                        })}
-                      </ul>
-                    </div>
-                  </ExpandTab>
-
-                  <ExpandTab title="Details" isExpanded={true}>
-                    <ul className="my-2 flex list-inside list-disc flex-col gap-y-1 text-sm">
-                      {post.frontmatter.details.map((detail, index) => {
-                        return <li key={index}>{detail}</li>
-                      })}
-                    </ul>
-                  </ExpandTab>
-                </BaseCol>
+                <CondComp cond={post.frontmatter.type === "review"}>
+                  <ProsAndCons post={post} />
+                </CondComp>
                 <PostBody html={post.html} className="text-justify" />
                 <PostTags post={post} />
               </BaseCol>

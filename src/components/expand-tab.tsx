@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from "react"
+import React, { useState } from "react"
 import IChildrenProps from "../interfaces/children-props"
 import ExpandDetails from "./expand-details"
 import ExpandTabButton from "./expand-tab-button"

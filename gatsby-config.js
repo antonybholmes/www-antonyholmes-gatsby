@@ -1,6 +1,4 @@
-import type { GatsbyConfig } from "gatsby"
-
-const config: GatsbyConfig = {
+module.exports = {
   siteMetadata: {
     title: `wwww-antonyholmes-gatsby`,
     siteUrl: `https://www.antonyholmes.com`,
@@ -113,7 +111,7 @@ const config: GatsbyConfig = {
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.nodes
-                .map((node:any) => {
+                .map(node => {
                   const match = node.fields.slug.match(
                     /(\d{4})-(\d{2})-(\d{2})/
                   )
@@ -129,15 +127,16 @@ const config: GatsbyConfig = {
                   }
                 })
                 .sort(
-                  (a: any, b: any) =>
-                    new Date(b.fields.date) - new Date(a.fields.date)
+                  (a, b) => new Date(b.fields.date) - new Date(a.fields.date)
                 )
-                .map((node: any) => {
+                .map(node => {
                   return Object.assign({}, node.frontmatter, {
                     description: node.excerpt,
                     date: node.fields.date,
-                    url: site.siteMetadata.siteUrl + '/blog/' + node.fields.slug,
-                    guid: site.siteMetadata.siteUrl + '/blog/' + node.fields.slug,
+                    url:
+                      site.siteMetadata.siteUrl + "/blog/" + node.fields.slug,
+                    guid:
+                      site.siteMetadata.siteUrl + "/blog/" + node.fields.slug,
                     //custom_elements: [{ "content:encoded": node.html }],
                   })
                 })
@@ -167,5 +166,3 @@ const config: GatsbyConfig = {
     },
   ],
 }
-
-export default config

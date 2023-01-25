@@ -1,6 +1,6 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-const postTemplate = path.resolve(`./src/templates/post-template.tsx`)
+//const postTemplate = path.resolve(`./src/templates/post-template.tsx`)
 const reviewTemplate = path.resolve(`./src/templates/review-template.tsx`)
 const postsTemplate = path.resolve(`./src/templates/posts-template.tsx`)
 const personTemplate = path.resolve(`./src/templates/person-template.tsx`)
@@ -76,35 +76,6 @@ exports.createPages = async function ({ actions, graphql }) {
         }
       }
 
-      reviews: allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/reviews/" } }
-      ) {
-        nodes {
-          id
-          excerpt
-          fields {
-            date
-            slug
-            readingTime {
-              text
-            }
-          }
-          frontmatter {
-            title
-            categories
-            tags
-            authors
-            hero
-            status
-            rating
-            pros
-            cons
-            details
-            url
-          }
-        }
-      }
-
       postImages: allFile(
         filter: { absolutePath: { regex: "/images/posts/" } }
       ) {
@@ -171,26 +142,13 @@ exports.createPages = async function ({ actions, graphql }) {
   })
 
   // sort by date
-  const posts = data.posts.nodes
+  const allPosts = data.posts.nodes
     .filter(post => {
       return (
         process.env.NODE_ENV === "development" ||
         post.frontmatter.status === "published"
       )
     })
-    .sort((a, b) => new Date(b.fields.date) - new Date(a.fields.date))
-
-  const reviews = data.reviews.nodes
-    .filter(post => {
-      return (
-        process.env.NODE_ENV === "development" ||
-        post.frontmatter.status === "published"
-      )
-    })
-    .sort((a, b) => new Date(b.fields.date) - new Date(a.fields.date))
-
-  const allPosts = posts
-    .concat(reviews)
     .sort((a, b) => new Date(b.fields.date) - new Date(a.fields.date))
 
   const categoryMap = {}
@@ -245,41 +203,9 @@ exports.createPages = async function ({ actions, graphql }) {
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
-  posts.forEach((post, index) => {
+  allPosts.forEach((post, index) => {
     // related
 
-    let morePosts = []
-
-    if (post.frontmatter.tags && post.frontmatter.tags.length > 0) {
-      morePosts = tagMap[post.frontmatter.tags[0]]
-        .filter(p => p.id !== post.id)
-        .slice(0, 3)
-    }
-
-    pim = {}
-    aim = {}
-    // ensure the images from the post appear in the map since
-    // more posts might be empty
-    subsetImageMaps([post], postImageMap, avatarMap, pim, aim)
-    subsetImageMaps(morePosts, postImageMap, avatarMap, pim, aim)
-
-    createPage({
-      path: `/blog/${post.fields.slug}`,
-      component: postTemplate,
-      context: {
-        id: post.id,
-        title: post.frontmatter.title,
-        tab: "Blog",
-        hero: post.frontmatter.hero,
-        morePosts,
-        imageMap: pim,
-        avatarMap: aim,
-      },
-    })
-  })
-
-  // Make separate pages for reviews
-  reviews.forEach((post, index) => {
     let morePosts = []
 
     if (post.frontmatter.tags && post.frontmatter.tags.length > 0) {
@@ -572,7 +498,7 @@ exports.createPages = async function ({ actions, graphql }) {
   people.forEach(person => {
     const slug = getTagSlug(person.frontmatter.name)
 
-    const personPosts = posts.filter(post =>
+    const personPosts = allPosts.filter(post =>
       post.frontmatter.authors.includes(person.frontmatter.name)
     )
 

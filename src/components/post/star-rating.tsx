@@ -1,3 +1,4 @@
+import React from "react"
 import HalfStarIcon from "../../icons/half-star"
 import StarIcon from "../../icons/star"
 

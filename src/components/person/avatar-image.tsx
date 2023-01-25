@@ -28,16 +28,13 @@ const AvatarImage = ({
   imgClassName,
 }: IProps) => {
   return (
-    <div
-      className={cn("relative z-10 overflow-hidden rounded-full", className)}
-    >
-      <GatsbyBaseImage
-        src={avatarMap[getUrlFriendlyTag(author)]}
-        alt={`Picture of ${author}`}
-        className={cn("h-full w-full", containerClassName)}
-        imgClassName={cn("rounded-full w-full h-full", imgClassName)}
-      />
-    </div>
+    <GatsbyBaseImage
+      src={avatarMap[getUrlFriendlyTag(author)]}
+      alt={`Picture of ${author}`}
+      containerClassName={cn("rounded-full", className)}
+      className={containerClassName}
+      imgClassName={cn("rounded-full", imgClassName)}
+    />
   )
 }
 
