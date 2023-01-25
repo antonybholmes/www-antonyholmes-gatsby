@@ -14,8 +14,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,svelte,astro}\"",
-    "update-version": "node scripts/update-version.js",
-    "image-optimize": "node scripts/image-optimize.js",
+    "update-version": "node scripts/update-version.mjs",
+    "image-optimize": "node scripts/image-optimize.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
