@@ -43,7 +43,7 @@ export default function Page({ data, location }: IDataPageProps) {
             >
               <AvatarImageLarge
                 person="Antony Holmes"
-                personImage={meImage}
+                avatarImage={meImage}
                 className="h-64 w-64"
               />
             </BaseLink>

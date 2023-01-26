@@ -35,7 +35,7 @@ export default function CompactAvatars({
               >
                 <AvatarImage
                   person={person}
-                  personImage={avatarMap[getUrlFriendlyTag(person)]}
+                  avatarImage={avatarMap[getUrlFriendlyTag(person)]}
                   className={cn(
                     "absolute h-12 w-12 border border-white",
                     `ml-${index * 2}`

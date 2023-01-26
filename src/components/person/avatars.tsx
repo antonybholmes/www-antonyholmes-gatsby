@@ -4,26 +4,27 @@ import IFieldMap from "../../interfaces/field-map"
 import cn from "../../lib/class-names"
 import Avatar from "./avatar"
 import WrapRow from "../wrap-row"
+import { getUrlFriendlyTag } from "../../lib/tags"
 
 interface IProps extends IClassProps {
-  authors: string[]
+  people: string[]
   avatarMap: IFieldMap
   showTitle?: boolean
   isSmall?: boolean
 }
 
 const Avatars = ({
-  authors,
+  people,
   avatarMap,
   showTitle = false,
   isSmall = false,
   className,
 }: IProps) => (
   <WrapRow className={cn("gap-4", className)}>
-    {authors.map((author, index) => (
+    {people.map((person, index) => (
       <Avatar
-        author={author}
-        avatarMap={avatarMap}
+        person={person}
+        avatarImage={avatarMap[getUrlFriendlyTag(person)]}
         isSmall={isSmall}
         key={index}
       />

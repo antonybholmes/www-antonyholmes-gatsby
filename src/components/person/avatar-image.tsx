@@ -5,7 +5,7 @@ import PlaceholderImage, { IPlaceholderProps } from "../placeholder-image"
 
 export interface IAvatarProps extends IClassProps, IPlaceholderProps {
   person: string
-  personImage: any
+  avatarImage: any
   lazy?: boolean
 }
 
@@ -17,7 +17,7 @@ interface IProps extends IAvatarProps {
 
 export default function AvatarImage({
   person,
-  personImage,
+  avatarImage,
   size = [320, 320],
   className,
   containerClassName,
@@ -25,7 +25,7 @@ export default function AvatarImage({
 }: IProps) {
   return (
     <PlaceholderImage
-      src={personImage}
+      src={avatarImage}
       alt={`Picture of ${person}`}
       containerClassName={cn("rounded-full", className)}
       className={containerClassName}

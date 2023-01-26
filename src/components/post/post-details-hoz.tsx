@@ -18,7 +18,7 @@ const PostDetailsHoz = ({ post, avatarMap, className }: IProps) => (
       className
     )}
   >
-    <Avatars authors={post.frontmatter.authors} avatarMap={avatarMap} />
+    <Avatars people={post.frontmatter.authors} avatarMap={avatarMap} />
 
     <VCenterRow className="gap-x-2 border-l border-slate-300 py-1 pl-6 text-sm">
       <DateFormatter date={post.fields.date} />

@@ -23,11 +23,13 @@ export default function PlaceholderImage({
   imgClassName,
   imgStyle,
 }: IImageProps) {
+  const img = getImage(src)
+
   return (
     <div className={cn("relative z-10 overflow-hidden", containerClassName)}>
       <GatsbyImage
         //@ts-ignore
-        image={getImage(src)}
+        image={img}
         className={cn(
           "trans-ani-700 h-full w-full transition-placeholder",
           className

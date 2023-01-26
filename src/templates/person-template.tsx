@@ -17,7 +17,7 @@ export default function Page({ pageContext, data, location }: IDataPageProps) {
       <></>
       <PersonPage
         person={person}
-        personImage={personImage}
+        avatarImage={personImage}
         imageMap={imageMap}
         avatarMap={avatarMap}
         posts={posts}

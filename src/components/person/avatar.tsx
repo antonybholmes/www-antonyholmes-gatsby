@@ -9,38 +9,38 @@ import VCenterRow from "../v-center-row"
 import AvatarImage from "./avatar-image"
 
 interface IProps extends IClassProps {
-  author: string
-  avatarMap: IFieldMap
+  person: string
+  avatarImage: any
   showTitle?: boolean
   isSmall?: boolean
 }
 
 const Avatar = ({
-  author,
-  avatarMap,
+  person,
+  avatarImage,
   showTitle = false,
   isSmall = false,
   className,
 }: IProps) => {
-  const href = getAuthorBaseUrl(author)
+  const href = getAuthorBaseUrl(person)
 
   return (
     <VCenterRow className={cn("gap-x-3", className)}>
       <BaseLink
         href={href}
-        ariaLabel={`Click to read more about ${author}`}
+        ariaLabel={`Click to read more about ${person}`}
         className={cn("block", [isSmall, "h-10 w-10", "h-12 w-12"])}
       >
-        <AvatarImage author={author} avatarMap={avatarMap} />
+        <AvatarImage person={person} avatarImage={avatarImage} />
       </BaseLink>
       <BaseCol>
         <BaseLink
           href={href}
-          ariaLabel={`Click to read more information about ${author}`}
+          ariaLabel={`Click to read more information about ${person}`}
           underline={true}
           className={cn("font-bold", [isSmall, "text-sm"])}
         >
-          {author}
+          {person}
         </BaseLink>
 
         {/* {showTitle && (

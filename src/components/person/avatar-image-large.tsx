@@ -4,7 +4,7 @@ import AvatarImage, { IAvatarProps } from "./avatar-image"
 
 export default function AvatarImageLarge({
   person,
-  personImage,
+  avatarImage,
   className,
   containerClassName,
   imgClassName,
@@ -12,7 +12,7 @@ export default function AvatarImageLarge({
   return (
     <AvatarImage
       person={person}
-      personImage={personImage}
+      avatarImage={avatarImage}
       size={[640, 640]}
       className={className}
       containerClassName={cn("scale-102 hover:scale-105", containerClassName)}
